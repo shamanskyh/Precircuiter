@@ -16,27 +16,27 @@ class AssignUserEducationView: NSView {
     func setupPlotView() {
         plotView.delegate = self
         plotView.invalidateSymbolsAndRedraw()
-        plotView.dimmerViews.forEach({ $0.hidden = false })
-        plotView.lightViews.forEach({ $0.hidden = false })
-        plotView.connectionViews.forEach({ $0.hidden = false })
+        plotView.dimmerViews.forEach({ $0.isHidden = false })
+        plotView.lightViews.forEach({ $0.isHidden = false })
+        plotView.connectionViews.forEach({ $0.isHidden = false })
     }
     
     func animate() {
 
         // click 1
-        delay (0.5) {
-            self.click1.animateInAndOut()
+        DispatchQueue.main.after(when: .now() + 0.5) { [weak self] in
+            self?.click1.animateInAndOut()
         }
 
         // animate connections
-        delay (1.0) {
-            self.plotView.animateInConnections()
+        DispatchQueue.main.after(when: .now() + 1.0) { [weak self] in
+            self?.plotView.animateInConnections()
         }
         
     }
     
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
 
         // Drawing code here.
     }
@@ -86,7 +86,7 @@ extension AssignUserEducationView: PlotViewDelegate {
         light13.receptacle = dimmer23
         
         let lights: [Instrument] = [light1, light11, light2, light12, light3, light13]
-        lights.forEach({ $0.deviceType = .Light })
+        lights.forEach({ $0.deviceType = .light })
         return lights
     }
     
@@ -111,16 +111,16 @@ extension AssignUserEducationView: PlotViewDelegate {
         dimmer24.light = light12
         
         let dimmers = [dimmer20, dimmer21, dimmer22, dimmer23, dimmer24, dimmer25]
-        dimmers.forEach({ $0.deviceType = .Power })
+        dimmers.forEach({ $0.deviceType = .power })
         return dimmers
     }
     
-    func updateSelectedDimmers(selectedDimmers: [Instrument], selectLights: Bool) {
+    func update(selectedDimmers: [Instrument], selectLights: Bool) {
         NSLog("Function is unimplemented in the demo version")
         return
     }
     
-    func updateSelectedLights(selectedLights: [Instrument], selectDimmers: Bool) {
+    func update(selectedLights: [Instrument], selectDimmers: Bool) {
         NSLog("Function is unimplemented in the demo version")
         return
     }

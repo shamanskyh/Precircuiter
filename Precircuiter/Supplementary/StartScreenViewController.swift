@@ -38,7 +38,7 @@ class StartScreenViewController: NSViewController {
         super.viewDidLoad()
         
         carouselTray.wantsLayer = true
-        carouselTray.layer?.backgroundColor = NSColor.whiteColor().CGColor
+        carouselTray.layer?.backgroundColor = NSColor.white().cgColor
         
         mainTitleLabel.alphaValue = 1.0
         showScreenCheckbox.alphaValue = 0.0
@@ -47,24 +47,24 @@ class StartScreenViewController: NSViewController {
     override func viewWillAppear() {
         super.viewWillAppear()
         view.window?.titlebarAppearsTransparent = true
-        view.window?.movableByWindowBackground = true
+        view.window?.isMovableByWindowBackground = true
     }
     
     override func viewDidAppear() {
         assignUserEducationView.setupPlotView()
         
-        delay (1.0) {
-            self.exportUserEducationView.animate()
+        DispatchQueue.main.after(when: .now() + 1.0) { [weak self] in
+            self?.exportUserEducationView.animate()
         }
     }
     
-    @IBAction func nextPressed(sender: AnyObject) {
+    @IBAction func nextPressed(_ sender: AnyObject) {
         
         if isAnimatingCarousel {
             return
         }
         
-        backButton.enabled = true
+        backButton.isEnabled = true
         
         switch (currentIndex) {
         case 0:
@@ -80,7 +80,7 @@ class StartScreenViewController: NSViewController {
             })
         case 1:
             isAnimatingCarousel = true
-            showScreenCheckbox.hidden = false
+            showScreenCheckbox.isHidden = false
             NSAnimationContext.runAnimationGroup({ (context: NSAnimationContext) -> Void in
                 context.duration = 0.5
                 context.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
@@ -92,7 +92,7 @@ class StartScreenViewController: NSViewController {
             }, completionHandler: {
                 self.nextButton.title = "Open Instrument Data"
                 self.isAnimatingCarousel = false
-                self.mainTitleLabel.hidden = true
+                self.mainTitleLabel.isHidden = true
                 self.importUserEducationView.animate()
             })
         default:
@@ -100,7 +100,7 @@ class StartScreenViewController: NSViewController {
         }
     }
     
-    @IBAction func backPressed(sender: AnyObject) {
+    @IBAction func backPressed(_ sender: AnyObject) {
         
         if isAnimatingCarousel {
             return
@@ -108,7 +108,7 @@ class StartScreenViewController: NSViewController {
         
         switch (currentIndex) {
         case 1:
-            backButton.enabled = false
+            backButton.isEnabled = false
             isAnimatingCarousel = true
             NSAnimationContext.runAnimationGroup({ (context: NSAnimationContext) -> Void in
                 context.duration = 0.5
@@ -121,7 +121,7 @@ class StartScreenViewController: NSViewController {
         case 2:
             self.nextButton.title = "Next"
             isAnimatingCarousel = true
-            mainTitleLabel.hidden = false
+            mainTitleLabel.isHidden = false
             assignUserEducationView.plotView.connectionViews.forEach({ $0.sizeToAnimate() })
             NSAnimationContext.runAnimationGroup({ (context: NSAnimationContext) -> Void in
                 context.duration = 0.5
@@ -132,17 +132,17 @@ class StartScreenViewController: NSViewController {
                 self.showScreenCheckbox.animator().alphaValue = 0.0
                 }, completionHandler: {
                     self.isAnimatingCarousel = false
-                    self.showScreenCheckbox.hidden = true
+                    self.showScreenCheckbox.isHidden = true
                     self.assignUserEducationView.animate()
             })
         default:
-            backButton.enabled = false
+            backButton.isEnabled = false
         }
     }
     
-    func openFileAndDismiss(sender: AnyObject) {
+    func openFileAndDismiss(_ sender: AnyObject) {
         self.view.window?.close()
-        NSDocumentController.sharedDocumentController().openDocument(sender)
+        NSDocumentController.shared().openDocument(sender)
     }
     
 }

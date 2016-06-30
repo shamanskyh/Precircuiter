@@ -14,11 +14,11 @@ class PreferencesViewController: NSViewController {
         super.viewDidLoad()
     }
     
-    @IBAction func changeDrawingPreferences(sender: AnyObject) {
-        NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: kShouldReloadPlotViewNotification, object: nil))
+    @IBAction func changeDrawingPreferences(_ sender: AnyObject) {
+        NotificationCenter.default().post(Notification(name: NSNotification.Name(rawValue: kShouldReloadPlotViewNotification), object: nil))
     }
     
-    @IBAction func resetStartupWindow(sender: AnyObject) {
+    @IBAction func resetStartupWindow(_ sender: AnyObject) {
         Preferences.stopShowingStartScreen = false
     }
 }

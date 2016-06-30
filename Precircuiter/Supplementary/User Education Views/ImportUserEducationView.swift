@@ -16,24 +16,24 @@ class ImportUserEducationView: NSView {
     
     func animate() {
         // click 1
-        delay (0.5) {
-            self.click1.animateInAndOut()
+        DispatchQueue.main.after(when: .now() + 0.5) { [weak self] in
+            self?.click1.animateInAndOut()
         }
         
         // click 2
-        delay (2.0) {
-            self.click2.animateInAndOut()
+        DispatchQueue.main.after(when: .now() + 2.0) { [weak self] in
+            self?.click2.animateInAndOut()
         }
         
         // click 3
-        delay (3.5) {
-            self.click3.animateInAndOut()
+        DispatchQueue.main.after(when: .now() + 3.5) { [weak self] in
+            self?.click3.animateInAndOut()
         }
 
     }
     
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
 
         // Drawing code here.
     }

@@ -10,7 +10,7 @@
 import Cocoa
 
 protocol HungarianMatrixDelegate {
-    func didUpdateProgress(progress: Double)
+    func didUpdateProgress(_ progress: Double)
 }
 
 class HungarianMatrix {
@@ -34,18 +34,18 @@ class HungarianMatrix {
         init(rows: Int, columns: Int) {
             self.rows = rows
             self.columns = columns
-            grid = Array(count: rows * columns, repeatedValue: 0.0)
+            grid = Array(repeating: 0.0, count: rows * columns)
         }
-        func indexIsValidForRow(row: Int, column: Int) -> Bool {
+        func indexIsValid(row: Int, column: Int) -> Bool {
             return row >= 0 && row < rows && column >= 0 && column < columns
         }
         subscript(row: Int, column: Int) -> Double {
             get {
-                assert(indexIsValidForRow(row, column: column), "Index out of range")
+                assert(indexIsValid(row: row, column: column), "Index out of range")
                 return grid[(row * columns) + column]
             }
             set {
-                assert(indexIsValidForRow(row, column: column), "Index out of range")
+                assert(indexIsValid(row: row, column: column), "Index out of range")
                 grid[(row * columns) + column] = newValue
             }
         }
@@ -57,18 +57,18 @@ class HungarianMatrix {
         init(rows: Int, columns: Int) {
             self.rows = rows
             self.columns = columns
-            grid = Array(count: rows * columns, repeatedValue: 0)
+            grid = Array(repeating: 0, count: rows * columns)
         }
-        func indexIsValidForRow(row: Int, column: Int) -> Bool {
+        func indexIsValid(row: Int, column: Int) -> Bool {
             return row >= 0 && row < rows && column >= 0 && column < columns
         }
         subscript(row: Int, column: Int) -> Int {
             get {
-                assert(indexIsValidForRow(row, column: column), "Index out of range")
+                assert(indexIsValid(row: row, column: column), "Index out of range")
                 return grid[(row * columns) + column]
             }
             set {
-                assert(indexIsValidForRow(row, column: column), "Index out of range")
+                assert(indexIsValid(row: row, column: column), "Index out of range")
                 grid[(row * columns) + column] = newValue
             }
         }
@@ -81,14 +81,14 @@ class HungarianMatrix {
         self.solutions = self.dimension
         self.matrix = DoubleMatrix(rows: rows, columns: columns)
         self.stars = IntMatrix(rows: rows, columns: columns)
-        self.rCov = Array(count: rows, repeatedValue: false)
-        self.cCov = Array(count: columns, repeatedValue: false)
+        self.rCov = Array(repeating: false, count: rows)
+        self.cCov = Array(repeating: false, count: columns)
     }
     
     
     
     // MARK: Matrix Setup
-    private func createDistanceMatrix(inout dimmers: [Instrument], inout lights: [Instrument], cutCorners: Bool) throws {
+    private func createDistanceMatrix(dimmers: inout [Instrument], lights: inout [Instrument], cutCorners: Bool) throws {
         
         if dimmers.count < lights.count {
             let difference = lights.count - dimmers.count
@@ -96,7 +96,7 @@ class HungarianMatrix {
             alert.messageText = "The plot contains more channels than available dimmers."
             alert.informativeText = "Using Vectorworks or Lightwright, add \(difference) dimmers to the plot, delete \(difference) instruments from the plot, or twofer channels so that there are the number of dimmers is greater than or equal to the number of channels."
             alert.runModal()
-            throw HungarianMatrixError.MoreChannelsThanDimmers
+            throw HungarianMatrixError.moreChannelsThanDimmers
         } else if lights.count < dimmers.count {
             let difference = dimmers.count - lights.count
             for _ in 0..<difference {
@@ -112,9 +112,9 @@ class HungarianMatrix {
                     self.matrix[i, j] = 0.0
                 } else {
                     do {
-                        self.matrix[i, j] = try self.dynamicType.distanceBetween(lights[i], dimmer: dimmers[j], cutCorners: cutCorners)
+                        self.matrix[i, j] = try self.dynamicType.distanceBetween(light: lights[i], dimmer: dimmers[j], cutCorners: cutCorners)
                     } catch {
-                        throw HungarianMatrixError.CouldNotCreateMatrix
+                        throw HungarianMatrixError.couldNotCreateMatrix
                     }
                 }
             }
@@ -195,7 +195,7 @@ class HungarianMatrix {
         }
         for j in 0..<columns {
             if cCov[j] {
-                k++
+                k += 1
             }
         }
         return k
@@ -218,7 +218,7 @@ class HungarianMatrix {
         return true
     }
     
-    private func starZeroInRow(position: (Int, Int)) {
+    private func starZeroInRow(_ position: (Int, Int)) {
         let (zeroRow, zeroCol) = position
         var count: Int = 0
         var path: IntMatrix = IntMatrix(rows: 100, columns: 2)
@@ -228,7 +228,7 @@ class HungarianMatrix {
         
         while (!done) {
             if let r = findStarInCol(path[count, 1]) {
-                count++
+                count += 1
                 path[count, 0] = r
                 path[count, 1] = path[count-1, 1]
             } else {
@@ -236,7 +236,7 @@ class HungarianMatrix {
                 break
             }
             let c = findPrimeInRow(path[count, 0])
-            count++
+            count += 1
             path[count, 0] = path[count-1, 0]
             path[count, 1] = c
         }
@@ -256,7 +256,7 @@ class HungarianMatrix {
         return nil
     }
     
-    private func foundStarInRow(zeroY: Int) -> Int? {
+    private func foundStarInRow(_ zeroY: Int) -> Int? {
         for j in 0..<columns {
             if stars[zeroY, j] == 1 {
                 return j
@@ -265,7 +265,7 @@ class HungarianMatrix {
         return nil
     }
     
-    private func findStarInCol(col: Int) -> Int? {
+    private func findStarInCol(_ col: Int) -> Int? {
         if col < 0 {
             assert(false, "column out of range")
         }
@@ -277,7 +277,7 @@ class HungarianMatrix {
         return nil
     }
     
-    private func findPrimeInRow(row: Int) -> Int {
+    private func findPrimeInRow(_ row: Int) -> Int {
         for j in 0..<self.columns {
             if stars[row, j] == 2 {
                 return j
@@ -287,7 +287,7 @@ class HungarianMatrix {
         return -1
     }
     
-    private func convertPath(path: IntMatrix, count: Int) {
+    private func convertPath(_ path: IntMatrix, count: Int) {
         for i in 0...count {
             let x = path[i, 0]
             let y = path[i, 1]
@@ -323,7 +323,7 @@ class HungarianMatrix {
         return minValue
     }
     
-    private func uncoverSmallest(smallest: Double) {
+    private func uncoverSmallest(_ smallest: Double) {
         for i in 0..<self.rows {
             for j in 0..<self.columns {
                 if rCov[i] == true {
@@ -336,7 +336,7 @@ class HungarianMatrix {
         }
     }
     
-    private func freeRow(row: Int, col: Int) -> Bool {
+    private func freeRow(_ row: Int, col: Int) -> Bool {
         for i in 0..<self.rows {
             if i != row && stars[i, col] == 1 {
                 return false
@@ -345,7 +345,7 @@ class HungarianMatrix {
         return true
     }
     
-    private func freeCol(row: Int, col: Int) -> Bool {
+    private func freeCol(_ row: Int, col: Int) -> Bool {
         for j in 0..<self.columns {
             if j != col && stars[row, j] == 1 {
                 return false
@@ -401,15 +401,15 @@ class HungarianMatrix {
     // These are the functions that other files should call
     
     // pairs lights and dimmers
-    internal func assignAndPair(inout lights: [Instrument], inout dimmers: [Instrument], cutCorners: Bool, completion: () -> ()) {
+    internal func assignAndPair(lights: inout [Instrument], dimmers: inout [Instrument], cutCorners: Bool, completion: () -> ()) {
         
         if let mainViewController = delegate as? NSViewController {
             mainViewController.view.window?.undoManager?.disableUndoRegistration()
         }
         
         do {
-            try createDistanceMatrix(&dimmers, lights: &lights, cutCorners: cutCorners)
-        } catch HungarianMatrixError.MoreChannelsThanDimmers {
+            try createDistanceMatrix(dimmers: &dimmers, lights: &lights, cutCorners: cutCorners)
+        } catch HungarianMatrixError.moreChannelsThanDimmers {
             // alert is shown before we throw the error
             return
         } catch {
@@ -420,9 +420,11 @@ class HungarianMatrix {
             return
         }
         
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0), {
+        DispatchQueue.global(attributes: .qosUtility).async {
+            
             self.solve()
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async {
+                
                 let pairs = self.getSolutions()
                 
                 // connect the pairs
@@ -430,9 +432,9 @@ class HungarianMatrix {
                     if lights[light].dummyInstrument == false {
                         lights[light].receptacle = dimmers[dim]
                         lights[light].dimmer = dimmers[dim].dimmer
-                        lights[light].assignedBy = .Auto
+                        lights[light].assignedBy = .auto
                         dimmers[dim].light = lights[light]
-                        dimmers[dim].assignedBy = .Auto
+                        dimmers[dim].assignedBy = .auto
                     }
                 }
                 
@@ -444,8 +446,8 @@ class HungarianMatrix {
                 }
                 
                 completion()
-            })
-        })
+            }
+        }
     }
     
     internal func printPatch(lights: [Instrument], dimmers: [Instrument]) {
@@ -476,19 +478,19 @@ class HungarianMatrix {
         if light.locations.count == 1 && dimmer.locations.count == 1 {    // one-to-one pairing
             
             guard let p1 = light.locations.first, p2 = dimmer.locations.first else {
-                throw HungarianMatrixError.NoLocationSpecified
+                throw HungarianMatrixError.noLocationSpecified
             }
-            return simpleDistBetween(p1, coordinate2: p2, cutCorners: cutCorners)
+            return simpleDistBetween(coordinate1: p1, coordinate2: p2, cutCorners: cutCorners)
             
         } else if light.locations.count == 1 && dimmer.locations.count >= 1 { // doubled dimmers
             
             guard let lightLocation = light.locations.first else {
-                throw HungarianMatrixError.NoLocationSpecified
+                throw HungarianMatrixError.noLocationSpecified
             }
             
             var shortestDist = Double(UINT32_MAX)
             for coord in dimmer.locations {
-                let newDist = simpleDistBetween(lightLocation, coordinate2: coord, cutCorners: cutCorners)
+                let newDist = simpleDistBetween(coordinate1: lightLocation, coordinate2: coord, cutCorners: cutCorners)
                 if newDist < shortestDist {
                     shortestDist = newDist
                 }
@@ -501,13 +503,13 @@ class HungarianMatrix {
             // will have to cast wattage to Double
             
             guard let dimmerLocation = dimmer.locations.first else {
-                throw HungarianMatrixError.NoLocationSpecified
+                throw HungarianMatrixError.noLocationSpecified
             }
             
             // TODO: Does this need refinement? Or is just combining the distance as if it were two runs the right call?
             var total: Double = 0.0
             for coord in light.locations {
-                total += simpleDistBetween(dimmerLocation, coordinate2: coord, cutCorners: cutCorners)
+                total += simpleDistBetween(coordinate1: dimmerLocation, coordinate2: coord, cutCorners: cutCorners)
             }
             return total
             
@@ -527,9 +529,9 @@ class HungarianMatrix {
                 var shortestDist = Double(UINT32_MAX)
                 var shortestIndex = 0
                 
-                for (i, dCoord) in dimmer.locations.enumerate() {
+                for (i, dCoord) in dimmer.locations.enumerated() {
                     if usedDimmerIndices.contains(i) == false {
-                        let newDist = simpleDistBetween(lCoord, coordinate2: dCoord, cutCorners: cutCorners)
+                        let newDist = simpleDistBetween(coordinate1: lCoord, coordinate2: dCoord, cutCorners: cutCorners)
                         if newDist < shortestDist {
                             shortestDist = newDist
                             shortestIndex = i
@@ -537,11 +539,11 @@ class HungarianMatrix {
                     }
                 }
                 usedDimmerIndices.append(shortestIndex)
-                total += simpleDistBetween(lCoord, coordinate2: dimmer.locations[shortestIndex], cutCorners: cutCorners)
+                total += simpleDistBetween(coordinate1: lCoord, coordinate2: dimmer.locations[shortestIndex], cutCorners: cutCorners)
             }
             return total
         } else {
-            throw HungarianMatrixError.NoLocationSpecified
+            throw HungarianMatrixError.noLocationSpecified
         }
     }
     

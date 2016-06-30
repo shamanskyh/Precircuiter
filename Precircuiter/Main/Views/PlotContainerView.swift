@@ -17,11 +17,11 @@ class PlotContainerView: NSView {
     
     override func awakeFromNib() {
         self.wantsLayer = true
-        self.layer?.backgroundColor = NSColor.whiteColor().CGColor
+        self.layer?.backgroundColor = NSColor.white().cgColor
     }
     
     // send clicks to the inner view
-    override func mouseDown(theEvent: NSEvent) {
+    override func mouseDown(_ theEvent: NSEvent) {
         innerView.mouseDown(theEvent)
     }
     

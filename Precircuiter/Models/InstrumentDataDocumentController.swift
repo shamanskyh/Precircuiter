@@ -12,7 +12,7 @@ class InstrumentDataDocumentController: NSDocumentController {
 
     var count = 0
     
-    override func runModalOpenPanel(openPanel: NSOpenPanel, forTypes types: [String]?) -> Int {
+    override func runModalOpenPanel(_ openPanel: NSOpenPanel, forTypes types: [String]?) -> Int {
         openPanel.delegate = self
         return super.runModalOpenPanel(openPanel, forTypes: types)
     }
@@ -21,7 +21,7 @@ class InstrumentDataDocumentController: NSDocumentController {
 
 extension InstrumentDataDocumentController: NSOpenSavePanelDelegate {
     
-    func panel(sender: AnyObject, shouldEnableURL url: NSURL) -> Bool {
+    func panel(_ sender: AnyObject, shouldEnable url: URL) -> Bool {
         let fileExtension = url.pathExtension
         if fileExtension == "" || fileExtension == "txt" {
             return true

@@ -13,7 +13,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var startScreenWindowController: NSWindowController?
     
-    func applicationWillFinishLaunching(notification: NSNotification) {
+    func applicationWillFinishLaunching(_ notification: Notification) {
         
         // Create an instance of the sub-classed document controller.
         // This will be set as the shared document controller, according to the spec.
@@ -21,24 +21,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // register the default preferences
         let defaultsDictionary = [kShowConnectionsPreferenceKey: true, kAnimateConnectionsPreferenceKey: true, kCutCornersPreferenceKey: true];
-        NSUserDefaults.standardUserDefaults().registerDefaults(defaultsDictionary)
+        UserDefaults.standard().register(defaultsDictionary)
         
     }
     
     // prevent the app from creating a new document
-    func applicationShouldOpenUntitledFile(sender: NSApplication) -> Bool {
+    func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
         return false
     }
     
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
         
         // Show the opening screen or jump straight into the open screen
         if Preferences.stopShowingStartScreen == false {
             let storyboard = NSStoryboard(name: kMainStoryboardIdentifier, bundle: nil)
-            startScreenWindowController = storyboard.instantiateControllerWithIdentifier(kStartScreenWindowIdentifier) as? NSWindowController
+            startScreenWindowController = storyboard.instantiateController(withIdentifier: kStartScreenWindowIdentifier) as? NSWindowController
             startScreenWindowController?.showWindow(self)
         } else {
-            NSDocumentController.sharedDocumentController().openDocument(self)
+            NSDocumentController.shared().openDocument(self)
         }
     }
 }

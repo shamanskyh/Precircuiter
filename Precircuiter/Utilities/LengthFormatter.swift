@@ -24,17 +24,17 @@ extension String {
             if char == "'" || char == "’" || char == "‘" {    // feet
                 if exponent != "" {
                     guard let n1 = Float(numerator), let e1 = Float(exponent) else {
-                        throw LengthFormatterError.StringToNumber
+                        throw LengthFormatterError.stringToNumber
                     }
                     feet += Double(n1 * powf(10, e1))
                 } else if denominator == "" {
                     guard let n1 = Double(numerator) else {
-                        throw LengthFormatterError.StringToNumber
+                        throw LengthFormatterError.stringToNumber
                     }
                     feet += n1
                 } else {
                     guard let n1 = Double(numerator), let d1 = Double(denominator) else {
-                        throw LengthFormatterError.StringToNumber
+                        throw LengthFormatterError.stringToNumber
                     }
                     feet += n1 / d1
                 }
@@ -45,17 +45,17 @@ extension String {
             } else if char == "\"" || char == "“" || char == "”" {  // inches
                 if exponent != "" {
                     guard let n1 = Float(numerator), let e1 = Float(exponent) else {
-                        throw LengthFormatterError.StringToNumber
+                        throw LengthFormatterError.stringToNumber
                     }
                     inches += Double(n1 * powf(10, e1))
                 } else if denominator == "" {
                     guard let n1 = Double(numerator) else {
-                        throw LengthFormatterError.StringToNumber
+                        throw LengthFormatterError.stringToNumber
                     }
                     inches += n1
                 } else {
                     guard let n1 = Double(numerator), let d1 = Double(denominator) else {
-                        throw LengthFormatterError.StringToNumber
+                        throw LengthFormatterError.stringToNumber
                     }
                     inches += n1 / d1
                 }
@@ -67,7 +67,7 @@ extension String {
                 fillExponent = true
             } else if char == "/" { // fractional feet or inches
                 guard fillDenom == false else {
-                    throw LengthFormatterError.FractionalFormattingError
+                    throw LengthFormatterError.fractionalFormattingError
                 }
                 fillDenom = true
             } else if char >= "0" && char <= "9" || char == "." || char == "-" {   // number
@@ -83,7 +83,7 @@ extension String {
                     continue
                 } else {
                     guard let n1 = Double(numerator) else {
-                        throw LengthFormatterError.StringToNumber
+                        throw LengthFormatterError.stringToNumber
                     }
                     inches += n1
                     numerator = ""
@@ -91,7 +91,7 @@ extension String {
             } else if char == "," {
                 continue
             } else {
-                throw LengthFormatterError.UnexpectedCharacter
+                throw LengthFormatterError.unexpectedCharacter
             }
         }
         return (kMetersInFoot * feet) + (kMetersInInch * inches)
@@ -100,7 +100,7 @@ extension String {
     /// converts an string of known units to meters
     /// - Parameter metersInUnit: the number of meters per unit
     /// - Returns: the converted length in meters.
-    func unitToMeter(metersInUnit: Double) throws -> Double {
+    func unitToMeter(_ metersInUnit: Double) throws -> Double {
         var units: Double = 0.0
         var numerator: String = ""
         var denominator: String = ""
@@ -113,7 +113,7 @@ extension String {
                 fillExponent = true
             } else if char == "/" { // fractional feet or inches
                 guard fillDenom == false else {
-                    throw LengthFormatterError.FractionalFormattingError
+                    throw LengthFormatterError.fractionalFormattingError
                 }
                 fillDenom = true
             } else if char >= "0" && char <= "9" || char == "." || char == "-" {   // number
@@ -129,7 +129,7 @@ extension String {
                     continue
                 } else {
                     guard let n1 = Double(numerator) else {
-                        throw LengthFormatterError.StringToNumber
+                        throw LengthFormatterError.stringToNumber
                     }
                     units += n1
                     numerator = ""
@@ -137,23 +137,23 @@ extension String {
             } else if char == "," {
                 continue
             } else {
-                throw LengthFormatterError.UnexpectedCharacter
+                throw LengthFormatterError.unexpectedCharacter
             }
         }
         
         if exponent != "" {
             guard let n1 = Float(numerator), let e1 = Float(exponent) else {
-                throw LengthFormatterError.StringToNumber
+                throw LengthFormatterError.stringToNumber
             }
             units += Double(n1 * powf(10, e1))
         } else if denominator == "" {
             guard let n1 = Double(numerator) else {
-                throw LengthFormatterError.StringToNumber
+                throw LengthFormatterError.stringToNumber
             }
             units += n1
         } else {
             guard let n1 = Double(numerator), let d1 = Double(denominator) else {
-                throw LengthFormatterError.StringToNumber
+                throw LengthFormatterError.stringToNumber
             }
             units += n1 / d1
         }
@@ -169,52 +169,52 @@ extension String {
         
         // Determine the case
         do {
-            if (self.rangeOfString("'") != nil || self.rangeOfString("’") != nil || self.rangeOfString("‘") != nil) &&
-               (self.rangeOfString("\"") != nil || self.rangeOfString("“") != nil || self.rangeOfString("”") != nil) {
+            if (self.range(of: "'") != nil || self.range(of: "’") != nil || self.range(of: "‘") != nil) &&
+               (self.range(of: "\"") != nil || self.range(of: "“") != nil || self.range(of: "”") != nil) {
                 return try self.feetAndInchesToMeters()
-            } else if (self.rangeOfString("'") != nil || self.rangeOfString("’") != nil || self.rangeOfString("‘") != nil) {
-                let replacementString = self.stringByReplacingOccurrencesOfString("'", withString: "").stringByReplacingOccurrencesOfString("’", withString: "").stringByReplacingOccurrencesOfString("‘", withString: "")
+            } else if (self.range(of: "'") != nil || self.range(of: "’") != nil || self.range(of: "‘") != nil) {
+                let replacementString = self.replacingOccurrences(of: "'", with: "").replacingOccurrences(of: "’", with: "").replacingOccurrences(of: "‘", with: "")
                 return try replacementString.unitToMeter(kMetersInFoot)
-            } else if (self.rangeOfString("\"") != nil || self.rangeOfString("“") != nil || self.rangeOfString("”") != nil) {
-                let replacementString = self.stringByReplacingOccurrencesOfString("\"", withString: "").stringByReplacingOccurrencesOfString("“", withString: "").stringByReplacingOccurrencesOfString("”", withString: "")
+            } else if (self.range(of: "\"") != nil || self.range(of: "“") != nil || self.range(of: "”") != nil) {
+                let replacementString = self.replacingOccurrences(of: "\"", with: "").replacingOccurrences(of: "“", with: "").replacingOccurrences(of: "”", with: "")
                 return try replacementString.unitToMeter(kMetersInInch)
-            } else if self.rangeOfString("yd") != nil {
-                return try self.stringByReplacingOccurrencesOfString("yd", withString: "").unitToMeter(kMetersInYard)
-            } else if self.rangeOfString("mi") != nil {
-                return try self.stringByReplacingOccurrencesOfString("mi", withString: "").unitToMeter(kMetersInMile)
-            } else if self.rangeOfString("µm") != nil {
-                return try self.stringByReplacingOccurrencesOfString("µm", withString: "").unitToMeter(kMetersInMicron)
-            } else if self.rangeOfString("mm") != nil {
-                return try self.stringByReplacingOccurrencesOfString("mm", withString: "").unitToMeter(kMetersInMillimeter)
-            } else if self.rangeOfString("cm") != nil {
-                return try self.stringByReplacingOccurrencesOfString("cm", withString: "").unitToMeter(kMetersInCentimeter)
-            } else if self.rangeOfString("km") != nil {
-                return try self.stringByReplacingOccurrencesOfString("km", withString: "").unitToMeter(kMetersInKilometer)
-            } else if self.rangeOfString("m") != nil {
-                return try self.stringByReplacingOccurrencesOfString("m", withString: "").unitToMeter(kMetersInMeter)
-            } else if self.rangeOfString("°") != nil {
-                return try self.stringByReplacingOccurrencesOfString("°", withString: "").unitToMeter(kMetersInDegrees)
+            } else if self.range(of: "yd") != nil {
+                return try self.replacingOccurrences(of: "yd", with: "").unitToMeter(kMetersInYard)
+            } else if self.range(of: "mi") != nil {
+                return try self.replacingOccurrences(of: "mi", with: "").unitToMeter(kMetersInMile)
+            } else if self.range(of: "µm") != nil {
+                return try self.replacingOccurrences(of: "µm", with: "").unitToMeter(kMetersInMicron)
+            } else if self.range(of: "mm") != nil {
+                return try self.replacingOccurrences(of: "mm", with: "").unitToMeter(kMetersInMillimeter)
+            } else if self.range(of: "cm") != nil {
+                return try self.replacingOccurrences(of: "cm", with: "").unitToMeter(kMetersInCentimeter)
+            } else if self.range(of: "km") != nil {
+                return try self.replacingOccurrences(of: "km", with: "").unitToMeter(kMetersInKilometer)
+            } else if self.range(of: "m") != nil {
+                return try self.replacingOccurrences(of: "m", with: "").unitToMeter(kMetersInMeter)
+            } else if self.range(of: "°") != nil {
+                return try self.replacingOccurrences(of: "°", with: "").unitToMeter(kMetersInDegrees)
             } else {
                 // try to grab the preferred unit from preferences. If unavailable, just assume/pretend it's meters.
                 switch (Preferences.preferredUnits) {
-                    case .Feet: return try self.unitToMeter(kMetersInFoot)
-                    case .Inches: return try self.unitToMeter(kMetersInInch)
-                    case .Yards: return try self.unitToMeter(kMetersInYard)
-                    case .Miles: return try self.unitToMeter(kMetersInMile)
-                    case .Microns: return try self.unitToMeter(kMetersInMicron)
-                    case .Millimeters: return try self.unitToMeter(kMetersInMillimeter)
-                    case .Centimeters: return try self.unitToMeter(kMetersInCentimeter)
-                    case .Kilometers: return try self.unitToMeter(kMetersInKilometer)
-                    case .Custom: return try self.unitToMeter(Preferences.customUnitMeterConversion)
+                    case .feet: return try self.unitToMeter(kMetersInFoot)
+                    case .inches: return try self.unitToMeter(kMetersInInch)
+                    case .yards: return try self.unitToMeter(kMetersInYard)
+                    case .miles: return try self.unitToMeter(kMetersInMile)
+                    case .microns: return try self.unitToMeter(kMetersInMicron)
+                    case .millimeters: return try self.unitToMeter(kMetersInMillimeter)
+                    case .centimeters: return try self.unitToMeter(kMetersInCentimeter)
+                    case .kilometers: return try self.unitToMeter(kMetersInKilometer)
+                    case .custom: return try self.unitToMeter(Preferences.customUnitMeterConversion)
                     default: return try self.unitToMeter(kMetersInMeter)
                 }
             }
-        } catch LengthFormatterError.UnexpectedCharacter {
-            throw LengthFormatterError.UnexpectedCharacter
-        } catch LengthFormatterError.StringToNumber {
-            throw LengthFormatterError.StringToNumber
-        } catch LengthFormatterError.FractionalFormattingError {
-            throw LengthFormatterError.FractionalFormattingError
+        } catch LengthFormatterError.unexpectedCharacter {
+            throw LengthFormatterError.unexpectedCharacter
+        } catch LengthFormatterError.stringToNumber {
+            throw LengthFormatterError.stringToNumber
+        } catch LengthFormatterError.fractionalFormattingError {
+            throw LengthFormatterError.fractionalFormattingError
         }
         
     }

@@ -9,7 +9,7 @@
 import Cocoa
 
 protocol DimmerSymbolDelegate {
-    func updateDimmerSelection(sender: DimmerSymbolView)
+    func updateDimmerSelection(_ sender: DimmerSymbolView)
 }
 
 class DimmerSymbolView: NSView {
@@ -19,30 +19,30 @@ class DimmerSymbolView: NSView {
     var delegate: DimmerSymbolDelegate?
     var selected: Bool = false
     
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
 
-        NSColor.whiteColor().setFill()
+        NSColor.white().setFill()
         NSRectFill(dirtyRect)
         
-        NSColor.lightGrayColor().setFill()
+        NSColor.lightGray().setFill()
         NSBezierPath.setDefaultLineWidth(kDimmerStrokeWidth)
         NSFrameRect(dirtyRect)
         
         if let d = dimmer {
             
-            let font = NSFont.systemFontOfSize(kDefaultDimmerFontSize)
+            let font = NSFont.systemFont(ofSize: kDefaultDimmerFontSize)
             
             let pStyle = NSMutableParagraphStyle()
-            pStyle.alignment = NSTextAlignment.Center
+            pStyle.alignment = NSTextAlignment.center
             
-            let color = NSColor.darkGrayColor()
+            let color = NSColor.darkGray()
             
-            (d as NSString).drawInRect(dirtyRect.offsetBy(dx: 0.0, dy: 1.0), withAttributes: [NSFontAttributeName: font, NSParagraphStyleAttributeName: pStyle, NSForegroundColorAttributeName: color])
+            (d as NSString).draw(in: dirtyRect.offsetBy(dx: 0.0, dy: 1.0), withAttributes: [NSFontAttributeName: font, NSParagraphStyleAttributeName: pStyle, NSForegroundColorAttributeName: color])
         }
     }
     
-    override func mouseDown(theEvent: NSEvent) {
+    override func mouseDown(_ theEvent: NSEvent) {
         selected = true
         delegate?.updateDimmerSelection(self)
     }

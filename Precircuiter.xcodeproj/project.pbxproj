@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4A08F9521B9CB4B700DDA853 /* InstrumentDataDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A08F9511B9CB4B700DDA853 /* InstrumentDataDocument.swift */; settings = {ASSET_TAGS = (); }; };
-		4A08F9541B9CC7A300DDA853 /* InstrumentDataDocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A08F9531B9CC7A300DDA853 /* InstrumentDataDocumentController.swift */; settings = {ASSET_TAGS = (); }; };
-		4A3F49821BA124AB007C21E0 /* ExportUserEducationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3F49811BA124AB007C21E0 /* ExportUserEducationView.swift */; settings = {ASSET_TAGS = (); }; };
-		4A3F49841BA124D0007C21E0 /* AssignUserEducationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3F49831BA124D0007C21E0 /* AssignUserEducationView.swift */; settings = {ASSET_TAGS = (); }; };
-		4A3F49861BA124E1007C21E0 /* ImportUserEducationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3F49851BA124E1007C21E0 /* ImportUserEducationView.swift */; settings = {ASSET_TAGS = (); }; };
-		4A3F49A41BA34969007C21E0 /* ClickCircleUserEducationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3F49A31BA34969007C21E0 /* ClickCircleUserEducationView.swift */; settings = {ASSET_TAGS = (); }; };
-		4A4578881B9FE95D00804B3D /* ColorTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4578871B9FE95D00804B3D /* ColorTableCellView.swift */; settings = {ASSET_TAGS = (); }; };
+		4A08F9521B9CB4B700DDA853 /* InstrumentDataDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A08F9511B9CB4B700DDA853 /* InstrumentDataDocument.swift */; };
+		4A08F9541B9CC7A300DDA853 /* InstrumentDataDocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A08F9531B9CC7A300DDA853 /* InstrumentDataDocumentController.swift */; };
+		4A3F49821BA124AB007C21E0 /* ExportUserEducationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3F49811BA124AB007C21E0 /* ExportUserEducationView.swift */; };
+		4A3F49841BA124D0007C21E0 /* AssignUserEducationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3F49831BA124D0007C21E0 /* AssignUserEducationView.swift */; };
+		4A3F49861BA124E1007C21E0 /* ImportUserEducationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3F49851BA124E1007C21E0 /* ImportUserEducationView.swift */; };
+		4A3F49A41BA34969007C21E0 /* ClickCircleUserEducationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3F49A31BA34969007C21E0 /* ClickCircleUserEducationView.swift */; };
+		4A4578881B9FE95D00804B3D /* ColorTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4578871B9FE95D00804B3D /* ColorTableCellView.swift */; };
 		4A6BE8771B52D7A6003F4EB7 /* ColorGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6BE8721B52D7A6003F4EB7 /* ColorGenerator.swift */; };
 		4A6BE8781B52D7A6003F4EB7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6BE8731B52D7A6003F4EB7 /* Constants.swift */; };
 		4A6BE8791B52D7A6003F4EB7 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6BE8741B52D7A6003F4EB7 /* Errors.swift */; };
@@ -30,7 +30,7 @@
 		4A9E10CA1B52459B00E6773E /* Instrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9E10C51B52459B00E6773E /* Instrument.swift */; };
 		4A9E10CC1B52459B00E6773E /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9E10C71B52459B00E6773E /* Preferences.swift */; };
 		4A9E10CD1B52459B00E6773E /* Zone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9E10C81B52459B00E6773E /* Zone.swift */; };
-		4A9E8C951B9F7C5C00D1CFC0 /* StartScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9E8C931B9F7C5C00D1CFC0 /* StartScreenViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		4A9E8C951B9F7C5C00D1CFC0 /* StartScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9E8C931B9F7C5C00D1CFC0 /* StartScreenViewController.swift */; };
 		4AD9B17A1B97E97400E4C3AA /* ConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD9B1791B97E97400E4C3AA /* ConnectionView.swift */; };
 		4AEE088C19AB85A000DA1638 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEE088B19AB85A000DA1638 /* AppDelegate.swift */; };
 		4AEE089119AB85A000DA1638 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AEE088F19AB85A000DA1638 /* Main.storyboard */; };
@@ -304,12 +304,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Harry Shamansky";
 				TargetAttributes = {
 					4AEE088119AB85A000DA1638 = {
 						CreatedOnToolsVersion = 6.0;
 						DevelopmentTeam = B5TXHQBF3Z;
+						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 1;
@@ -318,6 +319,7 @@
 					};
 					4AEE089519AB85A000DA1638 = {
 						CreatedOnToolsVersion = 6.0;
+						LastSwiftMigration = 0800;
 						TestTargetID = 4AEE088119AB85A000DA1638;
 					};
 				};
@@ -447,6 +449,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -490,6 +493,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -520,6 +524,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Precircuiter/Precircuiter-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -539,6 +544,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Precircuiter/Precircuiter-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -559,6 +566,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.harryshamansky.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Precircuiter.app/Contents/MacOS/Precircuiter";
 			};
 			name = Debug;
@@ -576,6 +584,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.harryshamansky.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Precircuiter.app/Contents/MacOS/Precircuiter";
 			};
 			name = Release;

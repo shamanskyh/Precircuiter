@@ -12,5 +12,5 @@ class Zone: NSObject {
     var lights: [Instrument] = []
     var dimmers: [Instrument] = []
     var color: NSColor? = nil
-    var region: NSRect = CGRectZero
+    var region: NSRect = CGRect.zero
 }

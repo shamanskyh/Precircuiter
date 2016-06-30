@@ -11,8 +11,8 @@ import Cocoa
 protocol PlotViewDelegate {
     func getLights() -> [Instrument]
     func getDimmers() -> [Instrument]
-    func updateSelectedLights(selectedLights: [Instrument], selectDimmers: Bool)
-    func updateSelectedDimmers(selectedDimmers: [Instrument], selectLights: Bool)
+    func update(selectedLights: [Instrument], selectDimmers: Bool)
+    func update(selectedDimmers: [Instrument], selectLights: Bool)
 }
 
 /// The graphical representation of lights on the plot. Used to create zones,
@@ -22,7 +22,7 @@ class PlotView: NSView {
     var delegate: PlotViewDelegate?
     
     /// a filter property that determines what instruments are shown
-    var filter: PlotViewFilterType = .Lights {
+    var filter: PlotViewFilterType = .lights {
         didSet {
             updateFilter()
         }
@@ -30,18 +30,18 @@ class PlotView: NSView {
     
     internal func updateFilter() {
         switch(filter) {
-        case .Lights:
-            lightViews.forEach({ $0.hidden = false })
-            dimmerViews.forEach({ $0.hidden = true })
-            connectionViews.forEach({ $0.hidden = true })
-        case .Dimmers:
-            lightViews.forEach({ $0.hidden = true })
-            dimmerViews.forEach({ $0.hidden = false })
-            connectionViews.forEach({ $0.hidden = true })
-        case .Both:
-            lightViews.forEach({ $0.hidden = false })
-            dimmerViews.forEach({ $0.hidden = false })
-            connectionViews.forEach({ $0.hidden = false })
+        case .lights:
+            lightViews.forEach({ $0.isHidden = false })
+            dimmerViews.forEach({ $0.isHidden = true })
+            connectionViews.forEach({ $0.isHidden = true })
+        case .dimmers:
+            lightViews.forEach({ $0.isHidden = true })
+            dimmerViews.forEach({ $0.isHidden = false })
+            connectionViews.forEach({ $0.isHidden = true })
+        case .both:
+            lightViews.forEach({ $0.isHidden = false })
+            dimmerViews.forEach({ $0.isHidden = false })
+            connectionViews.forEach({ $0.isHidden = false })
         }
     }
     
@@ -56,15 +56,15 @@ class PlotView: NSView {
         super.awakeFromNib()
         
         // refresh the plot view if anything is undone/redone, or if the drawing preferences are updated
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "invalidateSymbolsAndRedraw", name: NSUndoManagerDidUndoChangeNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "invalidateSymbolsAndRedraw", name: NSUndoManagerDidRedoChangeNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "invalidateSymbolsAndRedraw", name: kShouldReloadPlotViewNotification, object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(PlotView.invalidateSymbolsAndRedraw), name: NSNotification.Name.NSUndoManagerDidUndoChange, object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(PlotView.invalidateSymbolsAndRedraw), name: NSNotification.Name.NSUndoManagerDidRedoChange, object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(PlotView.invalidateSymbolsAndRedraw), name: kShouldReloadPlotViewNotification, object: nil)
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: NSUndoManagerDidUndoChangeNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: NSUndoManagerDidRedoChangeNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: kShouldReloadPlotViewNotification, object: nil)
+        NotificationCenter.default().removeObserver(self, name: NSNotification.Name.NSUndoManagerDidUndoChange, object: nil)
+        NotificationCenter.default().removeObserver(self, name: NSNotification.Name.NSUndoManagerDidRedoChange, object: nil)
+        NotificationCenter.default().removeObserver(self, name: NSNotification.Name(rawValue: kShouldReloadPlotViewNotification), object: nil)
     }
     
     var instrumentsToRender: [Instrument] {
@@ -124,9 +124,9 @@ class PlotView: NSView {
     ///
     /// - Parameter instruments: an array of `Instrument` objects
     /// - Returns: A bounding rect for all instruments
-    private func getBoundingRectForInstruments(instruments: [Instrument]) -> CGRect {
+    private func getBoundingRectForInstruments(_ instruments: [Instrument]) -> CGRect {
         guard let loc = instruments.first?.locations.first else {
-            return CGRectZero
+            return CGRect.zero
         }
         var minX = loc.x
         var minY = loc.y
@@ -158,7 +158,7 @@ class PlotView: NSView {
     }
     
     /// resizes all the instrument views to fit within the bounding rect
-    private func resizeInstrumentSymbols(lightSymbols: [LightSymbolView], dimmerSymbols: [DimmerSymbolView], boundingRect: CGRect) {
+    private func resizeInstrumentSymbols(_ lightSymbols: [LightSymbolView], dimmerSymbols: [DimmerSymbolView], boundingRect: CGRect) {
         let xOffset: Double = Double(-boundingRect.origin.x)
         let yOffset: Double = Double(-boundingRect.origin.y)
         
@@ -180,7 +180,7 @@ class PlotView: NSView {
             
             inst.viewRepresentation.toolTip = inst.description
             
-            if inst.deviceType == .Power {
+            if inst.deviceType == .power {
                 inst.setViewRepresentationFrame(CGRect(x: floor(scaledX), y: floor(scaledY), width: kDefaultDimmerSymbolSize.width, height: kDefaultDimmerSymbolSize.height))
             } else {
                 inst.setViewRepresentationFrame(CGRect(x: floor(scaledX), y: floor(scaledY), width: kDefaultLightSymbolSize.width, height: kDefaultLightSymbolSize.height))
@@ -188,12 +188,12 @@ class PlotView: NSView {
         }
     }
     
-    private func resizeConnectionViews(connectionViews: [ConnectionView]) {
+    private func resizeConnectionViews(_ connectionViews: [ConnectionView]) {
         connectionViews.forEach({ $0.sizeToConnect() })
     }
     
     /// Draws the instruments in the region
-    internal func prepareInstruments(instruments: [Instrument]?, boundingRect: CGRect) -> [NSView] {
+    internal func prepareInstruments(_ instruments: [Instrument]?, boundingRect: CGRect) -> [NSView] {
 
         var returnViews: [NSView] = []
         
@@ -217,7 +217,7 @@ class PlotView: NSView {
             if inst.selected {
                 returnViews.append(inst.viewRepresentation)
             } else {
-                returnViews.insert(inst.viewRepresentation, atIndex: 0)
+                returnViews.insert(inst.viewRepresentation, at: 0)
             }
             
             // add delegates for mouseDown events
@@ -229,7 +229,7 @@ class PlotView: NSView {
             
             inst.viewRepresentation.toolTip = inst.description
             
-            if inst.deviceType == .Power {
+            if inst.deviceType == .power {
                 inst.setViewRepresentationFrame(CGRect(x: scaledX, y: scaledY, width: kDefaultDimmerSymbolSize.width, height: kDefaultDimmerSymbolSize.height))
             } else {
                 inst.setViewRepresentationFrame(CGRect(x: scaledX, y: scaledY, width: kDefaultLightSymbolSize.width, height: kDefaultLightSymbolSize.height))
@@ -240,7 +240,7 @@ class PlotView: NSView {
         return returnViews
     }
     
-    internal func prepareConnections(instruments: [Instrument]) -> [ConnectionView] {
+    internal func prepareConnections(_ instruments: [Instrument]) -> [ConnectionView] {
         var returnViews: [ConnectionView] = []
         for light in instruments where light.receptacle != nil {
             let connectionView = ConnectionView(light: light, dimmer: light.receptacle!)
@@ -257,17 +257,17 @@ class PlotView: NSView {
     internal func animateInConnections() {
         isAnimating = true
         for connectionView in connectionViews {
-            delay(Random.within(kMinAnimationDelay...kMaxAnimationDelay), closure: {
+            DispatchQueue.main.after(when: .now() + Random.within(kMinAnimationDelay...kMaxAnimationDelay)) {
                 connectionView.animateIn()
-            })
+            }
         }
-        delay(kMaxAnimationDelay + kMaxAnimationDuration, closure: {
+        DispatchQueue.main.after(when: .now() + Double(kMaxAnimationDelay + kMaxAnimationDuration)) {
             self.isAnimating = false
-        })
+        }
     }
     
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
         
         // resize the views here
         resizeInstrumentSymbols(lightViews, dimmerSymbols: dimmerViews, boundingRect: boundingRect)
@@ -277,23 +277,23 @@ class PlotView: NSView {
         }
     }
     
-    override func mouseDown(theEvent: NSEvent) {
-        delegate?.updateSelectedLights([], selectDimmers: false)
+    override func mouseDown(_ theEvent: NSEvent) {
+        delegate?.update(selectedLights: [], selectDimmers: false)
     }
 }
 
 extension PlotView: LightSymbolDelegate {
-    func updateLightSelection(sender: LightSymbolView) {
+    func updateLightSelection(_ sender: LightSymbolView) {
         if let light = sender.lightInstrument {
-            delegate?.updateSelectedLights([light], selectDimmers: true)
+            delegate?.update(selectedLights: [light], selectDimmers: true)
         }
     }
 }
 
 extension PlotView: DimmerSymbolDelegate {
-    func updateDimmerSelection(sender: DimmerSymbolView) {
+    func updateDimmerSelection(_ sender: DimmerSymbolView) {
         if let dimmer = sender.dimmerInstrument {
-            delegate?.updateSelectedDimmers([dimmer], selectLights: true)
+            delegate?.update(selectedDimmers: [dimmer], selectLights: true)
         }
     }
 }

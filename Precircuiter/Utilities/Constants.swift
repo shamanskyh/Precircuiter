@@ -49,13 +49,13 @@ let kStopShowingStartScreenPreferenceKey: String    = "StopShowingStartScreen"
 let kShouldReloadPlotViewNotification: String = "ShouldReloadPlotView"
 
 // MARK: - PlotView Animation Durations
-let kMinAnimationDelay: Double      = 0.0
-let kMaxAnimationDelay: Double      = 0.2
-let kMinAnimationDuration: Double   = 0.2
-let kMaxAnimationDuration: Double   = 0.6
+let kMinAnimationDelay: TimeInterval    = 0.0
+let kMaxAnimationDelay: TimeInterval    = 0.2
+let kMinAnimationDuration: TimeInterval = 0.2
+let kMaxAnimationDuration: TimeInterval = 0.6
 
 // MARK: - UserEducation Animations
-let kClickCircleColor: NSColor  = NSColor(red: 1.0, green: 0.5, blue: 0.0, alpha: 1.0)
-let kClickMaxAlpha: CGFloat     = 0.7
-let kClickShowDuration: Double  = 0.5
-let kClickHideDuration: Double  = 0.7
+let kClickCircleColor: NSColor       = NSColor(red: 1.0, green: 0.5, blue: 0.0, alpha: 1.0)
+let kClickMaxAlpha: CGFloat          = 0.7
+let kClickShowDuration: TimeInterval = 0.5
+let kClickHideDuration: TimeInterval = 0.7

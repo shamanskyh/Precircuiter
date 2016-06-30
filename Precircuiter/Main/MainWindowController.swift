@@ -11,16 +11,16 @@ import Cocoa
 protocol MainWindowControllerDelegate {
     func assignMissingDimmers()
     func assignAllDimmers()
-    func updateFilter(selection: PlotViewFilterType)
+    func updateFilter(_ selection: PlotViewFilterType)
     var shouldWarnAboutOverwrite: Bool { get }
     var hasMissingDimmers: Bool { get }
 }
 
 /// An enumeration that corresponds to the segmented control layout
 enum PlotViewFilterType: Int {
-    case Lights = 0
-    case Dimmers = 1
-    case Both = 2
+    case lights = 0
+    case dimmers = 1
+    case both = 2
 }
 
 class MainWindowController: NSWindowController {
@@ -39,25 +39,25 @@ class MainWindowController: NSWindowController {
     }
     
     func updateToolbar() {
-        assignMissingToolbarItem.enabled = hasMissingDimmers
+        assignMissingToolbarItem.isEnabled = hasMissingDimmers
     }
     
-    override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
-        if menuItem.action == "assignMissingDimmers:" {
+    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+        if menuItem.action == #selector(MainWindowController.assignMissingDimmers(_:)) {
             return hasMissingDimmers
         }
         return true
     }
     
-    @IBAction func assignMissingDimmers(sender: AnyObject) {
+    @IBAction func assignMissingDimmers(_ sender: AnyObject) {
         delegate?.assignMissingDimmers()
     }
     
-    @IBAction func assignAllDimmers(sender: AnyObject) {
+    @IBAction func assignAllDimmers(_ sender: AnyObject) {
         delegate?.assignAllDimmers()
     }
     
-    @IBAction func changeFilter(sender: AnyObject) {
+    @IBAction func changeFilter(_ sender: AnyObject) {
         delegate?.updateFilter(PlotViewFilterType.init(rawValue: (sender as! NSSegmentedControl).integerValue)!)
     }
     

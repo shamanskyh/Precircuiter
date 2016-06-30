@@ -10,42 +10,42 @@ import Cocoa
 
 // MARK: - Enumerations
 enum DeviceType {
-    case Light
-    case MovingLight
-    case Accessory
-    case StaticAccessory
-    case Device
-    case Practical
-    case SFX
-    case Power
-    case Other
+    case light
+    case movingLight
+    case accessory
+    case staticAccessory
+    case device
+    case practical
+    case sfx
+    case power
+    case other
     
     var description: String {
         switch self {
-        case Light: return "Light"
-        case MovingLight: return "MovingLight"
-        case Accessory: return "Accessory"
-        case StaticAccessory: return "StaticAccessory"
-        case Device: return "Device"
-        case Practical: return "Practical"
-        case SFX: return "SFX"
-        case Power: return "Power"
-        case Other: return "Other"
+        case light: return "Light"
+        case movingLight: return "MovingLight"
+        case accessory: return "Accessory"
+        case staticAccessory: return "StaticAccessory"
+        case device: return "Device"
+        case practical: return "Practical"
+        case sfx: return "SFX"
+        case power: return "Power"
+        case other: return "Other"
         }
     }
 }
 
 enum Patcher: Int {
-    case Unknown
-    case OutsideOfApplication   // VWX, Lightwright, or other
-    case Auto                   // Automatically assigned
-    case Manual                 // Manually assigned *in Precircuiter*
+    case unknown
+    case outsideOfApplication   // VWX, Lightwright, or other
+    case auto                   // Automatically assigned
+    case manual                 // Manually assigned *in Precircuiter*
 }
 
 enum Dimension {
-    case X
-    case Y
-    case Z
+    case x
+    case y
+    case z
 }
 
 // MARK: - Structs
@@ -68,50 +68,50 @@ class Instrument: NSObject {
     var deviceType: DeviceType? = nil
     var instrumentType: String? = nil {
         willSet {
-            NSApplication.sharedApplication().mainWindow?.undoManager?.registerUndoWithTarget(self, selector: "setInstrumentType:", object: instrumentType)
-            NSApplication.sharedApplication().mainWindow?.undoManager?.setActionName("Modify Instrument Type")
+            NSApplication.shared().mainWindow?.undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.instrumentType), object: instrumentType)
+            NSApplication.shared().mainWindow?.undoManager?.setActionName("Modify Instrument Type")
         }
     }
     var wattage: String? = nil {
         willSet {
-            NSApplication.sharedApplication().mainWindow?.undoManager?.registerUndoWithTarget(self, selector: "setWattage:", object: wattage)
-            NSApplication.sharedApplication().mainWindow?.undoManager?.setActionName("Modify Wattage")
+            NSApplication.shared().mainWindow?.undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.wattage), object: wattage)
+            NSApplication.shared().mainWindow?.undoManager?.setActionName("Modify Wattage")
         }
     }
     var purpose: String? = nil {
         willSet {
-            NSApplication.sharedApplication().mainWindow?.undoManager?.registerUndoWithTarget(self, selector: "setPurpose:", object: purpose)
-            NSApplication.sharedApplication().mainWindow?.undoManager?.setActionName("Modify Purpose")
+            NSApplication.shared().mainWindow?.undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.purpose), object: purpose)
+            NSApplication.shared().mainWindow?.undoManager?.setActionName("Modify Purpose")
         }
     }
     var position: String? = nil {
         willSet {
-            NSApplication.sharedApplication().mainWindow?.undoManager?.registerUndoWithTarget(self, selector: "setPosition:", object: position)
-            NSApplication.sharedApplication().mainWindow?.undoManager?.setActionName("Modify Position")
+            NSApplication.shared().mainWindow?.undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.position), object: position)
+            NSApplication.shared().mainWindow?.undoManager?.setActionName("Modify Position")
         }
     }
     var unitNumber: String? = nil {
         willSet {
-            NSApplication.sharedApplication().mainWindow?.undoManager?.registerUndoWithTarget(self, selector: "setUnitNumber:", object: unitNumber)
-            NSApplication.sharedApplication().mainWindow?.undoManager?.setActionName("Modify Unit Number")
+            NSApplication.shared().mainWindow?.undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.unitNumber), object: unitNumber)
+            NSApplication.shared().mainWindow?.undoManager?.setActionName("Modify Unit Number")
         }
     }
     var color: String? = nil {
         willSet {
-            NSApplication.sharedApplication().mainWindow?.undoManager?.registerUndoWithTarget(self, selector: "setColor:", object: color)
-            NSApplication.sharedApplication().mainWindow?.undoManager?.setActionName("Modify Color")
+            NSApplication.shared().mainWindow?.undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.color), object: color)
+            NSApplication.shared().mainWindow?.undoManager?.setActionName("Modify Color")
         }
     }
     var dimmer: String? = nil {
         willSet {
-            NSApplication.sharedApplication().mainWindow?.undoManager?.registerUndoWithTarget(self, selector: "setDimmer:", object: dimmer)
-            NSApplication.sharedApplication().mainWindow?.undoManager?.setActionName("Modify Dimmer")
+            NSApplication.shared().mainWindow?.undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.dimmer), object: dimmer)
+            NSApplication.shared().mainWindow?.undoManager?.setActionName("Modify Dimmer")
         }
     }
     var channel: String? = nil {
         willSet {
-            NSApplication.sharedApplication().mainWindow?.undoManager?.registerUndoWithTarget(self, selector: "setChannel:", object: channel)
-            NSApplication.sharedApplication().mainWindow?.undoManager?.setActionName("Modify Channel")
+            NSApplication.shared().mainWindow?.undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.channel), object: channel)
+            NSApplication.shared().mainWindow?.undoManager?.setActionName("Modify Channel")
         }
     }
     var address: String? = nil
@@ -136,8 +136,8 @@ class Instrument: NSObject {
     var weight: String? = nil
     var gobo1: String? = nil {
         willSet {
-            NSApplication.sharedApplication().mainWindow?.undoManager?.registerUndoWithTarget(self, selector: "setGobo1:", object: gobo1)
-            NSApplication.sharedApplication().mainWindow?.undoManager?.setActionName("Modify Gobo 1")
+            NSApplication.shared().mainWindow?.undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.gobo1), object: gobo1)
+            NSApplication.shared().mainWindow?.undoManager?.setActionName("Modify Gobo 1")
         }
     }
     var gobo1Rotation: String? = nil
@@ -186,15 +186,15 @@ class Instrument: NSObject {
     
     private var savedSwatchColor: NSColor?
     private var isClearColor: Bool {
-        return color?.stringByTrimmingCharactersInSet(.whitespaceCharacterSet()) == "N/C" ||
-               color?.stringByTrimmingCharactersInSet(.whitespaceCharacterSet()) == "NC"
+        return color?.trimmingCharacters(in: .whitespaces) == "N/C" ||
+               color?.trimmingCharacters(in: .whitespaces) == "NC"
     }
     internal var needsNewSwatchColor = false
     internal var swatchColor: NSColor? {
         if (savedSwatchColor == nil && color != nil) || needsNewSwatchColor {
             needsNewSwatchColor = false
             if let color = self.color?.toGelColor() {
-                savedSwatchColor = NSColor(CGColor: color)
+                savedSwatchColor = NSColor(cgColor: color)
             } else {
                 savedSwatchColor = nil
             }
@@ -217,7 +217,7 @@ class Instrument: NSObject {
             savedView = nil
         }
         
-        if self.deviceType == .Power {
+        if self.deviceType == .power {
             let view = DimmerSymbolView()
             view.frame.size = kDefaultDimmerSymbolSize
             view.dimmer = self.dimmer
@@ -236,7 +236,7 @@ class Instrument: NSObject {
         return view
     }
     
-    internal func setViewRepresentationFrame(frame: CGRect) {
+    internal func setViewRepresentationFrame(_ frame: CGRect) {
         self.savedView?.frame = frame
     }
     
@@ -245,23 +245,23 @@ class Instrument: NSObject {
     // use only if power
     weak var light: Instrument? = nil {
         willSet {
-            NSApplication.sharedApplication().mainWindow?.undoManager?.registerUndoWithTarget(self, selector: "setLight:", object: light)
+            NSApplication.shared().mainWindow?.undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.light), object: light)
         }
     }
     
     // use only if non-power
     weak var receptacle: Instrument? = nil {
         willSet {
-            NSApplication.sharedApplication().mainWindow?.undoManager?.registerUndoWithTarget(self, selector: "setReceptacle:", object: receptacle)
+            NSApplication.shared().mainWindow?.undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.receptacle), object: receptacle)
         }
     }
     
     // to determine who patched
-    var assignedBy: Patcher = Patcher.Unknown
+    var assignedBy: Patcher = Patcher.unknown
     
     /// private helper function to allow the assignedBy variable to be set with an object
-    internal func setAssignedByWithObject(value: NSNumber) {
-        self.assignedBy = Patcher(rawValue: value.integerValue)!
+    internal func setAssignedByWithObject(_ value: NSNumber) {
+        self.assignedBy = Patcher(rawValue: value.intValue)!
     }
     
     required init(UID: String?, location: [Coordinate]?) {
@@ -280,26 +280,26 @@ class Instrument: NSObject {
         self.dummyInstrument = false
     }
     
-    func addCoordinateToInitialLocation(type: Dimension, value: String) throws {
+    func addCoordinateToInitialLocation(_ type: Dimension, value: String) throws {
     
         var coord = self.locations.first
         if coord == nil {
            coord = Coordinate(xPos: 0.0, yPos: 0.0, zPos: 0.0)
         } else if self.locations.count > 1 {
-            throw InstrumentError.AmbiguousLocation
+            throw InstrumentError.ambiguousLocation
         }
         
         var convertedValue: Double = 0.0;
         do {
             try convertedValue = value.unknownUnitToMeters()
         } catch {
-            throw InstrumentError.UnrecognizedCoordinate
+            throw InstrumentError.unrecognizedCoordinate
         }
         
         switch type {
-            case .X: coord!.x = convertedValue
-            case .Y: coord!.y = convertedValue
-            case .Z: coord!.z = convertedValue
+            case .x: coord!.x = convertedValue
+            case .y: coord!.y = convertedValue
+            case .z: coord!.z = convertedValue
         }
         
         self.locations = [coord!]
@@ -310,13 +310,13 @@ class Instrument: NSObject {
     override var description: String {
         var runningString = ""
         
-        if self.deviceType == .Light, let channel = self.channel {
+        if self.deviceType == .light, let channel = self.channel {
             runningString += "Light (\(channel))"
             if let dimmer = self.dimmer {
                 runningString += "\nDimmer [\(dimmer)]"
             }
             runningString += ""
-        } else if self.deviceType == .Power, let dimmer = self.dimmer {
+        } else if self.deviceType == .power, let dimmer = self.dimmer {
             runningString += "Dimmer [\(dimmer)]"
             if let light = self.light, channel = light.channel {
                 runningString += "\nChannel (\(channel))"
@@ -363,7 +363,7 @@ class Instrument: NSObject {
 
 // MARK: - NSCopying Protocol Conformance
 extension Instrument: NSCopying {
-    func copyWithZone(zone: NSZone) -> AnyObject {
+    func copy(with zone: NSZone?) -> AnyObject {
         let copy = self.dynamicType.init(UID: self.UID, location: self.locations)
         copy.dummyInstrument = self.dummyInstrument
         copy.deviceType = self.deviceType

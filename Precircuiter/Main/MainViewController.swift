@@ -105,8 +105,8 @@ class MainViewController: NSViewController {
                 updateToolbar()
                 
                 // Sort the lights by position, then by unit number
-                let sortDescriptor = NSSortDescriptor(key: "secondarySortKey", ascending: true, selector: "localizedStandardCompare:")
-                allLights = (allLights as NSArray).sortedArrayUsingDescriptors([sortDescriptor]) as! [Instrument]
+                let sortDescriptor = SortDescriptor(key: "secondarySortKey", ascending: true, selector: #selector(NSString.localizedStandardCompare(_:)))
+                allLights = (allLights as NSArray).sortedArray(using: [sortDescriptor]) as! [Instrument]
             }
         }
     }
@@ -117,8 +117,8 @@ class MainViewController: NSViewController {
         plotView.delegate = self
         
         // refresh the toolbar if anything is undone/redone
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateToolbar", name: NSUndoManagerDidUndoChangeNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateToolbar", name: NSUndoManagerDidRedoChangeNotification, object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(MainViewController.updateToolbar), name: NSNotification.Name.NSUndoManagerDidUndoChange, object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(MainViewController.updateToolbar), name: NSNotification.Name.NSUndoManagerDidRedoChange, object: nil)
     }
     
     override func viewDidAppear() {
@@ -129,12 +129,12 @@ class MainViewController: NSViewController {
     
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: NSUndoManagerDidUndoChangeNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: NSUndoManagerDidRedoChangeNotification, object: nil)
+        NotificationCenter.default().removeObserver(self, name: NSNotification.Name.NSUndoManagerDidUndoChange, object: nil)
+        NotificationCenter.default().removeObserver(self, name: NSNotification.Name.NSUndoManagerDidRedoChange, object: nil)
     }
 
     // MARK: - Utilities
-    func combineDuplicates(instruments: [Instrument], isDimmer: Bool, uniqueSplitter: Character) -> [Instrument] {
+    func combineDuplicates(_ instruments: [Instrument], isDimmer: Bool, uniqueSplitter: Character) -> [Instrument] {
         
         view.window?.undoManager?.disableUndoRegistration()
         
@@ -166,7 +166,7 @@ class MainViewController: NSViewController {
         return copiedInstruments
     }
     
-    func explodeDuplicates(inout originalInstruments: [Instrument], compressedCopy: [Instrument], isDimmer: Bool, uniqueSplitter: Character) {
+    func explodeDuplicates(_ originalInstruments: inout [Instrument], compressedCopy: [Instrument], isDimmer: Bool, uniqueSplitter: Character) {
         for instrument in compressedCopy {
             // find the corresponding instruments from the originals
             let UIDs: [String] = instrument.UID.characters.split(){$0 == uniqueSplitter}.map(String.init)
@@ -181,9 +181,9 @@ class MainViewController: NSViewController {
     }
     
     /// reloads the cell without reloading the entire row
-    func softReloadCell(sender: AnyObject) {
-        let rowToUpdate = self.tableView.rowForView(sender as! NSView)
-        let columnToUpdate = self.tableView.columnForView(sender as! NSView)
+    func softReloadCell(_ sender: AnyObject) {
+        let rowToUpdate = self.tableView.row(for: sender as! NSView)
+        let columnToUpdate = self.tableView.column(for: sender as! NSView)
         
         guard rowToUpdate < allLights.count && rowToUpdate >= 0 else {
             return
@@ -199,11 +199,11 @@ class MainViewController: NSViewController {
         if self.tableView.tableColumns[columnToUpdate].title == "Dimmer" {
             let light = allLights[rowToUpdate]
             
-            light.assignedBy = .Manual
+            light.assignedBy = .manual
             light.receptacle?.light = nil
             
             if light.dimmer?.characters.count > 0 {
-                connectLight(light, toClosestDimmer: allDimmers)
+                connect(light: light, dimmers: allDimmers)
             } else {
                 light.receptacle = nil
             }
@@ -217,23 +217,23 @@ class MainViewController: NSViewController {
     /// A method to reload a cell from one of its inner views.
     /// For example, we might want to update the entire cell (including the swatch
     /// if the color cell is updated).
-    @IBAction func reloadCell(sender: AnyObject) {
-        let rowToUpdate = self.tableView.rowForView(sender as! NSView)
-        let columnToUpdate = self.tableView.columnForView(sender as! NSView)
+    @IBAction func reloadCell(_ sender: AnyObject) {
+        let rowToUpdate = self.tableView.row(for: sender as! NSView)
+        let columnToUpdate = self.tableView.column(for: sender as! NSView)
         
         allLights[rowToUpdate].needsNewSwatchColor = true
         allLights[rowToUpdate].needsNewViewRepresentation = true
         
         plotView.invalidateSymbolsAndRedraw()
         
-        tableView.reloadDataForRowIndexes(NSIndexSet(index: rowToUpdate), columnIndexes: NSIndexSet(index: columnToUpdate))
+        tableView.reloadData(forRowIndexes: IndexSet(integer: rowToUpdate), columnIndexes: IndexSet(integer: columnToUpdate))
         
         updateToolbar()
     }
     
     /// Mark the dimmer as manually modified
-    @IBAction func manuallyModifyDimmer(sender: AnyObject) {
-        let rowToUpdate = self.tableView.rowForView(sender as! NSView)
+    @IBAction func manuallyModifyDimmer(_ sender: AnyObject) {
+        let rowToUpdate = self.tableView.row(for: sender as! NSView)
         
         guard rowToUpdate < allLights.count && rowToUpdate >= 0 else {
             return
@@ -241,11 +241,11 @@ class MainViewController: NSViewController {
         
         let light = allLights[rowToUpdate]
         
-        light.assignedBy = .Manual
+        light.assignedBy = .manual
         light.receptacle?.light = nil
         
         if light.dimmer?.characters.count > 0 {
-            connectLight(light, toClosestDimmer: allDimmers)
+            connect(light: light, dimmers: allDimmers)
         } else {
             light.receptacle = nil
         }
@@ -258,7 +258,7 @@ class MainViewController: NSViewController {
 
 // MARK: - NSTableViewDelegate
 extension MainViewController: NSTableViewDelegate {
-    func tableViewSelectionDidChange(notification: NSNotification) {
+    func tableViewSelectionDidChange(_ notification: Notification) {
         
         allLights.forEach({ $0.selected = false })
         
@@ -273,40 +273,40 @@ extension MainViewController: NSTableViewDelegate {
 
 // MARK: - NSControlTextEditingDelegate
 extension MainViewController: NSControlTextEditingDelegate {
-    func control(control: NSControl, textView: NSTextView, doCommandBySelector commandSelector: Selector) -> Bool {
+    func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
         
-        let row = tableView.rowForView(textView)
-        let column = tableView.columnForView(textView)
+        let row = tableView.row(for: textView)
+        let column = tableView.column(for: textView)
         
-        if commandSelector == "insertNewline:" || commandSelector == "moveDown:" {
+        if commandSelector == #selector(NSResponder.insertNewline(_:)) || commandSelector == #selector(NSResponder.moveDown(_:)) {
             if row < tableView.numberOfRows - 1 {
-                tableView.selectRowIndexes(NSIndexSet(index: row + 1), byExtendingSelection: false)
-                tableView.editColumn(column, row: row + 1, withEvent: nil, select: true)
+                tableView.selectRowIndexes(IndexSet(integer: row + 1), byExtendingSelection: false)
+                tableView.editColumn(column, row: row + 1, with: nil, select: true)
             }
             softReloadCell(textView)
             return true
-        } else if commandSelector == "moveUp:" {
+        } else if commandSelector == #selector(NSResponder.moveUp(_:)) {
             if row > 0 {
-                tableView.selectRowIndexes(NSIndexSet(index: row - 1), byExtendingSelection: false)
-                tableView.editColumn(column, row: row - 1, withEvent: nil, select: true)
+                tableView.selectRowIndexes(IndexSet(integer: row - 1), byExtendingSelection: false)
+                tableView.editColumn(column, row: row - 1, with: nil, select: true)
             }
             softReloadCell(textView)
             return true
-        } else if commandSelector == "insertTab:" {
+        } else if commandSelector == #selector(NSResponder.insertTab(_:)) {
             if column < tableView.numberOfColumns - 1 {
-                tableView.editColumn(column + 1, row: row, withEvent: nil, select: true)
+                tableView.editColumn(column + 1, row: row, with: nil, select: true)
             } else {
-                tableView.selectRowIndexes(NSIndexSet(index: row + 1), byExtendingSelection: false)
-                tableView.editColumn(0, row: row + 1, withEvent: nil, select: true)
+                tableView.selectRowIndexes(IndexSet(integer: row + 1), byExtendingSelection: false)
+                tableView.editColumn(0, row: row + 1, with: nil, select: true)
             }
             softReloadCell(textView)
             return true
-        } else if commandSelector == "insertBacktab:" {
+        } else if commandSelector == #selector(NSResponder.insertBacktab(_:)) {
             if column > 0 {
-                tableView.editColumn(column - 1, row: row, withEvent: nil, select: true)
+                tableView.editColumn(column - 1, row: row, with: nil, select: true)
             } else if row > 0 {
-                tableView.selectRowIndexes(NSIndexSet(index: row - 1), byExtendingSelection: false)
-                tableView.editColumn(tableView.numberOfColumns - 1, row: row - 1, withEvent: nil, select: true)
+                tableView.selectRowIndexes(IndexSet(integer: row - 1), byExtendingSelection: false)
+                tableView.editColumn(tableView.numberOfColumns - 1, row: row - 1, with: nil, select: true)
             }
             softReloadCell(textView)
             return true
@@ -326,7 +326,7 @@ extension MainViewController: PlotViewDelegate {
         return allDimmers
     }
     
-    func updateSelectedLights(selectedLights: [Instrument], selectDimmers: Bool) {
+    func update(selectedLights: [Instrument], selectDimmers: Bool) {
         allLights.forEach({ $0.selected = false })
         selectedLights.forEach({ $0.selected = true })
         
@@ -334,40 +334,42 @@ extension MainViewController: PlotViewDelegate {
         plotView.needsDisplay = true
         
         // select the corresponding row(s) in the table view
-        let indexSet = NSMutableIndexSet()
+        var indexSet = IndexSet()
         for light in selectedLights {
-            if let index = allLights.indexOf(light) {
-                indexSet.addIndex(index)
+            if let index = allLights.index(of: light) {
+                indexSet.insert(index)
             }
         }
         
         if selectDimmers {
             let correspondingDimmers: [Instrument] = selectedLights.filter({ $0.receptacle != nil }).map({ $0.receptacle! })
-            updateSelectedDimmers(correspondingDimmers, selectLights: false)
+            update(selectedDimmers: correspondingDimmers, selectLights: false)
         }
 
         if selectedLights.count == 0 {
-            tableView.selectRowIndexes(indexSet, byExtendingSelection: false)
+            tableView.selectRowIndexes(indexSet as IndexSet, byExtendingSelection: false)
             return  // don't scroll if it's a deselection
         }
         
         NSAnimationContext.runAnimationGroup({ (context: NSAnimationContext) -> Void in
             context.allowsImplicitAnimation = true
             context.duration = 0.5
-            self.tableView.scrollRowToVisible(indexSet.firstIndex)
-            }, completionHandler: {
-                self.tableView.selectRowIndexes(indexSet, byExtendingSelection: false)
+            if let firstIndex = indexSet.first {
+                self.tableView.scrollRowToVisible(firstIndex)
+            }
+        }, completionHandler: {
+                self.tableView.selectRowIndexes(indexSet as IndexSet, byExtendingSelection: false)
         })
         
     }
     
-    func updateSelectedDimmers(selectedDimmers: [Instrument], selectLights: Bool) {
+    func update(selectedDimmers: [Instrument], selectLights: Bool) {
         allDimmers.forEach({ $0.selected = false })
         selectedDimmers.forEach({ $0.selected = true })
 
         if selectLights {
             let correspondingLights: [Instrument] = selectedDimmers.filter({ $0.light != nil }).map({ $0.light! })
-            updateSelectedLights(correspondingLights, selectDimmers: false)
+            update(selectedLights: correspondingLights, selectDimmers: false)
         }
         
         plotView.invalidateSymbolsAndRedraw()
@@ -392,7 +394,7 @@ extension MainViewController: MainWindowControllerDelegate {
         
         let hungarianMatrix = HungarianMatrix(rows: compressedDimmers.count, columns: compressedDimmers.count)
         hungarianMatrix.delegate = self
-        hungarianMatrix.assignAndPair(&compressedLights, dimmers: &compressedDimmers, cutCorners: Preferences.cutCorners) {
+        hungarianMatrix.assignAndPair(lights: &compressedLights, dimmers: &compressedDimmers, cutCorners: Preferences.cutCorners) {
             self.view.window?.undoManager?.enableUndoRegistration()
             self.view.window?.undoManager?.beginUndoGrouping()
             
@@ -403,14 +405,15 @@ extension MainViewController: MainWindowControllerDelegate {
             
             // For any light that has a dimmer filled in, try to find the corresponding power object, and link that power object to the light as well (two-way link)
             for light in self.allLights.filter({ $0.dimmer != nil }) {
-                connectLight(light, toClosestDimmer: self.allDimmers)
+                connect(light: light, dimmers: self.allDimmers)
             }
+            self.view.window?.undoManager?.endUndoGrouping()
             
             if Preferences.showConnections {
                 if let windowController = self.view.window?.windowController as? MainWindowController {
-                    windowController.viewFilter.integerValue = PlotViewFilterType.Both.rawValue
+                    windowController.viewFilter.integerValue = PlotViewFilterType.both.rawValue
                 }
-                self.plotView.filter = PlotViewFilterType.Both
+                self.plotView.filter = PlotViewFilterType.both
                 self.plotView.invalidateSymbolsAndRedraw()
                 
                 if Preferences.animateConnections {
@@ -421,7 +424,6 @@ extension MainViewController: MainWindowControllerDelegate {
             }
         
             self.updateToolbar()
-            self.view.window?.undoManager?.endUndoGrouping()
         }
     }
     
@@ -443,7 +445,7 @@ extension MainViewController: MainWindowControllerDelegate {
         }
         
         hungarianMatrix.delegate = self
-        hungarianMatrix.assignAndPair(&compressedLights, dimmers: &compressedDimmers, cutCorners: Preferences.cutCorners
+        hungarianMatrix.assignAndPair(lights: &compressedLights, dimmers: &compressedDimmers, cutCorners: Preferences.cutCorners
             ) {
                 self.view.window?.undoManager?.enableUndoRegistration()
                 
@@ -454,14 +456,14 @@ extension MainViewController: MainWindowControllerDelegate {
                 
                 // For any light that has a dimmer filled in, try to find the corresponding power object, and link that power object to the light as well (two-way link)
                 for light in self.allLights.filter({ $0.dimmer != nil }) {
-                    connectLight(light, toClosestDimmer: self.allDimmers)
+                    connect(light: light, dimmers: self.allDimmers)
                 }
                 
                 if Preferences.showConnections {
                     if let windowController = self.view.window?.windowController as? MainWindowController {
-                        windowController.viewFilter.integerValue = PlotViewFilterType.Both.rawValue
+                        windowController.viewFilter.integerValue = PlotViewFilterType.both.rawValue
                     }
-                    self.plotView.filter = PlotViewFilterType.Both
+                    self.plotView.filter = PlotViewFilterType.both
                     self.plotView.invalidateSymbolsAndRedraw()
                     
                     if Preferences.animateConnections {
@@ -489,18 +491,18 @@ extension MainViewController: MainWindowControllerDelegate {
         return allLights.filter({ $0.dimmer == nil || $0.dimmer == "" }).count > 0
     }
     
-    func updateFilter(selection: PlotViewFilterType) {
+    func updateFilter(_ selection: PlotViewFilterType) {
         self.plotView.filter = selection
     }
 }
 
 // MARK: - HungarianMatrixDelegate
 extension MainViewController: HungarianMatrixDelegate {
-    func didUpdateProgress(progress: Double) {
+    func didUpdateProgress(_ progress: Double) {
         
-        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async {
             if progress >= 1.0 {
-                self.progressIndicator.hidden = true
+                self.progressIndicator.isHidden = true
                 self.progressIndicator.minValue = 0.0
                 self.tableView.reloadData()
             } else if self.progressIndicator.minValue == 0.0 {
@@ -510,10 +512,10 @@ extension MainViewController: HungarianMatrixDelegate {
                     self.progressIndicator.minValue = max(progress, 0.1)
                 }, completionHandler: nil)
                 
-                self.progressIndicator.hidden = false
+                self.progressIndicator.isHidden = false
             } else {
                 self.progressIndicator.doubleValue = progress
             }
-        })
+        }
     }
 }

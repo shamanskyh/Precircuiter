@@ -12,14 +12,14 @@ import AppKit
 // XOR Operator - from https://gist.github.com/JadenGeller/8afdbaa6cf8bf30bf645
 infix operator ^^ { associativity left precedence 120 }
 
-func ^^<T: BooleanType, U: BooleanType>(lhs: T, rhs: U) -> Bool {
+func ^^<T: Boolean, U: Boolean>(lhs: T, rhs: U) -> Bool {
     return lhs.boolValue != rhs.boolValue
 }
 
 /// Extension to determine whether a color is light or dark
 extension NSColor {
     func isLight() -> Bool {
-        let convertedColor = self.colorUsingColorSpace(NSColorSpace.genericRGBColorSpace())
+        let convertedColor = self.usingColorSpace(NSColorSpace.genericRGB())
         let red = convertedColor?.redComponent
         let green = convertedColor?.greenComponent
         let blue = convertedColor?.blueComponent
@@ -37,35 +37,25 @@ extension NSColor {
 /// Remove objects from an array by value from http://stackoverflow.com/a/30724543
 extension Array where Element : Equatable {
     // Remove first collection element that is equal to the given `object`:
-    mutating func removeObject(object : Generator.Element) {
-        if let index = self.indexOf(object) {
-            self.removeAtIndex(index)
+    mutating func removeObject(_ object : Iterator.Element) {
+        if let index = self.index(of: object) {
+            self.remove(at: index)
         }
     }
 }
 
-/// Delay function from http://stackoverflow.com/questions/24034544/dispatch-after-gcd-in-swift/24318861#24318861
-func delay(delay:Double, closure:()->()) {
-    dispatch_after(
-        dispatch_time(
-            DISPATCH_TIME_NOW,
-            Int64(delay * Double(NSEC_PER_SEC))
-        ),
-        dispatch_get_main_queue(), closure)
-}
-
 /// Random number generation from https://gist.github.com/JadenGeller/407036af08a28513eef2
 struct Random {
-    static func within(range: ClosedInterval<Int>) -> Int {
-        return Int(arc4random_uniform(UInt32(range.end - range.start + 1))) + range.start
+    static func within(_ range: ClosedRange<Int>) -> Int {
+        return Int(arc4random_uniform(UInt32(range.upperBound - range.lowerBound + 1))) + range.lowerBound
     }
     
-    static func within(range: ClosedInterval<Float>) -> Float {
-        return (range.end - range.start) * Float(Float(arc4random()) / Float(UInt32.max)) + range.start
+    static func within(_ range: ClosedRange<Float>) -> Float {
+        return (range.upperBound - range.lowerBound) * Float(Float(arc4random()) / Float(UInt32.max)) + range.lowerBound
     }
     
-    static func within(range: ClosedInterval<Double>) -> Double {
-        return (range.end - range.start) * Double(Double(arc4random()) / Double(UInt32.max)) + range.start
+    static func within(_ range: ClosedRange<Double>) -> Double {
+        return (range.upperBound - range.lowerBound) * Double(Double(arc4random()) / Double(UInt32.max)) + range.lowerBound
     }
     
     static func generate() -> Int {
@@ -92,19 +82,19 @@ struct Random {
 /// - Parameter inst: the instrument to modify (passed by reference)
 /// - Parameter propertyString: the property to modify, as a string from VWX
 /// - Parameter propertyValue: the value to set the property to
-func addPropertyToInstrument(inout inst: Instrument, propertyString: String, propertyValue: String) throws {
+func addPropertyToInstrument(_ inst: inout Instrument, propertyString: String, propertyValue: String) throws {
     
-    func stringToDeviceType(devType: String) -> DeviceType {
+    func stringToDeviceType(_ devType: String) -> DeviceType {
         switch devType {
-        case "Light": return .Light
-        case "Moving Light": return .MovingLight
-        case "Accessory": return .Accessory
-        case "Static Accessory": return .StaticAccessory
-        case "Device": return .Device
-        case "Practical": return .Practical
-        case "SFX": return .SFX
-        case "Power": return .Power
-        default: return .Other
+        case "Light": return .light
+        case "Moving Light": return .movingLight
+        case "Accessory": return .accessory
+        case "Static Accessory": return .staticAccessory
+        case "Device": return .device
+        case "Practical": return .practical
+        case "SFX": return .sfx
+        case "Power": return .power
+        default: return .other
         }
     }
     
@@ -150,9 +140,9 @@ func addPropertyToInstrument(inout inst: Instrument, propertyString: String, pro
     case "Gobo 2 Rotation": inst.gobo2Rotation = propertyValue
     case "Gobo Shift": inst.goboShift = propertyValue
     case "Mark": inst.mark = propertyValue
-    case "Draw Beam": inst.drawBeam = (propertyValue.lowercaseString == "true")
-    case "Draw Beam as 3D Solid": inst.drawBeamAs3DSolid = (propertyValue.lowercaseString == "true")
-    case "Use Vertical Beam": inst.useVerticalBeam = (propertyValue.lowercaseString == "true")
+    case "Draw Beam": inst.drawBeam = (propertyValue.lowercased() == "true")
+    case "Draw Beam as 3D Solid": inst.drawBeamAs3DSolid = (propertyValue.lowercased() == "true")
+    case "Use Vertical Beam": inst.useVerticalBeam = (propertyValue.lowercased() == "true")
     case "Show Beam at": inst.showBeamAt = propertyValue
     case "Falloff Distance": inst.falloffDistance = propertyValue
     case "Lamp Rotation Angle": inst.lampRotationAngle = propertyValue
@@ -165,38 +155,38 @@ func addPropertyToInstrument(inout inst: Instrument, propertyString: String, pro
     case "Bottom Shutter Depth": inst.bottomShutterDepth = propertyValue
     case "Bottom Shutter Angle": inst.bottomShutterAngle = propertyValue
     case "Symbol Name": inst.symbolName = propertyValue
-    case "Use Legend": inst.useLegend = (propertyValue.lowercaseString == "true")
-    case "Flip Front && Back Legend Text": inst.flipFrontBackLegendText = (propertyValue.lowercaseString == "true")
-    case "Flip Left && Right Legend Text": inst.flipLeftRightLegendText = (propertyValue.lowercaseString == "true")
+    case "Use Legend": inst.useLegend = (propertyValue.lowercased() == "true")
+    case "Flip Front && Back Legend Text": inst.flipFrontBackLegendText = (propertyValue.lowercased() == "true")
+    case "Flip Left && Right Legend Text": inst.flipLeftRightLegendText = (propertyValue.lowercased() == "true")
     case "Focus": inst.focus = propertyValue
-    case "Set 3D Orientation": inst.set3DOrientation = (propertyValue.lowercaseString == "true")
+    case "Set 3D Orientation": inst.set3DOrientation = (propertyValue.lowercased() == "true")
     case "X Rotation": inst.xRotation = propertyValue
     case "Y Rotation": inst.yRotation = propertyValue
     case "X Location":
         do {
             inst.rawXLocation = propertyValue
-            try inst.addCoordinateToInitialLocation(.X, value: propertyValue)
+            try inst.addCoordinateToInitialLocation(.x, value: propertyValue)
         } catch {
-            throw InstrumentError.AmbiguousLocation
+            throw InstrumentError.ambiguousLocation
         }
     case "Y Location":
         do {
             inst.rawYLocation = propertyValue
-            try inst.addCoordinateToInitialLocation(.Y, value: propertyValue)
+            try inst.addCoordinateToInitialLocation(.y, value: propertyValue)
         } catch {
-            throw InstrumentError.AmbiguousLocation
+            throw InstrumentError.ambiguousLocation
         }
     case "Z Location":
         do {
             inst.rawZLocation = propertyValue
-            try inst.addCoordinateToInitialLocation(.Z, value: propertyValue)
+            try inst.addCoordinateToInitialLocation(.z, value: propertyValue)
         } catch {
-            throw InstrumentError.AmbiguousLocation
+            throw InstrumentError.ambiguousLocation
         }
     case "FixtureID": inst.fixtureID = propertyValue
     case "__UID": inst.UID = propertyValue
     case "Accessories": inst.accessories = propertyValue
-    default: throw InstrumentError.PropertyStringUnrecognized
+    default: throw InstrumentError.propertyStringUnrecognized
     }
 }
 
@@ -206,7 +196,7 @@ func addPropertyToInstrument(inout inst: Instrument, propertyString: String, pro
 /// - Parameter inst: the instrument to modify (passed by reference)
 /// - Parameter propertyString: the property to return, as a string from VWX
 /// - Returns: the value of the requested property, or nil
-func getPropertyFromInstrument(inst: Instrument, propertyString: String) throws -> String? {
+func getPropertyFromInstrument(_ inst: Instrument, propertyString: String) throws -> String? {
     
     switch propertyString {
     case "Device Type": return inst.deviceType?.description
@@ -273,22 +263,22 @@ func getPropertyFromInstrument(inst: Instrument, propertyString: String) throws 
     case "FixtureID": return inst.fixtureID
     case "__UID": return inst.UID
     case "Accessories": return inst.accessories
-    default: throw InstrumentError.PropertyStringUnrecognized
+    default: throw InstrumentError.propertyStringUnrecognized
     }
 }
 
-func connectLight(light: Instrument, toClosestDimmer fromDimmers: [Instrument]) {
+func connect(light: Instrument, dimmers: [Instrument]) {
     var shortestDistance: Double?
     
-    if fromDimmers.filter({ $0.dimmer == light.dimmer }).count == 0 {
+    if dimmers.filter({ $0.dimmer == light.dimmer }).count == 0 {
         light.receptacle = nil
         return
     }
     
-    for dimmer in fromDimmers.filter({ $0.dimmer == light.dimmer }) {
+    for dimmer in dimmers.filter({ $0.dimmer == light.dimmer }) {
         if shortestDistance == nil {
             do {
-                shortestDistance = try HungarianMatrix.distanceBetween(light, dimmer: dimmer, cutCorners: Preferences.cutCorners)
+                shortestDistance = try HungarianMatrix.distanceBetween(light: light, dimmer: dimmer, cutCorners: Preferences.cutCorners)
                 light.receptacle = dimmer
                 dimmer.light = light
             } catch {
@@ -296,7 +286,7 @@ func connectLight(light: Instrument, toClosestDimmer fromDimmers: [Instrument]) 
             }
         } else {
             do {
-                let tempDistance = try HungarianMatrix.distanceBetween(light, dimmer: dimmer, cutCorners: Preferences.cutCorners)
+                let tempDistance = try HungarianMatrix.distanceBetween(light: light, dimmer: dimmer, cutCorners: Preferences.cutCorners)
                 if tempDistance < shortestDistance {
                     shortestDistance = tempDistance
                     light.receptacle = dimmer

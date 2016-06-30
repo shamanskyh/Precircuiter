@@ -9,76 +9,76 @@
 import Foundation
 
 enum UnitType: Int {
-    case FeetAndInches
-    case Feet
-    case Inches
-    case Yards
-    case Miles
-    case Microns
-    case Millimeters
-    case Centimeters
-    case Meters
-    case Kilometers
-    case Degrees
-    case Custom
+    case feetAndInches
+    case feet
+    case inches
+    case yards
+    case miles
+    case microns
+    case millimeters
+    case centimeters
+    case meters
+    case kilometers
+    case degrees
+    case custom
 }
 
 class Preferences {
     
     static var cutCorners: Bool {
         set {
-            NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: kCutCornersPreferenceKey)
-            NSUserDefaults.standardUserDefaults().synchronize()
-            NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: kShouldReloadPlotViewNotification, object: nil))
+            UserDefaults.standard().set(newValue, forKey: kCutCornersPreferenceKey)
+            UserDefaults.standard().synchronize()
+            NotificationCenter.default().post(Notification(name: NSNotification.Name(rawValue: kShouldReloadPlotViewNotification), object: nil))
         } get {
-            return NSUserDefaults.standardUserDefaults().boolForKey(kCutCornersPreferenceKey)
+            return UserDefaults.standard().bool(forKey: kCutCornersPreferenceKey)
         }
     }
     
     static var preferredUnits: UnitType {
         set {
-            NSUserDefaults.standardUserDefaults().setInteger(newValue.rawValue, forKey: kPreferredUnitsPreferenceKey)
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard().set(newValue.rawValue, forKey: kPreferredUnitsPreferenceKey)
+            UserDefaults.standard().synchronize()
         } get {
-            return UnitType(rawValue: NSUserDefaults.standardUserDefaults().integerForKey(kPreferredUnitsPreferenceKey))!
+            return UnitType(rawValue: UserDefaults.standard().integer(forKey: kPreferredUnitsPreferenceKey))!
         }
     }
     
     static var customUnitMeterConversion: Double {
         set {
-            NSUserDefaults.standardUserDefaults().setDouble(newValue, forKey: kUnitsToMeterConversionPreferenceKey)
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard().set(newValue, forKey: kUnitsToMeterConversionPreferenceKey)
+            UserDefaults.standard().synchronize()
         } get {
-            return NSUserDefaults.standardUserDefaults().doubleForKey(kUnitsToMeterConversionPreferenceKey)
+            return UserDefaults.standard().double(forKey: kUnitsToMeterConversionPreferenceKey)
         }
     }
     
     static var showConnections: Bool {
         set {
-            NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: kShowConnectionsPreferenceKey)
-            NSUserDefaults.standardUserDefaults().synchronize()
-            NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: kShouldReloadPlotViewNotification, object: nil))
+            UserDefaults.standard().set(newValue, forKey: kShowConnectionsPreferenceKey)
+            UserDefaults.standard().synchronize()
+            NotificationCenter.default().post(Notification(name: NSNotification.Name(rawValue: kShouldReloadPlotViewNotification), object: nil))
         } get {
-            return NSUserDefaults.standardUserDefaults().boolForKey(kShowConnectionsPreferenceKey)
+            return UserDefaults.standard().bool(forKey: kShowConnectionsPreferenceKey)
         }
     }
     
     static var animateConnections: Bool {
         set {
-            NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: kAnimateConnectionsPreferenceKey)
-            NSUserDefaults.standardUserDefaults().synchronize()
-            NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: kShouldReloadPlotViewNotification, object: nil))
+            UserDefaults.standard().set(newValue, forKey: kAnimateConnectionsPreferenceKey)
+            UserDefaults.standard().synchronize()
+            NotificationCenter.default().post(Notification(name: NSNotification.Name(rawValue: kShouldReloadPlotViewNotification), object: nil))
         } get {
-            return NSUserDefaults.standardUserDefaults().boolForKey(kAnimateConnectionsPreferenceKey)
+            return UserDefaults.standard().bool(forKey: kAnimateConnectionsPreferenceKey)
         }
     }
     
     static var stopShowingStartScreen: Bool {
         set {
-            NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: kStopShowingStartScreenPreferenceKey)
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard().set(newValue, forKey: kStopShowingStartScreenPreferenceKey)
+            UserDefaults.standard().synchronize()
         } get {
-            return NSUserDefaults.standardUserDefaults().boolForKey(kStopShowingStartScreenPreferenceKey)
+            return UserDefaults.standard().bool(forKey: kStopShowingStartScreenPreferenceKey)
         }
     }
 }

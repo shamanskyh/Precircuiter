@@ -6,36 +6,36 @@
 //  Copyright © 2015 Harry Shamansky. All rights reserved.
 //
 
-enum TextImportError: ErrorType {
-    case FileNotFound
-    case BadParse
-    case UnknownError
-    case NoInstrumentsFound
-    case EncodingError
+enum TextImportError: ErrorProtocol {
+    case fileNotFound
+    case badParse
+    case unknownError
+    case noInstrumentsFound
+    case encodingError
 }
 
-enum TextExportError: ErrorType {
-    case PropertyNotFound
-    case CouldNotExport
-    case UnknownError
+enum TextExportError: ErrorProtocol {
+    case propertyNotFound
+    case couldNotExport
+    case unknownError
 }
 
-enum InstrumentError: ErrorType {
-    case DeviceTypeNotFound
-    case PropertyStringUnrecognized
-    case AmbiguousLocation
-    case UnrecognizedCoordinate
+enum InstrumentError: ErrorProtocol {
+    case deviceTypeNotFound
+    case propertyStringUnrecognized
+    case ambiguousLocation
+    case unrecognizedCoordinate
 }
 
-enum HungarianMatrixError: ErrorType {
-    case CouldNotCreateMatrix
-    case MoreChannelsThanDimmers
-    case TwoferringExceedsWattage
-    case NoLocationSpecified
+enum HungarianMatrixError: ErrorProtocol {
+    case couldNotCreateMatrix
+    case moreChannelsThanDimmers
+    case twoferringExceedsWattage
+    case noLocationSpecified
 }
 
-enum LengthFormatterError: ErrorType {
-    case UnexpectedCharacter
-    case StringToNumber
-    case FractionalFormattingError
+enum LengthFormatterError: ErrorProtocol {
+    case unexpectedCharacter
+    case stringToNumber
+    case fractionalFormattingError
 }

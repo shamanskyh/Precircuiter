@@ -16,12 +16,12 @@ class ColorTableCellView: NSTableCellView {
         super.awakeFromNib()
     }
     
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
 
         if let color = (objectValue as! Instrument).swatchColor {
             color.setFill()
-            NSBezierPath(ovalInRect: swatchView.frame).fill()
+            NSBezierPath(ovalIn: swatchView.frame).fill()
         }
     }
     

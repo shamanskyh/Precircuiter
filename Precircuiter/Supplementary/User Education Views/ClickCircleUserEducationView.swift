@@ -10,17 +10,17 @@ import Cocoa
 
 class ClickCircleUserEducationView: NSView {
 
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
 
         kClickCircleColor.setFill()
-        NSBezierPath(ovalInRect: dirtyRect).fill()
+        NSBezierPath(ovalIn: dirtyRect).fill()
     }
     
     func animateInAndOut() {
         
         alphaValue = 0.0
-        hidden = false
+        isHidden = false
         let originalFrame = frame
         
         frame = NSRect(x: frame.midX, y: frame.midY, width: 0.0, height: 0.0)
@@ -36,7 +36,7 @@ class ClickCircleUserEducationView: NSView {
                     context.duration = kClickHideDuration
                     self.animator().alphaValue = 0.0
                     }, completionHandler: {
-                        self.hidden = true
+                        self.isHidden = true
                         self.frame = originalFrame
                 })
         }

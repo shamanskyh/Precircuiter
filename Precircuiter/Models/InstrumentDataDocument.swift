@@ -22,7 +22,7 @@ class InstrumentDataDocument: NSDocument {
     var otherInstruments: [Instrument] = []
     
     /// a way of keeping track of the encoding so that we export as we imported
-    var fileEncoding: UInt?
+    var fileEncoding: String.Encoding?
     
     /// an array of the possible fields on each instrument we import
     var headers: [String] = []
@@ -31,15 +31,15 @@ class InstrumentDataDocument: NSDocument {
         
         // Returns the Storyboard that contains the Document window
         let storyboard = NSStoryboard(name: kMainStoryboardIdentifier, bundle: nil)
-        let windowController = storyboard.instantiateControllerWithIdentifier(kMainDocumentWindowIdentifier) as! NSWindowController
+        let windowController = storyboard.instantiateController(withIdentifier: kMainDocumentWindowIdentifier) as! NSWindowController
         self.addWindowController(windowController)
     }
 
-    override func dataOfType(typeName: String) throws -> NSData {
+    override func data(ofType typeName: String) throws -> Data {
         
         // put UID second for easy import into Vectorworks
-        headers.sortInPlace({ ($0 == "__UID" && $1 != "__UID") })
-        headers.sortInPlace({ ($0 == "Device Type" && $1 != "Device Type") })
+        headers.sort(isOrderedBefore: { ($0 == "__UID" && $1 != "__UID") })
+        headers.sort(isOrderedBefore: { ($0 == "Device Type" && $1 != "Device Type") })
         
         var runningString: String = ""
         for header in headers {
@@ -59,7 +59,7 @@ class InstrumentDataDocument: NSDocument {
                     }
                     runningString.append(("\t" as Character))
                 } catch {
-                    throw TextExportError.PropertyNotFound
+                    throw TextExportError.propertyNotFound
                 }
             }
             runningString = String(runningString.characters.dropLast())  // remove the trailing tab
@@ -68,28 +68,28 @@ class InstrumentDataDocument: NSDocument {
         
         guard let encoding = fileEncoding else {
             
-            if let data = runningString.dataUsingEncoding(NSMacOSRomanStringEncoding) {
+            if let data = runningString.data(using: String.Encoding.macOSRoman) {
                 return data
             }
             throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
         }
         
-        if let data = runningString.dataUsingEncoding(encoding) {
+        if let data = runningString.data(using: encoding) {
             return data
         }
         throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
     }
     
-    override func readFromData(data: NSData, ofType typeName: String) throws {
+    override func read(from data: Data, ofType typeName: String) throws {
         
         undoManager?.disableUndoRegistration()
         
         // TODO: Allow user to specify file encoding
-        fileEncoding = NSMacOSRomanStringEncoding
+        fileEncoding = String.Encoding.macOSRoman
         let rawFile = String(data: data, encoding: fileEncoding!)
         
         guard let importString = rawFile else {
-            throw TextImportError.EncodingError
+            throw TextImportError.encodingError
         }
         
         var finishedHeaders: Bool = false
@@ -100,7 +100,8 @@ class InstrumentDataDocument: NSDocument {
         var tempLights: [Instrument] = []
         var tempDimmers: [Instrument] = []
         
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)) {
+        DispatchQueue.global(attributes: .qosBackground).async {
+
             for char in importString.characters {
                 if !finishedHeaders {
                     if char == "\t" {
@@ -117,24 +118,25 @@ class InstrumentDataDocument: NSDocument {
                     if char == "\t" {
                         
                         guard currentPosition < self.headers.count else {
-                            dispatch_async(dispatch_get_main_queue()) {
+                            DispatchQueue.main.async {
                                 self.displayCouldNotImportPlotError()
                             }
                             return
                         }
                         
                         do {
-                            try addPropertyToInstrument(&currentInstrument, propertyString: self.headers[currentPosition++], propertyValue: currentKeyword)
-                        } catch InstrumentError.AmbiguousLocation {
-                            dispatch_async(dispatch_get_main_queue()) {
+                            try addPropertyToInstrument(&currentInstrument, propertyString: self.headers[currentPosition], propertyValue: currentKeyword)
+                            currentPosition += 1
+                        } catch InstrumentError.ambiguousLocation {
+                            DispatchQueue.main.async {
                                 self.displayCouldNotImportPlotError()
                             }
                             return
-                        } catch InstrumentError.PropertyStringUnrecognized {
-                            print("Could not import property: \(self.headers[currentPosition - 1])")
+                        } catch InstrumentError.propertyStringUnrecognized {
+                            NSLog("Could not import property: \(self.headers[currentPosition - 1])")
                             continue
                         } catch {
-                            dispatch_async(dispatch_get_main_queue()) {
+                            DispatchQueue.main.async {
                                 self.displayCouldNotImportPlotError()
                             }
                             return
@@ -144,7 +146,7 @@ class InstrumentDataDocument: NSDocument {
                     } else if char == "\n" || char == "\r" || char == "\r\n" {
                         
                         guard currentPosition < self.headers.count else {
-                            dispatch_async(dispatch_get_main_queue()) {
+                            DispatchQueue.main.async {
                                 self.displayCouldNotImportPlotError()
                             }
                             return
@@ -153,16 +155,16 @@ class InstrumentDataDocument: NSDocument {
                         // finish the last property
                         do {
                             try addPropertyToInstrument(&currentInstrument, propertyString: self.headers[currentPosition], propertyValue: currentKeyword)
-                        } catch InstrumentError.AmbiguousLocation {
-                            dispatch_async(dispatch_get_main_queue()) {
+                        } catch InstrumentError.ambiguousLocation {
+                            DispatchQueue.main.async {
                                 self.displayCouldNotImportPlotError()
                             }
                             return
-                        } catch InstrumentError.PropertyStringUnrecognized {
-                            print("Could not import property: \(self.headers[currentPosition])")
+                        } catch InstrumentError.propertyStringUnrecognized {
+                            NSLog("Could not import property: \(self.headers[currentPosition])")
                             continue
                         } catch {
-                            dispatch_async(dispatch_get_main_queue()) {
+                            DispatchQueue.main.async {
                                 self.displayCouldNotImportPlotError()
                             }
                             return
@@ -170,12 +172,12 @@ class InstrumentDataDocument: NSDocument {
                         
                         currentKeyword = ""
                         currentPosition = 0
-                        currentInstrument.assignedBy = .OutsideOfApplication
-                        if currentInstrument.deviceType == .Power {
+                        currentInstrument.assignedBy = .outsideOfApplication
+                        if currentInstrument.deviceType == .power {
                             tempDimmers.append(currentInstrument)
-                        } else if currentInstrument.deviceType == .Light ||
-                            currentInstrument.deviceType == .MovingLight ||
-                            currentInstrument.deviceType == .Practical {
+                        } else if currentInstrument.deviceType == .light ||
+                            currentInstrument.deviceType == .movingLight ||
+                            currentInstrument.deviceType == .practical {
                                 tempLights.append(currentInstrument)
                         } else {
                             self.otherInstruments.append(currentInstrument)
@@ -192,7 +194,7 @@ class InstrumentDataDocument: NSDocument {
             
             // throw an error if no lights or dimmers are found. Probably a garbage plot
             if self.allLights.count == 0 && self.allDimmers.count == 0 {
-                dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.main.async {
                     self.displayCouldNotImportPlotError()
                 }
                 return
@@ -207,7 +209,7 @@ class InstrumentDataDocument: NSDocument {
                 }
             }
             guard foundLocation == true else {
-                dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.main.async {
                     self.displayCouldNotImportPlotError()
                 }
                 return
@@ -215,7 +217,7 @@ class InstrumentDataDocument: NSDocument {
             
             // For any light that has a dimmer filled in, try to find the corresponding power object, and link that power object to the light as well (two-way link)
             for light in self.allLights.filter({ $0.dimmer != nil }) {
-                connectLight(light, toClosestDimmer: self.allDimmers)
+                connect(light: light, dimmers: self.allDimmers)
             }
             
             // TODO: there's probably a better way to do this, but it's not
@@ -224,7 +226,7 @@ class InstrumentDataDocument: NSDocument {
                 continue
             }
             
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 (self.mainWindowController!.window?.contentViewController as! MainViewController).representedObject = self
             }
             

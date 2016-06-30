@@ -9,7 +9,7 @@
 import Cocoa
 
 protocol LightSymbolDelegate {
-    func updateLightSelection(sender: LightSymbolView)
+    func updateLightSelection(_ sender: LightSymbolView)
 }
 
 class LightSymbolView: NSView {
@@ -20,54 +20,54 @@ class LightSymbolView: NSView {
     var selected: Bool = false
     var delegate: LightSymbolDelegate?
     
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
         
         if selected {
-            let selectedPath = NSBezierPath(ovalInRect: dirtyRect.insetBy(dx: 0.5, dy: 0.5))
+            let selectedPath = NSBezierPath(ovalIn: dirtyRect.insetBy(dx: 0.5, dy: 0.5))
             selectedPath.lineWidth = 1.0
             
-            NSColor.whiteColor().setFill()
+            NSColor.white().setFill()
             selectedPath.fill()
             
             NSColor(red: 0.0, green: 0.5, blue: 1.0, alpha: 1.0).setStroke()
             selectedPath.stroke()
         }
         
-        NSColor.darkGrayColor().setStroke()
+        NSColor.darkGray().setStroke()
         
-        let circlePath = NSBezierPath(ovalInRect: dirtyRect.insetBy(dx: 2.5, dy: 2.5))
+        let circlePath = NSBezierPath(ovalIn: dirtyRect.insetBy(dx: 2.5, dy: 2.5))
         circlePath.lineWidth = 1.0
         
         if let c = color {
             c.setFill()
             circlePath.fill()
         } else {
-            NSColor.whiteColor().setFill()
+            NSColor.white().setFill()
             circlePath.fill()
-            NSColor.lightGrayColor().setStroke()
+            NSColor.lightGray().setStroke()
             circlePath.stroke()
         }
         
         if let c = channel {
             
-            let font = NSFont.boldSystemFontOfSize(kDefaultLightFontSize)
+            let font = NSFont.boldSystemFont(ofSize: kDefaultLightFontSize)
             
             let pStyle = NSMutableParagraphStyle()
-            pStyle.alignment = NSTextAlignment.Center
+            pStyle.alignment = NSTextAlignment.center
             
             let textColor: NSColor
             if let lightColor = self.color {
-                textColor = lightColor.isLight() ? NSColor.darkGrayColor() : NSColor.whiteColor()
+                textColor = lightColor.isLight() ? NSColor.darkGray() : NSColor.white()
             } else {
-                textColor = NSColor.lightGrayColor()
+                textColor = NSColor.lightGray()
             }
             
-            (c as NSString).drawInRect(dirtyRect.offsetBy(dx: 0.0, dy: -3.5), withAttributes: [NSFontAttributeName: font, NSParagraphStyleAttributeName: pStyle, NSForegroundColorAttributeName: textColor])
+            (c as NSString).draw(in: dirtyRect.offsetBy(dx: 0.0, dy: -3.5), withAttributes: [NSFontAttributeName: font, NSParagraphStyleAttributeName: pStyle, NSForegroundColorAttributeName: textColor])
         }
     }
     
-    override func mouseDown(theEvent: NSEvent) {
+    override func mouseDown(_ theEvent: NSEvent) {
         selected = true
         delegate?.updateLightSelection(self)
     }
