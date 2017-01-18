@@ -21,7 +21,7 @@ class InstrumentDataDocumentController: NSDocumentController {
 
 extension InstrumentDataDocumentController: NSOpenSavePanelDelegate {
     
-    func panel(_ sender: AnyObject, shouldEnable url: URL) -> Bool {
+    func panel(_ sender: Any, shouldEnable url: URL) -> Bool {
         let fileExtension = url.pathExtension
         if fileExtension == "" || fileExtension == "txt" {
             return true

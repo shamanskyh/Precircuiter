@@ -7,6 +7,8 @@
 //
 
 import Cocoa
+import Crashlytics
+import Fabric
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -15,13 +17,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationWillFinishLaunching(_ notification: Notification) {
         
+        // Initialize Crashlytics
+        Fabric.with([Crashlytics.self])
+        
         // Create an instance of the sub-classed document controller.
         // This will be set as the shared document controller, according to the spec.
         let _ = InstrumentDataDocumentController()
         
         // register the default preferences
         let defaultsDictionary = [kShowConnectionsPreferenceKey: true, kAnimateConnectionsPreferenceKey: true, kCutCornersPreferenceKey: true];
-        UserDefaults.standard().register(defaultsDictionary)
+        UserDefaults.standard.register(defaults: defaultsDictionary)
         
     }
     

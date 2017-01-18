@@ -15,7 +15,7 @@ class PreferencesViewController: NSViewController {
     }
     
     @IBAction func changeDrawingPreferences(_ sender: AnyObject) {
-        NotificationCenter.default().post(Notification(name: NSNotification.Name(rawValue: kShouldReloadPlotViewNotification), object: nil))
+        NotificationCenter.default.post(Notification(name: NSNotification.Name(rawValue: kShouldReloadPlotViewNotification), object: nil))
     }
     
     @IBAction func resetStartupWindow(_ sender: AnyObject) {

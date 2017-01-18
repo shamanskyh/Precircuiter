@@ -24,12 +24,12 @@ class AssignUserEducationView: NSView {
     func animate() {
 
         // click 1
-        DispatchQueue.main.after(when: .now() + 0.5) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
             self?.click1.animateInAndOut()
         }
 
         // animate connections
-        DispatchQueue.main.after(when: .now() + 1.0) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
             self?.plotView.animateInConnections()
         }
         

@@ -22,15 +22,15 @@ enum DeviceType {
     
     var description: String {
         switch self {
-        case light: return "Light"
-        case movingLight: return "MovingLight"
-        case accessory: return "Accessory"
-        case staticAccessory: return "StaticAccessory"
-        case device: return "Device"
-        case practical: return "Practical"
-        case sfx: return "SFX"
-        case power: return "Power"
-        case other: return "Other"
+        case .light: return "Light"
+        case .movingLight: return "MovingLight"
+        case .accessory: return "Accessory"
+        case .staticAccessory: return "StaticAccessory"
+        case .device: return "Device"
+        case .practical: return "Practical"
+        case .sfx: return "SFX"
+        case .power: return "Power"
+        case .other: return "Other"
         }
     }
 }
@@ -318,7 +318,7 @@ class Instrument: NSObject {
             runningString += ""
         } else if self.deviceType == .power, let dimmer = self.dimmer {
             runningString += "Dimmer [\(dimmer)]"
-            if let light = self.light, channel = light.channel {
+            if let light = self.light, let channel = light.channel {
                 runningString += "\nChannel (\(channel))"
             }
         } else if let deviceType = self.deviceType?.description {
@@ -363,8 +363,8 @@ class Instrument: NSObject {
 
 // MARK: - NSCopying Protocol Conformance
 extension Instrument: NSCopying {
-    func copy(with zone: NSZone?) -> AnyObject {
-        let copy = self.dynamicType.init(UID: self.UID, location: self.locations)
+    func copy(with zone: NSZone?) -> Any {
+        let copy = type(of: self).init(UID: self.UID, location: self.locations)
         copy.dummyInstrument = self.dummyInstrument
         copy.deviceType = self.deviceType
         copy.instrumentType = self.instrumentType

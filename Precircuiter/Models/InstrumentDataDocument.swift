@@ -38,8 +38,8 @@ class InstrumentDataDocument: NSDocument {
     override func data(ofType typeName: String) throws -> Data {
         
         // put UID second for easy import into Vectorworks
-        headers.sort(isOrderedBefore: { ($0 == "__UID" && $1 != "__UID") })
-        headers.sort(isOrderedBefore: { ($0 == "Device Type" && $1 != "Device Type") })
+        headers = headers.sorted(by: { ($0 == "__UID" && $1 != "__UID") })
+        headers = headers.sorted(by: { ($0 == "Device Type" && $1 != "Device Type") })
         
         var runningString: String = ""
         for header in headers {
@@ -100,7 +100,7 @@ class InstrumentDataDocument: NSDocument {
         var tempLights: [Instrument] = []
         var tempDimmers: [Instrument] = []
         
-        DispatchQueue.global(attributes: .qosBackground).async {
+        DispatchQueue.global(qos: .background).async {
 
             for char in importString.characters {
                 if !finishedHeaders {

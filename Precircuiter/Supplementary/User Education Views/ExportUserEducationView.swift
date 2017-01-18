@@ -16,12 +16,12 @@ class ExportUserEducationView: NSView {
     func animate() {
         
         // click 1
-        DispatchQueue.main.after(when: .now() + 0.5) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
             self?.click1.animateInAndOut()
         }
         
         // click 2
-        DispatchQueue.main.after(when: .now() + 2.0) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
             self?.click2.animateInAndOut()
         }
         

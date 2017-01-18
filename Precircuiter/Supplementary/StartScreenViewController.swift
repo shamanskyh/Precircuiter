@@ -38,7 +38,7 @@ class StartScreenViewController: NSViewController {
         super.viewDidLoad()
         
         carouselTray.wantsLayer = true
-        carouselTray.layer?.backgroundColor = NSColor.white().cgColor
+        carouselTray.layer?.backgroundColor = NSColor.white.cgColor
         
         mainTitleLabel.alphaValue = 1.0
         showScreenCheckbox.alphaValue = 0.0
@@ -53,7 +53,7 @@ class StartScreenViewController: NSViewController {
     override func viewDidAppear() {
         assignUserEducationView.setupPlotView()
         
-        DispatchQueue.main.after(when: .now() + 1.0) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
             self?.exportUserEducationView.animate()
         }
     }

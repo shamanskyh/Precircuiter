@@ -83,7 +83,7 @@ class MainViewController: NSViewController {
     @IBOutlet weak var arrayController: NSArrayController!
     
     /// the underlying document
-    override var representedObject: AnyObject? {
+    override var representedObject: Any? {
         didSet {
             if let document = representedObject as? InstrumentDataDocument {
                 
@@ -105,7 +105,7 @@ class MainViewController: NSViewController {
                 updateToolbar()
                 
                 // Sort the lights by position, then by unit number
-                let sortDescriptor = SortDescriptor(key: "secondarySortKey", ascending: true, selector: #selector(NSString.localizedStandardCompare(_:)))
+                let sortDescriptor = NSSortDescriptor(key: "secondarySortKey", ascending: true, selector: #selector(NSString.localizedStandardCompare(_:)))
                 allLights = (allLights as NSArray).sortedArray(using: [sortDescriptor]) as! [Instrument]
             }
         }
@@ -117,8 +117,8 @@ class MainViewController: NSViewController {
         plotView.delegate = self
         
         // refresh the toolbar if anything is undone/redone
-        NotificationCenter.default().addObserver(self, selector: #selector(MainViewController.updateToolbar), name: NSNotification.Name.NSUndoManagerDidUndoChange, object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(MainViewController.updateToolbar), name: NSNotification.Name.NSUndoManagerDidRedoChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MainViewController.updateToolbar), name: NSNotification.Name.NSUndoManagerDidUndoChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MainViewController.updateToolbar), name: NSNotification.Name.NSUndoManagerDidRedoChange, object: nil)
     }
     
     override func viewDidAppear() {
@@ -129,8 +129,8 @@ class MainViewController: NSViewController {
     
     
     deinit {
-        NotificationCenter.default().removeObserver(self, name: NSNotification.Name.NSUndoManagerDidUndoChange, object: nil)
-        NotificationCenter.default().removeObserver(self, name: NSNotification.Name.NSUndoManagerDidRedoChange, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.NSUndoManagerDidUndoChange, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.NSUndoManagerDidRedoChange, object: nil)
     }
 
     // MARK: - Utilities
@@ -202,7 +202,7 @@ class MainViewController: NSViewController {
             light.assignedBy = .manual
             light.receptacle?.light = nil
             
-            if light.dimmer?.characters.count > 0 {
+            if let count = light.dimmer?.characters.count, count > 0 {
                 connect(light: light, dimmers: allDimmers)
             } else {
                 light.receptacle = nil
@@ -244,7 +244,7 @@ class MainViewController: NSViewController {
         light.assignedBy = .manual
         light.receptacle?.light = nil
         
-        if light.dimmer?.characters.count > 0 {
+        if let count = light.dimmer?.characters.count, count > 0 {
             connect(light: light, dimmers: allDimmers)
         } else {
             light.receptacle = nil
@@ -383,8 +383,6 @@ extension MainViewController: MainWindowControllerDelegate {
     /// These two functions do the heavy lifting and pair up instruments with dimmers.
     func assignMissingDimmers() {
         
-        view.window?.undoManager?.disableUndoRegistration()
-        
         var compressedLights = self.combineDuplicates(self.allLights.filter({ $0.dimmer == nil }), isDimmer: false, uniqueSplitter: kUniqueSplitterCharacter)
         var compressedDimmers = self.combineDuplicates(self.allDimmers.filter({ $0.light == nil }), isDimmer: true, uniqueSplitter: kUniqueSplitterCharacter)
         
@@ -394,36 +392,48 @@ extension MainViewController: MainWindowControllerDelegate {
         
         let hungarianMatrix = HungarianMatrix(rows: compressedDimmers.count, columns: compressedDimmers.count)
         hungarianMatrix.delegate = self
-        hungarianMatrix.assignAndPair(lights: &compressedLights, dimmers: &compressedDimmers, cutCorners: Preferences.cutCorners) {
-            self.view.window?.undoManager?.enableUndoRegistration()
-            self.view.window?.undoManager?.beginUndoGrouping()
-            
-            self.explodeDuplicates(&self.allLights, compressedCopy: compressedLights.filter({ $0.dummyInstrument != true }), isDimmer: false, uniqueSplitter: kUniqueSplitterCharacter)
-            self.explodeDuplicates(&self.allDimmers, compressedCopy: compressedDimmers.filter({ $0.dummyInstrument != true }), isDimmer: false, uniqueSplitter: kUniqueSplitterCharacter)
-            // register the undo
-            self.view.window?.undoManager?.setActionName("Assign Missing Dimmers to Lights")
-            
-            // For any light that has a dimmer filled in, try to find the corresponding power object, and link that power object to the light as well (two-way link)
-            for light in self.allLights.filter({ $0.dimmer != nil }) {
-                connect(light: light, dimmers: self.allDimmers)
-            }
-            self.view.window?.undoManager?.endUndoGrouping()
-            
-            if Preferences.showConnections {
-                if let windowController = self.view.window?.windowController as? MainWindowController {
-                    windowController.viewFilter.integerValue = PlotViewFilterType.both.rawValue
-                }
-                self.plotView.filter = PlotViewFilterType.both
-                self.plotView.invalidateSymbolsAndRedraw()
-                
-                if Preferences.animateConnections {
-                    self.plotView.animateInConnections()
-                }
-            } else {
-                self.plotView.invalidateSymbolsAndRedraw()
-            }
         
-            self.updateToolbar()
+        DispatchQueue.global(qos: .utility).async {
+            do {
+                try hungarianMatrix.assignAndPair(lights: &compressedLights, dimmers: &compressedDimmers, cutCorners: Preferences.cutCorners)
+            } catch HungarianMatrixError.moreChannelsThanDimmers {
+                // Don't show an error here.
+                // This is handled at a lower level so exact numbers can be specified in the error message.
+                return
+            } catch {
+                DispatchQueue.main.async {
+                    let alert = NSAlert()
+                    alert.messageText = "Error Precircuiting"
+                    alert.informativeText = "Precircuiter encountered an unknown error when attempting to precircuit your plot. Please verify that the data you imported is valid."
+                    alert.runModal()
+                }
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.explodeDuplicates(&self.allLights, compressedCopy: compressedLights.filter({ $0.dummyInstrument != true }), isDimmer: false, uniqueSplitter: kUniqueSplitterCharacter)
+                self.explodeDuplicates(&self.allDimmers, compressedCopy: compressedDimmers.filter({ $0.dummyInstrument != true }), isDimmer: false, uniqueSplitter: kUniqueSplitterCharacter)
+                
+                // For any light that has a dimmer filled in, try to find the corresponding power object, and link that power object to the light as well (two-way link)
+                for light in self.allLights.filter({ $0.dimmer != nil }) {
+                    connect(light: light, dimmers: self.allDimmers)
+                }
+                
+                if Preferences.showConnections {
+                    if let windowController = self.view.window?.windowController as? MainWindowController {
+                        windowController.viewFilter.integerValue = PlotViewFilterType.both.rawValue
+                    }
+                    self.plotView.filter = PlotViewFilterType.both
+                    self.plotView.invalidateSymbolsAndRedraw()
+                    
+                    if Preferences.animateConnections {
+                        self.plotView.animateInConnections()
+                    }
+                } else {
+                    self.plotView.invalidateSymbolsAndRedraw()
+                }
+                self.updateToolbar()
+            }
         }
     }
     
@@ -434,8 +444,6 @@ extension MainViewController: MainWindowControllerDelegate {
         self.allLights.forEach({ $0.receptacle = nil })
         self.allDimmers.forEach({ $0.light = nil })
         
-        view.window?.undoManager?.disableUndoRegistration()
-        
         var compressedLights = self.combineDuplicates(self.allLights, isDimmer: false, uniqueSplitter: kUniqueSplitterCharacter)
         var compressedDimmers = self.combineDuplicates(self.allDimmers, isDimmer: true, uniqueSplitter: kUniqueSplitterCharacter)
         let hungarianMatrix = HungarianMatrix(rows: compressedDimmers.count, columns: compressedDimmers.count)
@@ -445,8 +453,27 @@ extension MainViewController: MainWindowControllerDelegate {
         }
         
         hungarianMatrix.delegate = self
-        hungarianMatrix.assignAndPair(lights: &compressedLights, dimmers: &compressedDimmers, cutCorners: Preferences.cutCorners
-            ) {
+        
+        DispatchQueue.global(qos: .utility).async {
+            
+            do {
+                self.view.window?.undoManager?.disableUndoRegistration()
+                try hungarianMatrix.assignAndPair(lights: &compressedLights, dimmers: &compressedDimmers, cutCorners: Preferences.cutCorners)
+            } catch HungarianMatrixError.moreChannelsThanDimmers {
+                // Don't show an error here.
+                // This is handled at a lower level so exact numbers can be specified in the error message.
+                return
+            } catch {
+                DispatchQueue.main.async {
+                    let alert = NSAlert()
+                    alert.messageText = "Error Precircuiting"
+                    alert.informativeText = "Precircuiter encountered an unknown error when attempting to precircuit your plot. Please verify that the data you imported is valid."
+                    alert.runModal()
+                }
+                return
+            }
+            
+            DispatchQueue.main.async {
                 self.view.window?.undoManager?.enableUndoRegistration()
                 
                 self.explodeDuplicates(&self.allLights, compressedCopy: compressedLights.filter({ $0.dummyInstrument != true }), isDimmer: false, uniqueSplitter: kUniqueSplitterCharacter)
@@ -474,6 +501,7 @@ extension MainViewController: MainWindowControllerDelegate {
                 }
                 
                 self.updateToolbar()
+            }
         }
     }
     

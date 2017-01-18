@@ -27,14 +27,14 @@ class LightSymbolView: NSView {
             let selectedPath = NSBezierPath(ovalIn: dirtyRect.insetBy(dx: 0.5, dy: 0.5))
             selectedPath.lineWidth = 1.0
             
-            NSColor.white().setFill()
+            NSColor.white.setFill()
             selectedPath.fill()
             
             NSColor(red: 0.0, green: 0.5, blue: 1.0, alpha: 1.0).setStroke()
             selectedPath.stroke()
         }
         
-        NSColor.darkGray().setStroke()
+        NSColor.darkGray.setStroke()
         
         let circlePath = NSBezierPath(ovalIn: dirtyRect.insetBy(dx: 2.5, dy: 2.5))
         circlePath.lineWidth = 1.0
@@ -43,9 +43,9 @@ class LightSymbolView: NSView {
             c.setFill()
             circlePath.fill()
         } else {
-            NSColor.white().setFill()
+            NSColor.white.setFill()
             circlePath.fill()
-            NSColor.lightGray().setStroke()
+            NSColor.lightGray.setStroke()
             circlePath.stroke()
         }
         
@@ -58,16 +58,16 @@ class LightSymbolView: NSView {
             
             let textColor: NSColor
             if let lightColor = self.color {
-                textColor = lightColor.isLight() ? NSColor.darkGray() : NSColor.white()
+                textColor = lightColor.isLight() ? NSColor.darkGray : NSColor.white
             } else {
-                textColor = NSColor.lightGray()
+                textColor = NSColor.lightGray
             }
             
             (c as NSString).draw(in: dirtyRect.offsetBy(dx: 0.0, dy: -3.5), withAttributes: [NSFontAttributeName: font, NSParagraphStyleAttributeName: pStyle, NSForegroundColorAttributeName: textColor])
         }
     }
     
-    override func mouseDown(_ theEvent: NSEvent) {
+    override func mouseDown(with theEvent: NSEvent) {
         selected = true
         delegate?.updateLightSelection(self)
     }

@@ -74,7 +74,7 @@ extension String {
             var str = ""
             for c in whitespaceTrimmed.unicodeScalars {
                 if c.value >= 48 && c.value <= 57 { // Unicode digits 0-9
-                    str.append(c)
+                    str.append(String(c))
                 }
             }
             if let intVal = Int(str) {

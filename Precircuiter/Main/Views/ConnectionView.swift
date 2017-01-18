@@ -109,7 +109,7 @@ class ConnectionView: NSView {
         super.draw(dirtyRect)
         
         NSBezierPath.setDefaultLineWidth(kConnectionStrokeWidth)
-        NSColor.darkGray().setStroke()
+        NSColor.darkGray.setStroke()
         let line = NSBezierPath()
         
         if Preferences.cutCorners {

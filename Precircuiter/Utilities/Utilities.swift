@@ -10,21 +10,21 @@ import Foundation
 import AppKit
 
 // XOR Operator - from https://gist.github.com/JadenGeller/8afdbaa6cf8bf30bf645
-infix operator ^^ { associativity left precedence 120 }
-
-func ^^<T: Boolean, U: Boolean>(lhs: T, rhs: U) -> Bool {
-    return lhs.boolValue != rhs.boolValue
+precedencegroup BooleanPrecedence { associativity: left }
+infix operator ^^ : BooleanPrecedence
+func ^^(lhs: Bool, rhs: Bool) -> Bool {
+    return lhs != rhs
 }
 
 /// Extension to determine whether a color is light or dark
 extension NSColor {
     func isLight() -> Bool {
-        let convertedColor = self.usingColorSpace(NSColorSpace.genericRGB())
+        let convertedColor = self.usingColorSpace(NSColorSpace.genericRGB)
         let red = convertedColor?.redComponent
         let green = convertedColor?.greenComponent
         let blue = convertedColor?.blueComponent
         
-        guard let r = red, b = blue, g = green else {
+        guard let r = red, let b = blue, let g = green else {
             return true // default to dark text
         }
         
@@ -287,7 +287,7 @@ func connect(light: Instrument, dimmers: [Instrument]) {
         } else {
             do {
                 let tempDistance = try HungarianMatrix.distanceBetween(light: light, dimmer: dimmer, cutCorners: Preferences.cutCorners)
-                if tempDistance < shortestDistance {
+                if tempDistance < (shortestDistance ?? Double.greatestFiniteMagnitude) {
                     shortestDistance = tempDistance
                     light.receptacle = dimmer
                     dimmer.light = light

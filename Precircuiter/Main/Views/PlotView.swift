@@ -56,15 +56,15 @@ class PlotView: NSView {
         super.awakeFromNib()
         
         // refresh the plot view if anything is undone/redone, or if the drawing preferences are updated
-        NotificationCenter.default().addObserver(self, selector: #selector(PlotView.invalidateSymbolsAndRedraw), name: NSNotification.Name.NSUndoManagerDidUndoChange, object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(PlotView.invalidateSymbolsAndRedraw), name: NSNotification.Name.NSUndoManagerDidRedoChange, object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(PlotView.invalidateSymbolsAndRedraw), name: kShouldReloadPlotViewNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(PlotView.invalidateSymbolsAndRedraw), name: NSNotification.Name.NSUndoManagerDidUndoChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(PlotView.invalidateSymbolsAndRedraw), name: NSNotification.Name.NSUndoManagerDidRedoChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(PlotView.invalidateSymbolsAndRedraw), name: NSNotification.Name(rawValue: kShouldReloadPlotViewNotification), object: nil)
     }
     
     deinit {
-        NotificationCenter.default().removeObserver(self, name: NSNotification.Name.NSUndoManagerDidUndoChange, object: nil)
-        NotificationCenter.default().removeObserver(self, name: NSNotification.Name.NSUndoManagerDidRedoChange, object: nil)
-        NotificationCenter.default().removeObserver(self, name: NSNotification.Name(rawValue: kShouldReloadPlotViewNotification), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.NSUndoManagerDidUndoChange, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.NSUndoManagerDidRedoChange, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: kShouldReloadPlotViewNotification), object: nil)
     }
     
     var instrumentsToRender: [Instrument] {
@@ -110,7 +110,7 @@ class PlotView: NSView {
 
         let views = prepareInstruments(instrumentsToRender, boundingRect: boundingRect)
 
-        if let delegateLights = delegate?.getLights() where Preferences.showConnections {
+        if let delegateLights = delegate?.getLights(), Preferences.showConnections {
             connectionViews = prepareConnections(delegateLights)
             subviews += connectionViews as [NSView]
         }
@@ -163,7 +163,7 @@ class PlotView: NSView {
         let yOffset: Double = Double(-boundingRect.origin.y)
         
         for instrument in lightSymbols.map({ $0.lightInstrument }) + dimmerSymbols.map({ $0.dimmerInstrument }) {
-            guard let inst = instrument, loc = inst.locations.first else {
+            guard let inst = instrument, let loc = inst.locations.first else {
                 continue
             }
             
@@ -257,12 +257,12 @@ class PlotView: NSView {
     internal func animateInConnections() {
         isAnimating = true
         for connectionView in connectionViews {
-            DispatchQueue.main.after(when: .now() + Random.within(kMinAnimationDelay...kMaxAnimationDelay)) {
-                connectionView.animateIn()
+            DispatchQueue.main.asyncAfter(deadline: .now() + Random.within(kMinAnimationDelay...kMaxAnimationDelay)) { [weak connectionView] in
+                connectionView?.animateIn()
             }
         }
-        DispatchQueue.main.after(when: .now() + Double(kMaxAnimationDelay + kMaxAnimationDuration)) {
-            self.isAnimating = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + Double(kMaxAnimationDelay + kMaxAnimationDuration)) { [weak self] in
+            self?.isAnimating = false
         }
     }
     
@@ -277,7 +277,7 @@ class PlotView: NSView {
         }
     }
     
-    override func mouseDown(_ theEvent: NSEvent) {
+    override func mouseDown(with theEvent: NSEvent) {
         delegate?.update(selectedLights: [], selectDimmers: false)
     }
 }

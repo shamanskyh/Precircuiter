@@ -22,10 +22,10 @@ class DimmerSymbolView: NSView {
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
 
-        NSColor.white().setFill()
+        NSColor.white.setFill()
         NSRectFill(dirtyRect)
         
-        NSColor.lightGray().setFill()
+        NSColor.lightGray.setFill()
         NSBezierPath.setDefaultLineWidth(kDimmerStrokeWidth)
         NSFrameRect(dirtyRect)
         
@@ -36,13 +36,13 @@ class DimmerSymbolView: NSView {
             let pStyle = NSMutableParagraphStyle()
             pStyle.alignment = NSTextAlignment.center
             
-            let color = NSColor.darkGray()
+            let color = NSColor.darkGray
             
             (d as NSString).draw(in: dirtyRect.offsetBy(dx: 0.0, dy: 1.0), withAttributes: [NSFontAttributeName: font, NSParagraphStyleAttributeName: pStyle, NSForegroundColorAttributeName: color])
         }
     }
     
-    override func mouseDown(_ theEvent: NSEvent) {
+    override func mouseDown(with theEvent: NSEvent) {
         selected = true
         delegate?.updateDimmerSelection(self)
     }

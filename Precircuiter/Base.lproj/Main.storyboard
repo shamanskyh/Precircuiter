@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11129.15" systemVersion="16A201w" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11163.2" systemVersion="16A239j" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11163.2"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -729,14 +729,14 @@ DQ
                                     <size key="minSize" width="100" height="24"/>
                                     <size key="maxSize" width="255" height="26"/>
                                     <segmentedControl key="view" verticalHuggingPriority="750" id="E03-Ue-iUW">
-                                        <rect key="frame" x="0.0" y="14" width="230" height="26"/>
+                                        <rect key="frame" x="0.0" y="14" width="235" height="26"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="selectOne" id="3Cs-jf-4Ig">
                                             <font key="font" metaFont="system"/>
                                             <segments>
-                                                <segment label="Lights" width="76" selected="YES"/>
-                                                <segment label="Dimmers" width="76" tag="1"/>
-                                                <segment label="Both" width="74"/>
+                                                <segment label="Lights" width="78" selected="YES"/>
+                                                <segment label="Dimmers" width="78" tag="1"/>
+                                                <segment label="Both" width="75"/>
                                             </segments>
                                         </segmentedCell>
                                         <connections>
@@ -1028,8 +1028,8 @@ DQ
                                                             <rect key="frame" x="289" y="1" width="109" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="maS-Df-IDt">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="109" height="17"/>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="maS-Df-IDt">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="108" height="17"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Instrument Type" id="iuF-ct-b11">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -1166,8 +1166,8 @@ DQ
                                                             <rect key="frame" x="572.5" y="1" width="108" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="12N-20-HEf">
-                                                                    <rect key="frame" x="16" y="0.0" width="92" height="17"/>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="12N-20-HEf">
+                                                                    <rect key="frame" x="16" y="0.0" width="91" height="17"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Color" id="r1L-eI-lsj">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -1258,7 +1258,6 @@ DQ
                                             </connections>
                                         </tableView>
                                     </subviews>
-                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="r0D-rC-cz8">
                                     <rect key="frame" x="0.0" y="190" width="779" height="16"/>

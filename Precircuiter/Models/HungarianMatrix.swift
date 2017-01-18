@@ -112,7 +112,7 @@ class HungarianMatrix {
                     self.matrix[i, j] = 0.0
                 } else {
                     do {
-                        self.matrix[i, j] = try self.dynamicType.distanceBetween(light: lights[i], dimmer: dimmers[j], cutCorners: cutCorners)
+                        self.matrix[i, j] = try type(of: self).distanceBetween(light: lights[i], dimmer: dimmers[j], cutCorners: cutCorners)
                     } catch {
                         throw HungarianMatrixError.couldNotCreateMatrix
                     }
@@ -400,54 +400,43 @@ class HungarianMatrix {
     // MARK: Assignment
     // These are the functions that other files should call
     
-    // pairs lights and dimmers
-    internal func assignAndPair(lights: inout [Instrument], dimmers: inout [Instrument], cutCorners: Bool, completion: () -> ()) {
-        
-        if let mainViewController = delegate as? NSViewController {
-            mainViewController.view.window?.undoManager?.disableUndoRegistration()
-        }
+    /// Pair the lights to the dimmers. Runs synchronously.
+    /// - Complexity: Not good. O(n⁴)
+    /// - Parameter lights: The lights (as an array of Instruments) to pair
+    /// - Parameter dimmers: The dimmers (as an array of Instruments) to pair
+    /// - Parameter cutCorners: A boolean that determines whether corners should be cut when determining length
+    internal func assignAndPair(lights: inout [Instrument], dimmers: inout [Instrument], cutCorners: Bool) throws {
         
         do {
             try createDistanceMatrix(dimmers: &dimmers, lights: &lights, cutCorners: cutCorners)
         } catch HungarianMatrixError.moreChannelsThanDimmers {
-            // alert is shown before we throw the error
-            return
+            throw HungarianMatrixError.moreChannelsThanDimmers
+        } catch HungarianMatrixError.couldNotCreateMatrix {
+            throw HungarianMatrixError.couldNotCreateMatrix
+        } catch HungarianMatrixError.noLocationSpecified {
+            throw HungarianMatrixError.noLocationSpecified
         } catch {
-            let alert = NSAlert()
-            alert.messageText = "Error Precircuiting"
-            alert.informativeText = "Precircuiter encountered an unknown error when attempting to precircuit your plot. Please verify that the data you imported is valid."
-            alert.runModal()
-            return
+            // right now, this is the default case
+            throw HungarianMatrixError.twoferringExceedsWattage
         }
         
-        DispatchQueue.global(attributes: .qosUtility).async {
-            
-            self.solve()
-            DispatchQueue.main.async {
-                
-                let pairs = self.getSolutions()
-                
-                // connect the pairs
-                for (dim, light) in pairs {
-                    if lights[light].dummyInstrument == false {
-                        lights[light].receptacle = dimmers[dim]
-                        lights[light].dimmer = dimmers[dim].dimmer
-                        lights[light].assignedBy = .auto
-                        dimmers[dim].light = lights[light]
-                        dimmers[dim].assignedBy = .auto
-                    }
-                }
-                
-                // filter out the dummy instruments
-                lights = lights.filter({ $0.dummyInstrument != true })
-                
-                if let mainViewController = self.delegate as? NSViewController {
-                    mainViewController.view.window?.undoManager?.enableUndoRegistration()
-                }
-                
-                completion()
+        self.solve()
+        
+        let pairs = self.getSolutions()
+        
+        // connect the pairs
+        for (dim, light) in pairs {
+            if lights[light].dummyInstrument == false {
+                lights[light].receptacle = dimmers[dim]
+                lights[light].dimmer = dimmers[dim].dimmer
+                lights[light].assignedBy = .auto
+                dimmers[dim].light = lights[light]
+                dimmers[dim].assignedBy = .auto
             }
         }
+        
+        // filter out the dummy instruments
+        lights = lights.filter({ $0.dummyInstrument != true })
     }
     
     internal func printPatch(lights: [Instrument], dimmers: [Instrument]) {
@@ -477,7 +466,7 @@ class HungarianMatrix {
         
         if light.locations.count == 1 && dimmer.locations.count == 1 {    // one-to-one pairing
             
-            guard let p1 = light.locations.first, p2 = dimmer.locations.first else {
+            guard let p1 = light.locations.first, let p2 = dimmer.locations.first else {
                 throw HungarianMatrixError.noLocationSpecified
             }
             return simpleDistBetween(coordinate1: p1, coordinate2: p2, cutCorners: cutCorners)

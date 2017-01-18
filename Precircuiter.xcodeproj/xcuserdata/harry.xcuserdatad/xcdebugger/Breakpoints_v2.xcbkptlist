@@ -349,7 +349,7 @@
                   moduleName = "Precircuiter"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/Preferences.swift"
-                  timestampString = "488965125.586282"
+                  timestampString = "506417465.187537"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "13"
@@ -364,7 +364,7 @@
                   moduleName = "Precircuiter"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/Preferences.swift"
-                  timestampString = "488965125.58831"
+                  timestampString = "506417465.189991"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "13"
@@ -413,11 +413,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Precircuiter/AppDelegate.swift"
-            timestampString = "463896998.743934"
+            timestampString = "506417462.590342"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
             landmarkName = "applicationDidFinishLaunching(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -509,12 +509,12 @@
                   moduleName = "Precircuiter"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "488965125.597083"
+                  timestampString = "506417465.200918"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "139"
                   endingLineNumber = "139"
-                  offsetFromSymbolStart = "9370">
+                  offsetFromSymbolStart = "9604">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -524,7 +524,7 @@
                   moduleName = "Precircuiter"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "488965125.599076"
+                  timestampString = "506417465.203155"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "140"
@@ -557,12 +557,12 @@
                   moduleName = "Precircuiter"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "488965125.60292"
+                  timestampString = "506417465.214796"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "121"
                   endingLineNumber = "121"
-                  offsetFromSymbolStart = "2484">
+                  offsetFromSymbolStart = "2585">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -572,7 +572,7 @@
                   moduleName = "Precircuiter"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "488965125.604931"
+                  timestampString = "506417465.217365"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "122"
@@ -605,12 +605,12 @@
                   moduleName = "Precircuiter"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "488965125.608851"
+                  timestampString = "506417465.221906"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "149"
                   endingLineNumber = "149"
-                  offsetFromSymbolStart = "5237">
+                  offsetFromSymbolStart = "5433">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -620,7 +620,7 @@
                   moduleName = "Precircuiter"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "488965125.61085"
+                  timestampString = "506417465.224256"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "150"
@@ -653,12 +653,12 @@
                   moduleName = "Precircuiter"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "488965125.614747"
+                  timestampString = "506417465.228464"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "159"
                   endingLineNumber = "159"
-                  offsetFromSymbolStart = "9905">
+                  offsetFromSymbolStart = "10130">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -668,7 +668,7 @@
                   moduleName = "Precircuiter"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "488965125.616785"
+                  timestampString = "506417465.230607"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "160"
@@ -733,12 +733,12 @@
                   moduleName = "Precircuiter"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "488965125.627771"
+                  timestampString = "506417465.241809"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "131"
                   endingLineNumber = "131"
-                  offsetFromSymbolStart = "8562">
+                  offsetFromSymbolStart = "8791">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -748,7 +748,7 @@
                   moduleName = "Precircuiter"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "488965125.629762"
+                  timestampString = "506417465.243884"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "132"
@@ -845,12 +845,12 @@
                   moduleName = "Precircuiter"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "488965125.64799"
+                  timestampString = "506417465.261865"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "167"
                   endingLineNumber = "167"
-                  offsetFromSymbolStart = "10684">
+                  offsetFromSymbolStart = "10914">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -860,7 +860,7 @@
                   moduleName = "Precircuiter"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "488965125.650262"
+                  timestampString = "506417465.263939"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "168"
@@ -893,12 +893,12 @@
                   moduleName = "Precircuiter"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "488965125.654217"
+                  timestampString = "506417465.267965"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "197"
                   endingLineNumber = "197"
-                  offsetFromSymbolStart = "6186">
+                  offsetFromSymbolStart = "6393">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -908,7 +908,7 @@
                   moduleName = "Precircuiter"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "488965125.656732"
+                  timestampString = "506417465.270051"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "198"
@@ -957,12 +957,12 @@
                   moduleName = "Precircuiter"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "488965125.66594"
+                  timestampString = "506417465.277272"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "212"
                   endingLineNumber = "212"
-                  offsetFromSymbolStart = "7995">
+                  offsetFromSymbolStart = "8224">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -972,7 +972,7 @@
                   moduleName = "Precircuiter"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "488965125.667981"
+                  timestampString = "506417465.27924"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "213"
@@ -995,38 +995,6 @@
             startingLineNumber = "213"
             endingLineNumber = "213"
             landmarkName = "read(from:ofType:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Precircuiter/Main/MainViewController.swift"
-            timestampString = "488964714.278871"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "386"
-            endingLineNumber = "386"
-            landmarkName = "assignMissingDimmers()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Precircuiter/Main/MainViewController.swift"
-            timestampString = "488964747.454774"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "398"
-            endingLineNumber = "398"
-            landmarkName = "assignMissingDimmers()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
