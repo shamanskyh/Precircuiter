@@ -76,7 +76,7 @@ class ConnectionView: NSView {
     func animateIn() {
         NSAnimationContext.runAnimationGroup({ (context: NSAnimationContext) -> Void in
             context.duration = Random.within(kMinAnimationDuration...kMaxAnimationDuration)
-            context.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            context.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
             context.allowsImplicitAnimation = true
             self.sizeToConnect()
         }, completionHandler: nil)
@@ -108,7 +108,7 @@ class ConnectionView: NSView {
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
         
-        NSBezierPath.setDefaultLineWidth(kConnectionStrokeWidth)
+        NSBezierPath.defaultLineWidth = kConnectionStrokeWidth
         NSColor.darkGray.setStroke()
         let line = NSBezierPath()
         

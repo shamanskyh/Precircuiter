@@ -7,8 +7,6 @@
 //
 
 import Cocoa
-import Crashlytics
-import Fabric
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -16,9 +14,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var startScreenWindowController: NSWindowController?
     
     func applicationWillFinishLaunching(_ notification: Notification) {
-        
-        // Initialize Crashlytics
-        Fabric.with([Crashlytics.self])
         
         // Create an instance of the sub-classed document controller.
         // This will be set as the shared document controller, according to the spec.
@@ -43,7 +38,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             startScreenWindowController = storyboard.instantiateController(withIdentifier: kStartScreenWindowIdentifier) as? NSWindowController
             startScreenWindowController?.showWindow(self)
         } else {
-            NSDocumentController.shared().openDocument(self)
+            NSDocumentController.shared.openDocument(self)
         }
     }
 }

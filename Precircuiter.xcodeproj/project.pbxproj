@@ -34,21 +34,8 @@
 		4AD9B17A1B97E97400E4C3AA /* ConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD9B1791B97E97400E4C3AA /* ConnectionView.swift */; };
 		4AEE088C19AB85A000DA1638 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEE088B19AB85A000DA1638 /* AppDelegate.swift */; };
 		4AEE089119AB85A000DA1638 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AEE088F19AB85A000DA1638 /* Main.storyboard */; };
-		4AEE089D19AB85A000DA1638 /* PrecircuiterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEE089C19AB85A000DA1638 /* PrecircuiterTests.swift */; };
 		4AF4D6321B3685D00006EFA3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AF4D6311B3685D00006EFA3 /* Images.xcassets */; };
-		4E03973AB5DE0C1AE62C8D07 /* Pods_Precircuiter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FBC78B6974A1DC578C508C7 /* Pods_Precircuiter.framework */; };
-		8AC75188BCA34CF7CE3DCD87 /* Pods_PrecircuiterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A84B0088907EA6112AD39D /* Pods_PrecircuiterTests.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		4AEE089719AB85A000DA1638 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4AEE087A19AB85A000DA1638 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4AEE088119AB85A000DA1638;
-			remoteInfo = Precircuiter;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4A08F9511B9CB4B700DDA853 /* InstrumentDataDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InstrumentDataDocument.swift; path = Models/InstrumentDataDocument.swift; sourceTree = "<group>"; };
@@ -83,16 +70,9 @@
 		4AEE088619AB85A000DA1638 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AEE088B19AB85A000DA1638 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4AEE089019AB85A000DA1638 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		4AEE089619AB85A000DA1638 /* PrecircuiterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrecircuiterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4AEE089B19AB85A000DA1638 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4AEE089C19AB85A000DA1638 /* PrecircuiterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrecircuiterTests.swift; sourceTree = "<group>"; };
 		4AF4D6311B3685D00006EFA3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4FBC78B6974A1DC578C508C7 /* Pods_Precircuiter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Precircuiter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6858271E7E280D01F92F8E2C /* Pods-Precircuiter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Precircuiter.release.xcconfig"; path = "Pods/Target Support Files/Pods-Precircuiter/Pods-Precircuiter.release.xcconfig"; sourceTree = "<group>"; };
 		B4A84B0088907EA6112AD39D /* Pods_PrecircuiterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PrecircuiterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C0E425032F2EB7031628C951 /* Pods-Precircuiter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Precircuiter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Precircuiter/Pods-Precircuiter.debug.xcconfig"; sourceTree = "<group>"; };
-		E8A8D1795AC773F4ECB63EF3 /* Pods-PrecircuiterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PrecircuiterTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PrecircuiterTests/Pods-PrecircuiterTests.release.xcconfig"; sourceTree = "<group>"; };
-		FDEAE13F2B760BF5A8BB10FC /* Pods-PrecircuiterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PrecircuiterTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PrecircuiterTests/Pods-PrecircuiterTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,15 +80,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E03973AB5DE0C1AE62C8D07 /* Pods_Precircuiter.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4AEE089319AB85A000DA1638 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8AC75188BCA34CF7CE3DCD87 /* Pods_PrecircuiterTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,9 +186,7 @@
 			children = (
 				4AEE088419AB85A000DA1638 /* Precircuiter */,
 				4A755E2A1B364EF200D77871 /* Frameworks */,
-				4AEE089919AB85A000DA1638 /* PrecircuiterTests */,
 				4AEE088319AB85A000DA1638 /* Products */,
-				8F61160C3526A0517509C8B6 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -225,7 +194,6 @@
 			isa = PBXGroup;
 			children = (
 				4AEE088219AB85A000DA1638 /* Precircuiter.app */,
-				4AEE089619AB85A000DA1638 /* PrecircuiterTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -255,34 +223,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		4AEE089919AB85A000DA1638 /* PrecircuiterTests */ = {
-			isa = PBXGroup;
-			children = (
-				4AEE089C19AB85A000DA1638 /* PrecircuiterTests.swift */,
-				4AEE089A19AB85A000DA1638 /* Supporting Files */,
-			);
-			path = PrecircuiterTests;
-			sourceTree = "<group>";
-		};
-		4AEE089A19AB85A000DA1638 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				4AEE089B19AB85A000DA1638 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		8F61160C3526A0517509C8B6 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				C0E425032F2EB7031628C951 /* Pods-Precircuiter.debug.xcconfig */,
-				6858271E7E280D01F92F8E2C /* Pods-Precircuiter.release.xcconfig */,
-				FDEAE13F2B760BF5A8BB10FC /* Pods-PrecircuiterTests.debug.xcconfig */,
-				E8A8D1795AC773F4ECB63EF3 /* Pods-PrecircuiterTests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -290,13 +230,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4AEE08A019AB85A000DA1638 /* Build configuration list for PBXNativeTarget "Precircuiter" */;
 			buildPhases = (
-				3A276117CBF54476CE75D3E2 /* [CP] Check Pods Manifest.lock */,
 				4AEE087E19AB85A000DA1638 /* Sources */,
 				4AEE087F19AB85A000DA1638 /* Frameworks */,
 				4AEE088019AB85A000DA1638 /* Resources */,
-				11A9D1F929BBE1E22F177E0C /* [CP] Embed Pods Frameworks */,
-				BF7703B06ACB244FBFACFB58 /* [CP] Copy Pods Resources */,
-				4AE2B8981E2F4D930097EE94 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -307,27 +243,6 @@
 			productReference = 4AEE088219AB85A000DA1638 /* Precircuiter.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4AEE089519AB85A000DA1638 /* PrecircuiterTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4AEE08A319AB85A000DA1638 /* Build configuration list for PBXNativeTarget "PrecircuiterTests" */;
-			buildPhases = (
-				3C1CD89FA256A2C73F68B4BB /* [CP] Check Pods Manifest.lock */,
-				4AEE089219AB85A000DA1638 /* Sources */,
-				4AEE089319AB85A000DA1638 /* Frameworks */,
-				4AEE089419AB85A000DA1638 /* Resources */,
-				C97D1C8891E327677A194070 /* [CP] Embed Pods Frameworks */,
-				1430CE5A6B4E5134C286A32E /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4AEE089819AB85A000DA1638 /* PBXTargetDependency */,
-			);
-			name = PrecircuiterTests;
-			productName = PrecircuiterTests;
-			productReference = 4AEE089619AB85A000DA1638 /* PrecircuiterTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -335,7 +250,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Harry Shamansky";
 				TargetAttributes = {
 					4AEE088119AB85A000DA1638 = {
@@ -348,16 +263,11 @@
 							};
 						};
 					};
-					4AEE089519AB85A000DA1638 = {
-						CreatedOnToolsVersion = 6.0;
-						LastSwiftMigration = 0800;
-						TestTargetID = 4AEE088119AB85A000DA1638;
-					};
 				};
 			};
 			buildConfigurationList = 4AEE087D19AB85A000DA1638 /* Build configuration list for PBXProject "Precircuiter" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -369,7 +279,6 @@
 			projectRoot = "";
 			targets = (
 				4AEE088119AB85A000DA1638 /* Precircuiter */,
-				4AEE089519AB85A000DA1638 /* PrecircuiterTests */,
 			);
 		};
 /* End PBXProject section */
@@ -384,120 +293,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4AEE089419AB85A000DA1638 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		11A9D1F929BBE1E22F177E0C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Precircuiter/Pods-Precircuiter-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1430CE5A6B4E5134C286A32E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PrecircuiterTests/Pods-PrecircuiterTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3A276117CBF54476CE75D3E2 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		3C1CD89FA256A2C73F68B4BB /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		4AE2B8981E2F4D930097EE94 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" e4bba2d5712d4bf3da00fed31e3851d14e48a0a7 b98fcfbdba33d4f2b7b741fe5c0771ae15392051652231815d678c6afc5a4f73";
-		};
-		BF7703B06ACB244FBFACFB58 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Precircuiter/Pods-Precircuiter-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C97D1C8891E327677A194070 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PrecircuiterTests/Pods-PrecircuiterTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4AEE087E19AB85A000DA1638 /* Sources */ = {
@@ -533,23 +329,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4AEE089219AB85A000DA1638 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4AEE089D19AB85A000DA1638 /* PrecircuiterTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		4AEE089819AB85A000DA1638 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4AEE088119AB85A000DA1638 /* Precircuiter */;
-			targetProxy = 4AEE089719AB85A000DA1638 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4AEE088F19AB85A000DA1638 /* Main.storyboard */ = {
@@ -567,18 +347,28 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -613,18 +403,28 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -649,89 +449,52 @@
 		};
 		4AEE08A119AB85A000DA1638 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C0E425032F2EB7031628C951 /* Pods-Precircuiter.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "global-tint";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Precircuiter/Precircuiter.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 2.0.0;
+				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = Precircuiter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 11;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.harryshamansky.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Precircuiter/Precircuiter-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		4AEE08A219AB85A000DA1638 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6858271E7E280D01F92F8E2C /* Pods-Precircuiter.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "global-tint";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Precircuiter/Precircuiter.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 2.0.0;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Precircuiter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 11;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.harryshamansky.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Precircuiter/Precircuiter-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		4AEE08A419AB85A000DA1638 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FDEAE13F2B760BF5A8BB10FC /* Pods-PrecircuiterTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = PrecircuiterTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.harryshamansky.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Precircuiter.app/Contents/MacOS/Precircuiter";
-			};
-			name = Debug;
-		};
-		4AEE08A519AB85A000DA1638 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E8A8D1795AC773F4ECB63EF3 /* Pods-PrecircuiterTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = PrecircuiterTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.harryshamansky.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Precircuiter.app/Contents/MacOS/Precircuiter";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -752,15 +515,6 @@
 			buildConfigurations = (
 				4AEE08A119AB85A000DA1638 /* Debug */,
 				4AEE08A219AB85A000DA1638 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4AEE08A319AB85A000DA1638 /* Build configuration list for PBXNativeTarget "PrecircuiterTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4AEE08A419AB85A000DA1638 /* Debug */,
-				4AEE08A519AB85A000DA1638 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

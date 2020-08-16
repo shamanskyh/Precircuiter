@@ -20,7 +20,7 @@ extension String {
         var fillDenom = false
         var fillExponent = false
         
-        for char in self.characters {
+        for char in self {
             if char == "'" || char == "’" || char == "‘" {    // feet
                 if exponent != "" {
                     guard let n1 = Float(numerator), let e1 = Float(exponent) else {
@@ -108,7 +108,7 @@ extension String {
         var fillDenom = false
         var fillExponent = false
         
-        for char in self.characters {
+        for char in self {
             if char == "e" { // power
                 fillExponent = true
             } else if char == "/" { // fractional feet or inches

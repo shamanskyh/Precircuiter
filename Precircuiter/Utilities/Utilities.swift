@@ -38,7 +38,7 @@ extension NSColor {
 extension Array where Element : Equatable {
     // Remove first collection element that is equal to the given `object`:
     mutating func removeObject(_ object : Iterator.Element) {
-        if let index = self.index(of: object) {
+        if let index = self.firstIndex(of: object) {
             self.remove(at: index)
         }
     }

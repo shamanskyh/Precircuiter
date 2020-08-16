@@ -442,9 +442,9 @@ class HungarianMatrix {
     internal func printPatch(lights: [Instrument], dimmers: [Instrument]) {
         for dimmer in dimmers {
             if let light = dimmer.light {
-                print("Dimmer \(dimmer.dimmer) = Light \(light.channel)")
+                print("Dimmer \(dimmer.dimmer ?? "") = Light \(light.channel ?? "")")
             } else {
-                print("Dimmer \(dimmer.dimmer) is free")
+                print("Dimmer \(dimmer.dimmer ?? "") is free")
             }
         }
     }

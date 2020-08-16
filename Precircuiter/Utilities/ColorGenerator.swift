@@ -1057,7 +1057,6 @@ extension String {
     private func roscoluxGelFromCode(_ code: String) -> CGColor? {
         switch code {
         case "0": return CGColor(red: (255 / 255), green: (255 / 255), blue: (255 / 255), alpha: 1.0)
-        case "0": return CGColor(red: (255 / 255), green: (255 / 255), blue: (255 / 255), alpha: 1.0)
         case "100": return CGColor(red: (255 / 255), green: (255 / 255), blue: (255 / 255), alpha: 1.0)
         case "101": return CGColor(red: (255 / 255), green: (255 / 255), blue: (255 / 255), alpha: 1.0)
         case "102": return CGColor(red: (255 / 255), green: (255 / 255), blue: (255 / 255), alpha: 1.0)

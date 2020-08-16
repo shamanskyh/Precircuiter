@@ -23,11 +23,11 @@ class DimmerSymbolView: NSView {
         super.draw(dirtyRect)
 
         NSColor.white.setFill()
-        NSRectFill(dirtyRect)
+        dirtyRect.fill()
         
         NSColor.lightGray.setFill()
-        NSBezierPath.setDefaultLineWidth(kDimmerStrokeWidth)
-        NSFrameRect(dirtyRect)
+        NSBezierPath.defaultLineWidth = kDimmerStrokeWidth
+        dirtyRect.frame()
         
         if let d = dimmer {
             
@@ -38,7 +38,7 @@ class DimmerSymbolView: NSView {
             
             let color = NSColor.darkGray
             
-            (d as NSString).draw(in: dirtyRect.offsetBy(dx: 0.0, dy: 1.0), withAttributes: [NSFontAttributeName: font, NSParagraphStyleAttributeName: pStyle, NSForegroundColorAttributeName: color])
+            (d as NSString).draw(in: dirtyRect.offsetBy(dx: 0.0, dy: 0.0), withAttributes: [NSAttributedString.Key.font: font, NSAttributedString.Key.paragraphStyle: pStyle, NSAttributedString.Key.foregroundColor: color])
         }
     }
     

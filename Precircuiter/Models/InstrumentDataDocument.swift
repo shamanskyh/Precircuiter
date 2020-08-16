@@ -46,7 +46,7 @@ class InstrumentDataDocument: NSDocument {
             runningString += header
             runningString.append(("\t" as Character))
         }
-        runningString = String(runningString.characters.dropLast())  // remove the trailing tab
+        runningString = String(runningString.dropLast())  // remove the trailing tab
         runningString.append(("\n" as Character))
         
         for inst in allLights + allDimmers + otherInstruments {
@@ -62,7 +62,7 @@ class InstrumentDataDocument: NSDocument {
                     throw TextExportError.propertyNotFound
                 }
             }
-            runningString = String(runningString.characters.dropLast())  // remove the trailing tab
+            runningString = String(runningString.dropLast())  // remove the trailing tab
             runningString.append(("\n" as Character))
         }
         
@@ -95,20 +95,21 @@ class InstrumentDataDocument: NSDocument {
         var finishedHeaders: Bool = false
         var currentKeyword: String = ""
         var currentPosition: Int = 0
-        var currentInstrument: Instrument = Instrument(UID: nil, location: nil)
+        var currentInstrument: Instrument = Instrument(UID: nil, location: nil, undoManager: self.undoManager)
         
         var tempLights: [Instrument] = []
         var tempDimmers: [Instrument] = []
         
-        DispatchQueue.global(qos: .background).async {
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            guard let strongSelf = self else { return }
 
-            for char in importString.characters {
+            for char in importString {
                 if !finishedHeaders {
                     if char == "\t" {
-                        self.headers.append(currentKeyword)
+                        strongSelf.headers.append(currentKeyword)
                         currentKeyword = ""
                     } else if char == "\n" || char == "\r" || char == "\r\n" {
-                        self.headers.append(currentKeyword)
+                        strongSelf.headers.append(currentKeyword)
                         currentKeyword = ""
                         finishedHeaders = true
                     } else {
@@ -117,27 +118,27 @@ class InstrumentDataDocument: NSDocument {
                 } else {
                     if char == "\t" {
                         
-                        guard currentPosition < self.headers.count else {
-                            DispatchQueue.main.async {
-                                self.displayCouldNotImportPlotError()
+                        guard currentPosition < strongSelf.headers.count else {
+                            DispatchQueue.main.async { [weak strongSelf] in
+                                strongSelf?.displayCouldNotImportPlotError()
                             }
                             return
                         }
                         
                         do {
-                            try addPropertyToInstrument(&currentInstrument, propertyString: self.headers[currentPosition], propertyValue: currentKeyword)
+                            try addPropertyToInstrument(&currentInstrument, propertyString: strongSelf.headers[currentPosition], propertyValue: currentKeyword)
                             currentPosition += 1
                         } catch InstrumentError.ambiguousLocation {
-                            DispatchQueue.main.async {
-                                self.displayCouldNotImportPlotError()
+                            DispatchQueue.main.async { [weak strongSelf] in
+                                strongSelf?.displayCouldNotImportPlotError()
                             }
                             return
                         } catch InstrumentError.propertyStringUnrecognized {
-                            NSLog("Could not import property: \(self.headers[currentPosition - 1])")
+                            NSLog("Could not import property: \(strongSelf.headers[currentPosition - 1])")
                             continue
                         } catch {
-                            DispatchQueue.main.async {
-                                self.displayCouldNotImportPlotError()
+                            DispatchQueue.main.async { [weak strongSelf] in
+                                strongSelf?.displayCouldNotImportPlotError()
                             }
                             return
                         }
@@ -145,27 +146,27 @@ class InstrumentDataDocument: NSDocument {
                         currentKeyword = ""
                     } else if char == "\n" || char == "\r" || char == "\r\n" {
                         
-                        guard currentPosition < self.headers.count else {
-                            DispatchQueue.main.async {
-                                self.displayCouldNotImportPlotError()
+                        guard currentPosition < strongSelf.headers.count else {
+                            DispatchQueue.main.async { [weak strongSelf] in
+                                strongSelf?.displayCouldNotImportPlotError()
                             }
                             return
                         }
                         
                         // finish the last property
                         do {
-                            try addPropertyToInstrument(&currentInstrument, propertyString: self.headers[currentPosition], propertyValue: currentKeyword)
+                            try addPropertyToInstrument(&currentInstrument, propertyString: strongSelf.headers[currentPosition], propertyValue: currentKeyword)
                         } catch InstrumentError.ambiguousLocation {
-                            DispatchQueue.main.async {
-                                self.displayCouldNotImportPlotError()
+                            DispatchQueue.main.async { [weak strongSelf] in
+                                strongSelf?.displayCouldNotImportPlotError()
                             }
                             return
                         } catch InstrumentError.propertyStringUnrecognized {
-                            NSLog("Could not import property: \(self.headers[currentPosition])")
+                            NSLog("Could not import property: \(strongSelf.headers[currentPosition])")
                             continue
                         } catch {
-                            DispatchQueue.main.async {
-                                self.displayCouldNotImportPlotError()
+                            DispatchQueue.main.async { [weak strongSelf] in
+                                strongSelf?.displayCouldNotImportPlotError()
                             }
                             return
                         }
@@ -180,61 +181,61 @@ class InstrumentDataDocument: NSDocument {
                             currentInstrument.deviceType == .practical {
                                 tempLights.append(currentInstrument)
                         } else {
-                            self.otherInstruments.append(currentInstrument)
+                            strongSelf.otherInstruments.append(currentInstrument)
                         }
-                        currentInstrument = Instrument(UID: nil, location: nil)
+                        currentInstrument = Instrument(UID: nil, location: nil, undoManager: strongSelf.undoManager)
                     } else {
                         currentKeyword.append(char)
                     }
                 }
             }
             
-            self.allLights = tempLights
-            self.allDimmers = tempDimmers
+            strongSelf.allLights = tempLights
+            strongSelf.allDimmers = tempDimmers
             
             // throw an error if no lights or dimmers are found. Probably a garbage plot
-            if self.allLights.count == 0 && self.allDimmers.count == 0 {
-                DispatchQueue.main.async {
-                    self.displayCouldNotImportPlotError()
+            if strongSelf.allLights.count == 0 && strongSelf.allDimmers.count == 0 {
+                DispatchQueue.main.async { [weak strongSelf] in
+                    strongSelf?.displayCouldNotImportPlotError()
                 }
                 return
             }
             
             // if we don't have any locations, also return. the user probably forgot to export all field names.
             var foundLocation = false
-            for light in self.allLights {
+            for light in strongSelf.allLights {
                 if light.locations.count > 0 {
                     foundLocation = true
                     break
                 }
             }
             guard foundLocation == true else {
-                DispatchQueue.main.async {
-                    self.displayCouldNotImportPlotError()
+                DispatchQueue.main.async { [weak strongSelf] in
+                    strongSelf?.displayCouldNotImportPlotError()
                 }
                 return
             }
             
             // For any light that has a dimmer filled in, try to find the corresponding power object, and link that power object to the light as well (two-way link)
-            for light in self.allLights.filter({ $0.dimmer != nil }) {
-                connect(light: light, dimmers: self.allDimmers)
+            for light in strongSelf.allLights.filter({ $0.dimmer != nil }) {
+                connect(light: light, dimmers: strongSelf.allDimmers)
             }
             
             // TODO: there's probably a better way to do this, but it's not
             // going to block a thread since we're in an async block...
-            while (self.mainWindowController == nil) {
+            while (strongSelf.mainWindowController == nil) {
                 continue
             }
             
-            DispatchQueue.main.async {
-                (self.mainWindowController!.window?.contentViewController as! MainViewController).representedObject = self
+            DispatchQueue.main.async { [weak strongSelf] in
+                guard let strongStrongSelf = strongSelf else { return }
+                (strongStrongSelf.mainWindowController!.window?.contentViewController as! MainViewController).representedObject = strongStrongSelf
+                strongStrongSelf.undoManager?.enableUndoRegistration()
             }
-            
-            self.undoManager?.enableUndoRegistration()
         }
     }
 
-    override class func autosavesInPlace() -> Bool {
+    override class var autosavesInPlace: Bool {
         return false
     }
 

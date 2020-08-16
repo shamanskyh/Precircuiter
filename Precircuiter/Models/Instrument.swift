@@ -65,53 +65,55 @@ class Instrument: NSObject {
     
     var dummyInstrument: Bool
     
+    var undoManager: UndoManager? = nil
+    
     var deviceType: DeviceType? = nil
-    var instrumentType: String? = nil {
+    @objc var instrumentType: String? = nil {
         willSet {
-            NSApplication.shared().mainWindow?.undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.instrumentType), object: instrumentType)
-            NSApplication.shared().mainWindow?.undoManager?.setActionName("Modify Instrument Type")
+            undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.instrumentType), object: instrumentType)
+            undoManager?.setActionName("Modify Instrument Type")
         }
     }
-    var wattage: String? = nil {
+    @objc var wattage: String? = nil {
         willSet {
-            NSApplication.shared().mainWindow?.undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.wattage), object: wattage)
-            NSApplication.shared().mainWindow?.undoManager?.setActionName("Modify Wattage")
+            undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.wattage), object: wattage)
+            undoManager?.setActionName("Modify Wattage")
         }
     }
-    var purpose: String? = nil {
+    @objc var purpose: String? = nil {
         willSet {
-            NSApplication.shared().mainWindow?.undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.purpose), object: purpose)
-            NSApplication.shared().mainWindow?.undoManager?.setActionName("Modify Purpose")
+            undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.purpose), object: purpose)
+            undoManager?.setActionName("Modify Purpose")
         }
     }
-    var position: String? = nil {
+    @objc var position: String? = nil {
         willSet {
-            NSApplication.shared().mainWindow?.undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.position), object: position)
-            NSApplication.shared().mainWindow?.undoManager?.setActionName("Modify Position")
+            undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.position), object: position)
+            undoManager?.setActionName("Modify Position")
         }
     }
-    var unitNumber: String? = nil {
+    @objc var unitNumber: String? = nil {
         willSet {
-            NSApplication.shared().mainWindow?.undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.unitNumber), object: unitNumber)
-            NSApplication.shared().mainWindow?.undoManager?.setActionName("Modify Unit Number")
+            undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.unitNumber), object: unitNumber)
+            undoManager?.setActionName("Modify Unit Number")
         }
     }
-    var color: String? = nil {
+    @objc var color: String? = nil {
         willSet {
-            NSApplication.shared().mainWindow?.undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.color), object: color)
-            NSApplication.shared().mainWindow?.undoManager?.setActionName("Modify Color")
+            undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.color), object: color)
+            undoManager?.setActionName("Modify Color")
         }
     }
-    var dimmer: String? = nil {
+    @objc var dimmer: String? = nil {
         willSet {
-            NSApplication.shared().mainWindow?.undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.dimmer), object: dimmer)
-            NSApplication.shared().mainWindow?.undoManager?.setActionName("Modify Dimmer")
+            undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.dimmer), object: dimmer)
+            undoManager?.setActionName("Modify Dimmer")
         }
     }
-    var channel: String? = nil {
+    @objc var channel: String? = nil {
         willSet {
-            NSApplication.shared().mainWindow?.undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.channel), object: channel)
-            NSApplication.shared().mainWindow?.undoManager?.setActionName("Modify Channel")
+            undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.channel), object: channel)
+            undoManager?.setActionName("Modify Channel")
         }
     }
     var address: String? = nil
@@ -134,10 +136,10 @@ class Instrument: NSObject {
     var beamAngle: String? = nil
     var beamAngle2: String? = nil
     var weight: String? = nil
-    var gobo1: String? = nil {
+    @objc var gobo1: String? = nil {
         willSet {
-            NSApplication.shared().mainWindow?.undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.gobo1), object: gobo1)
-            NSApplication.shared().mainWindow?.undoManager?.setActionName("Modify Gobo 1")
+            undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.gobo1), object: gobo1)
+            undoManager?.setActionName("Modify Gobo 1")
         }
     }
     var gobo1Rotation: String? = nil
@@ -176,9 +178,9 @@ class Instrument: NSObject {
     var accessories: String? = nil
     
     // MARK: - Binding Properties
-    var secondarySortKey: String? {
+    @objc var secondarySortKey: String? {
         if self.position != nil || self.unitNumber != nil {
-            return "\(self.position)\(self.unitNumber)"
+            return "\(self.position ?? "")\(self.unitNumber ?? "")"
         }
         return nil
     }
@@ -243,16 +245,16 @@ class Instrument: NSObject {
     // MARK: - Other Functions
     
     // use only if power
-    weak var light: Instrument? = nil {
+    @objc weak var light: Instrument? = nil {
         willSet {
-            NSApplication.shared().mainWindow?.undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.light), object: light)
+            undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.light), object: light)
         }
     }
     
     // use only if non-power
-    weak var receptacle: Instrument? = nil {
+    @objc weak var receptacle: Instrument? = nil {
         willSet {
-            NSApplication.shared().mainWindow?.undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.receptacle), object: receptacle)
+            undoManager?.registerUndo(withTarget: self, selector: #selector(setter: Instrument.receptacle), object: receptacle)
         }
     }
     
@@ -264,7 +266,7 @@ class Instrument: NSObject {
         self.assignedBy = Patcher(rawValue: value.intValue)!
     }
     
-    required init(UID: String?, location: [Coordinate]?) {
+    required init(UID: String?, location: [Coordinate]?, undoManager: UndoManager? = nil) {
         
         if let id = UID {
             self.UID = id
@@ -277,6 +279,7 @@ class Instrument: NSObject {
             self.locations = []
         }
         
+        self.undoManager = undoManager
         self.dummyInstrument = false
     }
     
@@ -353,7 +356,7 @@ class Instrument: NSObject {
             runningString += ("\n" + gobo)
         }
         
-        guard runningString.characters.count > 0 else {
+        guard runningString.count > 0 else {
             return super.description
         }
         return runningString
@@ -364,7 +367,8 @@ class Instrument: NSObject {
 // MARK: - NSCopying Protocol Conformance
 extension Instrument: NSCopying {
     func copy(with zone: NSZone?) -> Any {
-        let copy = type(of: self).init(UID: self.UID, location: self.locations)
+        let copy = type(of: self).init(UID: self.UID, location: self.locations, undoManager: self.undoManager)
+        copy.undoManager = self.undoManager
         copy.dummyInstrument = self.dummyInstrument
         copy.deviceType = self.deviceType
         copy.instrumentType = self.instrumentType

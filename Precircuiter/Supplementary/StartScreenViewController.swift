@@ -38,7 +38,7 @@ class StartScreenViewController: NSViewController {
         super.viewDidLoad()
         
         carouselTray.wantsLayer = true
-        carouselTray.layer?.backgroundColor = NSColor.white.cgColor
+        carouselTray.layer?.backgroundColor = NSColor.textBackgroundColor.cgColor
         
         mainTitleLabel.alphaValue = 1.0
         showScreenCheckbox.alphaValue = 0.0
@@ -72,7 +72,7 @@ class StartScreenViewController: NSViewController {
             assignUserEducationView.plotView.connectionViews.forEach({ $0.sizeToAnimate() })
             NSAnimationContext.runAnimationGroup({ (context: NSAnimationContext) -> Void in
                 context.duration = 0.5
-                context.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                context.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
                 self.carouselPositionConstraint.animator().constant -= self.view.frame.width
                 }, completionHandler: {
                     self.isAnimatingCarousel = false
@@ -83,7 +83,7 @@ class StartScreenViewController: NSViewController {
             showScreenCheckbox.isHidden = false
             NSAnimationContext.runAnimationGroup({ (context: NSAnimationContext) -> Void in
                 context.duration = 0.5
-                context.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                context.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
                 context.allowsImplicitAnimation = true
                 self.carouselPositionConstraint.animator().constant -= self.view.frame.width
                 self.nextButtonWidthConstraint.animator().constant += self.nextButtonSizeIncrease
@@ -112,7 +112,7 @@ class StartScreenViewController: NSViewController {
             isAnimatingCarousel = true
             NSAnimationContext.runAnimationGroup({ (context: NSAnimationContext) -> Void in
                 context.duration = 0.5
-                context.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                context.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
                 self.carouselPositionConstraint.animator().constant += self.view.frame.width
                 }, completionHandler: {
                     self.isAnimatingCarousel = false
@@ -125,7 +125,7 @@ class StartScreenViewController: NSViewController {
             assignUserEducationView.plotView.connectionViews.forEach({ $0.sizeToAnimate() })
             NSAnimationContext.runAnimationGroup({ (context: NSAnimationContext) -> Void in
                 context.duration = 0.5
-                context.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                context.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
                 self.carouselPositionConstraint.animator().constant += self.view.frame.width
                 self.nextButtonWidthConstraint.animator().constant -= self.nextButtonSizeIncrease
                 self.mainTitleLabel.animator().alphaValue = 1.0
@@ -142,7 +142,7 @@ class StartScreenViewController: NSViewController {
     
     func openFileAndDismiss(_ sender: AnyObject) {
         self.view.window?.close()
-        NSDocumentController.shared().openDocument(sender)
+        NSDocumentController.shared.openDocument(sender)
     }
     
 }

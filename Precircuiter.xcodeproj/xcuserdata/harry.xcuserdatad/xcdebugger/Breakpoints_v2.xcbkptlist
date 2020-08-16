@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bucket
+   uuid = "521C52AF-55C8-4DC3-B46E-70CE62A8ECB6"
    type = "1"
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "5FA78E07-CEC8-4EB4-B628-7CB9D89051D9"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -22,6 +24,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "F1C3182F-57AE-4936-9898-3299E15F0BC8"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -35,6 +38,7 @@
             landmarkType = "5">
             <Locations>
                <Location
+                  uuid = "F1C3182F-57AE-4936-9898-3299E15F0BC8 - 792c7095330ee954"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -50,6 +54,7 @@
                   offsetFromSymbolStart = "5005">
                </Location>
                <Location
+                  uuid = "F1C3182F-57AE-4936-9898-3299E15F0BC8 - 26d073ac9b6f8cd8"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -70,6 +75,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "112A78EF-F881-4060-BF2E-1FAFB92E3D28"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -86,6 +92,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "726CEB06-E667-44AF-AC28-896335E2024F"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -102,6 +109,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "D1E80DE7-4F00-452A-94B3-8ACA8E245B22"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -118,6 +126,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "310B64B9-E409-475D-B42A-725A06DBBB91"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -134,9 +143,10 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "B7A01F83-F328-4D47-8845-AD69BFF21D71"
             shouldBeEnabled = "No"
-            ignoreCount = "0"
             condition = "currentPosition &gt; 55"
+            ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Precircuiter/ViewController.swift"
             timestampString = "458375591.642673"
@@ -151,6 +161,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "87F13F45-693F-4521-8E6E-393467E3FFD7"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -167,6 +178,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "B816DAB7-DE44-4FFF-90F2-6635245DCC07"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -183,6 +195,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "073AFC17-FE82-4F24-BE7C-B14BE752211B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -199,6 +212,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "F472F6FD-93C3-4313-9103-84F586FD9195"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -215,6 +229,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "DE4081AD-E4F3-4FB1-9CF1-DD53C2B561A1"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -231,6 +246,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "7509D0BC-CDB1-49FC-B117-EEFCD414AD48"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -244,6 +260,7 @@
             landmarkType = "5">
             <Locations>
                <Location
+                  uuid = "7509D0BC-CDB1-49FC-B117-EEFCD414AD48 - f9385e279ba80295"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -259,6 +276,7 @@
                   offsetFromSymbolStart = "2944">
                </Location>
                <Location
+                  uuid = "7509D0BC-CDB1-49FC-B117-EEFCD414AD48 - 4ca763be62e83336"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -279,9 +297,10 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "5A96ACC3-0A98-4D86-A038-94FA8B552BA5"
             shouldBeEnabled = "No"
-            ignoreCount = "0"
             condition = "inst.needsNewViewRepresentation"
+            ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Precircuiter/Main/Views/MapView.swift"
             timestampString = "462402322.012411"
@@ -296,23 +315,25 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "112B2CA3-0983-456C-8CF1-43B1339B37F7"
             shouldBeEnabled = "No"
-            ignoreCount = "0"
             condition = "self.channel = &quot;61&quot;"
+            ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Precircuiter/Models/Instrument.swift"
             timestampString = "464211717.972425"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "194"
-            endingLineNumber = "194"
-            landmarkName = "Instrument"
-            landmarkType = "3">
+            startingLineNumber = "196"
+            endingLineNumber = "196"
+            landmarkName = "swatchColor"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "8604C3C0-9A8A-45C2-A6AE-D603A84069D7"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -329,6 +350,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "88BCAF9D-58CD-448F-8730-19FDB23C5267"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -342,34 +364,34 @@
             landmarkType = "13">
             <Locations>
                <Location
+                  uuid = "88BCAF9D-58CD-448F-8730-19FDB23C5267 - 9b3cb0355731e9b6"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Precircuiter.UnitType.init (rawValue : Swift.Int) -&gt; Swift.Optional&lt;Precircuiter.UnitType&gt;"
+                  symbolName = "Precircuiter.UnitType.init(rawValue: Swift.Int) -&gt; Swift.Optional&lt;Precircuiter.UnitType&gt;"
                   moduleName = "Precircuiter"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/Preferences.swift"
-                  timestampString = "506417465.187537"
+                  urlString = "file:///Users/harry/Documents/Technology/macOSDevelopment/Precircuiter/Precircuiter/Precircuiter/Models/Preferences.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "13"
                   endingLineNumber = "13"
-                  offsetFromSymbolStart = "39">
+                  offsetFromSymbolStart = "65">
                </Location>
                <Location
+                  uuid = "88BCAF9D-58CD-448F-8730-19FDB23C5267 - aadf51699c6a52ec"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "Precircuiter.UnitType.rawValue.getter : Swift.Int"
                   moduleName = "Precircuiter"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/Preferences.swift"
-                  timestampString = "506417465.189991"
+                  urlString = "file:///Users/harry/Documents/Technology/macOSDevelopment/Precircuiter/Precircuiter/Precircuiter/Models/Preferences.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "13"
                   endingLineNumber = "13"
-                  offsetFromSymbolStart = "82">
+                  offsetFromSymbolStart = "54">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -377,6 +399,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "820C86E3-DE0A-4605-80D8-84E6862356C0"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -393,6 +416,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "8D49DC27-8490-4F47-935F-E3E22CEDB56C"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -409,6 +433,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "B508E6AE-E1A7-4667-90F9-01A217D1678F"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -416,8 +441,8 @@
             timestampString = "506417462.590342"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "applicationDidFinishLaunching(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -425,6 +450,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "D26725B4-0875-46A4-A9A0-70D9A967A3E9"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -441,6 +467,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "3C401483-53D7-4E79-A51B-52D35DC38C2A"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -457,6 +484,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "B189AEFB-D60B-4DF4-BA9F-111D182FF19D"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -464,8 +492,8 @@
             timestampString = "488964354.659288"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "read(from:ofType:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -473,6 +501,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "D15705DE-A02C-4A45-A6E2-66AA76B1185F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -480,8 +509,8 @@
             timestampString = "488964354.659288"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "read(from:ofType:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -489,294 +518,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Precircuiter/Models/InstrumentDataDocument.swift"
-            timestampString = "488964354.659288"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
-            landmarkName = "read(from:ofType:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Precircuiter.InstrumentDataDocument.(read (from : Foundation.Data, ofType : Swift.String) throws -&gt; ()).(closure #1)"
-                  moduleName = "Precircuiter"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "506417465.200918"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "139"
-                  endingLineNumber = "139"
-                  offsetFromSymbolStart = "9604">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Precircuiter.InstrumentDataDocument.(read (from : Foundation.Data, ofType : Swift.String) throws -&gt; ()).(closure #1).(closure #3)"
-                  moduleName = "Precircuiter"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "506417465.203155"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "140"
-                  endingLineNumber = "140"
-                  offsetFromSymbolStart = "19">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Precircuiter/Models/InstrumentDataDocument.swift"
-            timestampString = "488964354.659288"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
-            landmarkName = "read(from:ofType:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Precircuiter.InstrumentDataDocument.(read (from : Foundation.Data, ofType : Swift.String) throws -&gt; ()).(closure #1)"
-                  moduleName = "Precircuiter"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "506417465.214796"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "121"
-                  endingLineNumber = "121"
-                  offsetFromSymbolStart = "2585">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Precircuiter.InstrumentDataDocument.(read (from : Foundation.Data, ofType : Swift.String) throws -&gt; ()).(closure #1).(closure #1)"
-                  moduleName = "Precircuiter"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "506417465.217365"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "122"
-                  endingLineNumber = "122"
-                  offsetFromSymbolStart = "19">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Precircuiter/Models/InstrumentDataDocument.swift"
-            timestampString = "488964354.659288"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
-            landmarkName = "read(from:ofType:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Precircuiter.InstrumentDataDocument.(read (from : Foundation.Data, ofType : Swift.String) throws -&gt; ()).(closure #1)"
-                  moduleName = "Precircuiter"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "506417465.221906"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "149"
-                  endingLineNumber = "149"
-                  offsetFromSymbolStart = "5433">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Precircuiter.InstrumentDataDocument.(read (from : Foundation.Data, ofType : Swift.String) throws -&gt; ()).(closure #1).(closure #4)"
-                  moduleName = "Precircuiter"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "506417465.224256"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "150"
-                  endingLineNumber = "150"
-                  offsetFromSymbolStart = "19">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Precircuiter/Models/InstrumentDataDocument.swift"
-            timestampString = "488964354.659288"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
-            landmarkName = "read(from:ofType:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Precircuiter.InstrumentDataDocument.(read (from : Foundation.Data, ofType : Swift.String) throws -&gt; ()).(closure #1)"
-                  moduleName = "Precircuiter"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "506417465.228464"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "159"
-                  endingLineNumber = "159"
-                  offsetFromSymbolStart = "10130">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Precircuiter.InstrumentDataDocument.(read (from : Foundation.Data, ofType : Swift.String) throws -&gt; ()).(closure #1).(closure #5)"
-                  moduleName = "Precircuiter"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "506417465.230607"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "160"
-                  endingLineNumber = "160"
-                  offsetFromSymbolStart = "19">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Precircuiter/Models/InstrumentDataDocument.swift"
-            timestampString = "488964354.659288"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
-            landmarkName = "read(from:ofType:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Precircuiter/Models/InstrumentDataDocument.swift"
-            timestampString = "488964354.659288"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
-            landmarkName = "read(from:ofType:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Precircuiter/Models/InstrumentDataDocument.swift"
-            timestampString = "488964354.659288"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
-            landmarkName = "read(from:ofType:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Precircuiter.InstrumentDataDocument.(read (from : Foundation.Data, ofType : Swift.String) throws -&gt; ()).(closure #1)"
-                  moduleName = "Precircuiter"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "506417465.241809"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "131"
-                  endingLineNumber = "131"
-                  offsetFromSymbolStart = "8791">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Precircuiter.InstrumentDataDocument.(read (from : Foundation.Data, ofType : Swift.String) throws -&gt; ()).(closure #1).(closure #2)"
-                  moduleName = "Precircuiter"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "506417465.243884"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "132"
-                  endingLineNumber = "132"
-                  offsetFromSymbolStart = "19">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Precircuiter/Models/InstrumentDataDocument.swift"
-            timestampString = "488964354.659288"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
-            landmarkName = "read(from:ofType:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
+            uuid = "0C999FA7-C358-49F8-8218-8D6AFA67573C"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -788,11 +530,123 @@
             endingLineNumber = "140"
             landmarkName = "read(from:ofType:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0C999FA7-C358-49F8-8218-8D6AFA67573C - d1fd51a0a5bea36f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Precircuiter.InstrumentDataDocument.read(from: Foundation.Data, ofType: Swift.String) throws -&gt; ()"
+                  moduleName = "Precircuiter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harry/Documents/Technology/macOSDevelopment/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "140"
+                  endingLineNumber = "140"
+                  offsetFromSymbolStart = "12362">
+               </Location>
+               <Location
+                  uuid = "0C999FA7-C358-49F8-8218-8D6AFA67573C - d1fd51a0a5bea36f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Precircuiter.InstrumentDataDocument.read(from: Foundation.Data, ofType: Swift.String) throws -&gt; ()"
+                  moduleName = "Precircuiter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harry/Documents/Technology/macOSDevelopment/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "140"
+                  endingLineNumber = "140"
+                  offsetFromSymbolStart = "12445">
+               </Location>
+               <Location
+                  uuid = "0C999FA7-C358-49F8-8218-8D6AFA67573C - cda8ef8a6d152079"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 () -&gt; () in closure #1 () -&gt; () in Precircuiter.InstrumentDataDocument.read(from: Foundation.Data, ofType: Swift.String) throws -&gt; ()"
+                  moduleName = "Precircuiter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harry/Documents/Technology/macOSDevelopment/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "140"
+                  endingLineNumber = "140"
+                  offsetFromSymbolStart = "45">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "12F09ABA-B3AE-4B42-A40A-4A7EE753721A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Precircuiter/Models/InstrumentDataDocument.swift"
+            timestampString = "488964354.659288"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "read(from:ofType:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "12F09ABA-B3AE-4B42-A40A-4A7EE753721A - d1fd51a0a5be5cb9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Precircuiter.InstrumentDataDocument.read(from: Foundation.Data, ofType: Swift.String) throws -&gt; ()"
+                  moduleName = "Precircuiter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harry/Documents/Technology/macOSDevelopment/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "122"
+                  endingLineNumber = "122"
+                  offsetFromSymbolStart = "3865">
+               </Location>
+               <Location
+                  uuid = "12F09ABA-B3AE-4B42-A40A-4A7EE753721A - d1fd51a0a5be5cb9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Precircuiter.InstrumentDataDocument.read(from: Foundation.Data, ofType: Swift.String) throws -&gt; ()"
+                  moduleName = "Precircuiter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harry/Documents/Technology/macOSDevelopment/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "122"
+                  endingLineNumber = "122"
+                  offsetFromSymbolStart = "3948">
+               </Location>
+               <Location
+                  uuid = "12F09ABA-B3AE-4B42-A40A-4A7EE753721A - afd96c5c9a840bb1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 () -&gt; () in Precircuiter.InstrumentDataDocument.read(from: Foundation.Data, ofType: Swift.String) throws -&gt; ()"
+                  moduleName = "Precircuiter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harry/Documents/Technology/macOSDevelopment/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "122"
+                  endingLineNumber = "122"
+                  offsetFromSymbolStart = "45">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FA8F9F09-F745-4413-A693-3B8AC1840FD0"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -804,11 +658,59 @@
             endingLineNumber = "150"
             landmarkName = "read(from:ofType:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FA8F9F09-F745-4413-A693-3B8AC1840FD0 - d1fd51a0a5bea025"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Precircuiter.InstrumentDataDocument.read(from: Foundation.Data, ofType: Swift.String) throws -&gt; ()"
+                  moduleName = "Precircuiter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harry/Documents/Technology/macOSDevelopment/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "150"
+                  endingLineNumber = "150"
+                  offsetFromSymbolStart = "7452">
+               </Location>
+               <Location
+                  uuid = "FA8F9F09-F745-4413-A693-3B8AC1840FD0 - d1fd51a0a5bea025"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Precircuiter.InstrumentDataDocument.read(from: Foundation.Data, ofType: Swift.String) throws -&gt; ()"
+                  moduleName = "Precircuiter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harry/Documents/Technology/macOSDevelopment/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "150"
+                  endingLineNumber = "150"
+                  offsetFromSymbolStart = "7535">
+               </Location>
+               <Location
+                  uuid = "FA8F9F09-F745-4413-A693-3B8AC1840FD0 - 3ca030af155df932"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 () -&gt; () in closure #1 () -&gt; () in Precircuiter.InstrumentDataDocument.read(from: Foundation.Data, ofType: Swift.String) throws -&gt; ()"
+                  moduleName = "Precircuiter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harry/Documents/Technology/macOSDevelopment/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "150"
+                  endingLineNumber = "150"
+                  offsetFromSymbolStart = "45">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "D14C7883-A11A-4D25-BEA0-CE19EBE1902A"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -820,11 +722,59 @@
             endingLineNumber = "160"
             landmarkName = "read(from:ofType:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D14C7883-A11A-4D25-BEA0-CE19EBE1902A - d1fd51a0a5bea193"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Precircuiter.InstrumentDataDocument.read(from: Foundation.Data, ofType: Swift.String) throws -&gt; ()"
+                  moduleName = "Precircuiter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harry/Documents/Technology/macOSDevelopment/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "160"
+                  endingLineNumber = "160"
+                  offsetFromSymbolStart = "13175">
+               </Location>
+               <Location
+                  uuid = "D14C7883-A11A-4D25-BEA0-CE19EBE1902A - d1fd51a0a5bea193"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Precircuiter.InstrumentDataDocument.read(from: Foundation.Data, ofType: Swift.String) throws -&gt; ()"
+                  moduleName = "Precircuiter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harry/Documents/Technology/macOSDevelopment/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "160"
+                  endingLineNumber = "160"
+                  offsetFromSymbolStart = "13258">
+               </Location>
+               <Location
+                  uuid = "D14C7883-A11A-4D25-BEA0-CE19EBE1902A - 6bb871b03de24e87"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #5 () -&gt; () in closure #1 () -&gt; () in Precircuiter.InstrumentDataDocument.read(from: Foundation.Data, ofType: Swift.String) throws -&gt; ()"
+                  moduleName = "Precircuiter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harry/Documents/Technology/macOSDevelopment/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "160"
+                  endingLineNumber = "160"
+                  offsetFromSymbolStart = "45">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "784002B8-D4CA-48FC-B0B0-65DC162D1F85"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -832,40 +782,221 @@
             timestampString = "488964354.659288"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
+            landmarkName = "read(from:ofType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EA3162CD-40F2-4538-8D7F-04452026D170"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Precircuiter/Models/InstrumentDataDocument.swift"
+            timestampString = "488964354.659288"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "read(from:ofType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D31AA0F0-4724-4540-8C9B-0170823CED3E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Precircuiter/Models/InstrumentDataDocument.swift"
+            timestampString = "488964354.659288"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
             landmarkName = "read(from:ofType:)"
             landmarkType = "7">
             <Locations>
                <Location
+                  uuid = "D31AA0F0-4724-4540-8C9B-0170823CED3E - d1fd51a0a5bea277"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Precircuiter.InstrumentDataDocument.(read (from : Foundation.Data, ofType : Swift.String) throws -&gt; ()).(closure #1)"
+                  symbolName = "closure #1 () -&gt; () in Precircuiter.InstrumentDataDocument.read(from: Foundation.Data, ofType: Swift.String) throws -&gt; ()"
                   moduleName = "Precircuiter"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "506417465.261865"
+                  urlString = "file:///Users/harry/Documents/Technology/macOSDevelopment/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "167"
-                  endingLineNumber = "167"
-                  offsetFromSymbolStart = "10914">
+                  startingLineNumber = "132"
+                  endingLineNumber = "132"
+                  offsetFromSymbolStart = "11067">
                </Location>
                <Location
+                  uuid = "D31AA0F0-4724-4540-8C9B-0170823CED3E - d1fd51a0a5bea277"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Precircuiter.InstrumentDataDocument.(read (from : Foundation.Data, ofType : Swift.String) throws -&gt; ()).(closure #1).(closure #6)"
+                  symbolName = "closure #1 () -&gt; () in Precircuiter.InstrumentDataDocument.read(from: Foundation.Data, ofType: Swift.String) throws -&gt; ()"
                   moduleName = "Precircuiter"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "506417465.263939"
+                  urlString = "file:///Users/harry/Documents/Technology/macOSDevelopment/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "132"
+                  endingLineNumber = "132"
+                  offsetFromSymbolStart = "11150">
+               </Location>
+               <Location
+                  uuid = "D31AA0F0-4724-4540-8C9B-0170823CED3E - 9ed0ad6142cd4f7e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; () in closure #1 () -&gt; () in Precircuiter.InstrumentDataDocument.read(from: Foundation.Data, ofType: Swift.String) throws -&gt; ()"
+                  moduleName = "Precircuiter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harry/Documents/Technology/macOSDevelopment/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "132"
+                  endingLineNumber = "132"
+                  offsetFromSymbolStart = "45">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E2A61542-631F-4637-80A4-29D3E9CA32D0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Precircuiter/Models/InstrumentDataDocument.swift"
+            timestampString = "488964354.659288"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "read(from:ofType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "145CD1C6-AACB-47FE-BAC3-8F7A9FD7E2FF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Precircuiter/Models/InstrumentDataDocument.swift"
+            timestampString = "488964354.659288"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
+            landmarkName = "read(from:ofType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "40CE8A38-A054-4F77-9CFA-ADE7B2DB6B65"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Precircuiter/Models/InstrumentDataDocument.swift"
+            timestampString = "488964354.659288"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "read(from:ofType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1374ABB5-344E-4B35-81F5-BD39A5F08F36"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Precircuiter/Models/InstrumentDataDocument.swift"
+            timestampString = "488964354.659288"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "read(from:ofType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1A2BFB00-36AE-4E8A-8099-4ED4BB6FD8B2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Precircuiter/Models/InstrumentDataDocument.swift"
+            timestampString = "488964354.659288"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "read(from:ofType:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1A2BFB00-36AE-4E8A-8099-4ED4BB6FD8B2 - d1fd51a0a5bea68b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Precircuiter.InstrumentDataDocument.read(from: Foundation.Data, ofType: Swift.String) throws -&gt; ()"
+                  moduleName = "Precircuiter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harry/Documents/Technology/macOSDevelopment/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "168"
                   endingLineNumber = "168"
-                  offsetFromSymbolStart = "19">
+                  offsetFromSymbolStart = "14442">
+               </Location>
+               <Location
+                  uuid = "1A2BFB00-36AE-4E8A-8099-4ED4BB6FD8B2 - d1fd51a0a5bea68b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Precircuiter.InstrumentDataDocument.read(from: Foundation.Data, ofType: Swift.String) throws -&gt; ()"
+                  moduleName = "Precircuiter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harry/Documents/Technology/macOSDevelopment/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "168"
+                  endingLineNumber = "168"
+                  offsetFromSymbolStart = "14525">
+               </Location>
+               <Location
+                  uuid = "1A2BFB00-36AE-4E8A-8099-4ED4BB6FD8B2 - 5ab3b2dae42a239e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #6 () -&gt; () in closure #1 () -&gt; () in Precircuiter.InstrumentDataDocument.read(from: Foundation.Data, ofType: Swift.String) throws -&gt; ()"
+                  moduleName = "Precircuiter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harry/Documents/Technology/macOSDevelopment/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "168"
+                  endingLineNumber = "168"
+                  offsetFromSymbolStart = "45">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -873,54 +1004,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Precircuiter/Models/InstrumentDataDocument.swift"
-            timestampString = "488964354.659288"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
-            landmarkName = "read(from:ofType:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Precircuiter.InstrumentDataDocument.(read (from : Foundation.Data, ofType : Swift.String) throws -&gt; ()).(closure #1)"
-                  moduleName = "Precircuiter"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "506417465.267965"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "197"
-                  endingLineNumber = "197"
-                  offsetFromSymbolStart = "6393">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Precircuiter.InstrumentDataDocument.(read (from : Foundation.Data, ofType : Swift.String) throws -&gt; ()).(closure #1).(closure #7)"
-                  moduleName = "Precircuiter"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "506417465.270051"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "198"
-                  endingLineNumber = "198"
-                  offsetFromSymbolStart = "19">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
+            uuid = "C4B253E1-C58C-420E-A445-04207B8E67AC"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -932,52 +1016,51 @@
             endingLineNumber = "198"
             landmarkName = "read(from:ofType:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Precircuiter/Models/InstrumentDataDocument.swift"
-            timestampString = "488964354.659288"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "212"
-            endingLineNumber = "212"
-            landmarkName = "read(from:ofType:)"
-            landmarkType = "7">
             <Locations>
                <Location
+                  uuid = "C4B253E1-C58C-420E-A445-04207B8E67AC - d1fd51a0a5beaaf5"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Precircuiter.InstrumentDataDocument.(read (from : Foundation.Data, ofType : Swift.String) throws -&gt; ()).(closure #1)"
+                  symbolName = "closure #1 () -&gt; () in Precircuiter.InstrumentDataDocument.read(from: Foundation.Data, ofType: Swift.String) throws -&gt; ()"
                   moduleName = "Precircuiter"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "506417465.277272"
+                  urlString = "file:///Users/harry/Documents/Technology/macOSDevelopment/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "212"
-                  endingLineNumber = "212"
-                  offsetFromSymbolStart = "8224">
+                  startingLineNumber = "198"
+                  endingLineNumber = "198"
+                  offsetFromSymbolStart = "8310">
                </Location>
                <Location
+                  uuid = "C4B253E1-C58C-420E-A445-04207B8E67AC - d1fd51a0a5beaaf5"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Precircuiter.InstrumentDataDocument.(read (from : Foundation.Data, ofType : Swift.String) throws -&gt; ()).(closure #1).(closure #8)"
+                  symbolName = "closure #1 () -&gt; () in Precircuiter.InstrumentDataDocument.read(from: Foundation.Data, ofType: Swift.String) throws -&gt; ()"
                   moduleName = "Precircuiter"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harry/Documents/Technology/Personal%20Mac%20Development/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
-                  timestampString = "506417465.27924"
+                  urlString = "file:///Users/harry/Documents/Technology/macOSDevelopment/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "213"
-                  endingLineNumber = "213"
-                  offsetFromSymbolStart = "19">
+                  startingLineNumber = "198"
+                  endingLineNumber = "198"
+                  offsetFromSymbolStart = "8393">
+               </Location>
+               <Location
+                  uuid = "C4B253E1-C58C-420E-A445-04207B8E67AC - 898bf3ff8c72f1e7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #7 () -&gt; () in closure #1 () -&gt; () in Precircuiter.InstrumentDataDocument.read(from: Foundation.Data, ofType: Swift.String) throws -&gt; ()"
+                  moduleName = "Precircuiter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harry/Documents/Technology/macOSDevelopment/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "198"
+                  endingLineNumber = "198"
+                  offsetFromSymbolStart = "45">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -985,6 +1068,24 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "3124CCEC-8627-4E1C-A8B4-10B9FBF0556B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Precircuiter/Models/InstrumentDataDocument.swift"
+            timestampString = "488964354.659288"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
+            landmarkName = "read(from:ofType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "99DC4005-81BB-4429-A9F7-99BEC7A726E4"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -995,6 +1096,102 @@
             startingLineNumber = "213"
             endingLineNumber = "213"
             landmarkName = "read(from:ofType:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "99DC4005-81BB-4429-A9F7-99BEC7A726E4 - d1fd51a0a5bea8c6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Precircuiter.InstrumentDataDocument.read(from: Foundation.Data, ofType: Swift.String) throws -&gt; ()"
+                  moduleName = "Precircuiter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harry/Documents/Technology/macOSDevelopment/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "213"
+                  endingLineNumber = "213"
+                  offsetFromSymbolStart = "10489">
+               </Location>
+               <Location
+                  uuid = "99DC4005-81BB-4429-A9F7-99BEC7A726E4 - d1fd51a0a5bea8c6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Precircuiter.InstrumentDataDocument.read(from: Foundation.Data, ofType: Swift.String) throws -&gt; ()"
+                  moduleName = "Precircuiter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harry/Documents/Technology/macOSDevelopment/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "213"
+                  endingLineNumber = "213"
+                  offsetFromSymbolStart = "10572">
+               </Location>
+               <Location
+                  uuid = "99DC4005-81BB-4429-A9F7-99BEC7A726E4 - f8833400b4bb59d5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #8 () -&gt; () in closure #1 () -&gt; () in Precircuiter.InstrumentDataDocument.read(from: Foundation.Data, ofType: Swift.String) throws -&gt; ()"
+                  moduleName = "Precircuiter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harry/Documents/Technology/macOSDevelopment/Precircuiter/Precircuiter/Precircuiter/Models/InstrumentDataDocument.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "213"
+                  endingLineNumber = "213"
+                  offsetFromSymbolStart = "45">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B7081DD5-59E2-49CD-8B6A-155E4F571784"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Precircuiter/Models/InstrumentDataDocument.swift"
+            timestampString = "488964354.659288"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "214"
+            endingLineNumber = "214"
+            landmarkName = "read(from:ofType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1EAAE04F-81D8-4EB5-A11E-878587A35093"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Precircuiter/Models/Instrument.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "dimmer"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "02C8865A-1938-41B6-A667-01DC42AE5C6B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Precircuiter/Main/MainWindowController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "changeFilter(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

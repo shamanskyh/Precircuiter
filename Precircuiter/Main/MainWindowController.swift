@@ -30,6 +30,8 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var assignMissingToolbarItem: NSToolbarItem!
     @IBOutlet weak var assignAllToolbarItem: NSToolbarItem!
     @IBOutlet weak var viewFilter: NSSegmentedControl!
+    @IBOutlet weak var assignMissingTouchBarButton: NSButton!
+    @IBOutlet weak var viewFilterTouchBar: NSSegmentedControl!
     
     override func windowDidLoad() {
         super.windowDidLoad()
@@ -39,14 +41,17 @@ class MainWindowController: NSWindowController {
     }
     
     func updateToolbar() {
-        assignMissingToolbarItem.isEnabled = hasMissingDimmers
+        let enabled = hasMissingDimmers
+        assignMissingToolbarItem.isEnabled = enabled
+        assignMissingTouchBarButton.isEnabled = enabled
     }
     
-    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
-        if menuItem.action == #selector(MainWindowController.assignMissingDimmers(_:)) {
-            return hasMissingDimmers
+    func updateOtherSegmentedControl(sender: NSSegmentedControl, index: Int) {
+        if sender == viewFilter {
+            viewFilterTouchBar.integerValue = index
+        } else {
+            viewFilter.integerValue = index
         }
-        return true
     }
     
     @IBAction func assignMissingDimmers(_ sender: AnyObject) {
@@ -58,10 +63,16 @@ class MainWindowController: NSWindowController {
     }
     
     @IBAction func changeFilter(_ sender: AnyObject) {
-        delegate?.updateFilter(PlotViewFilterType.init(rawValue: (sender as! NSSegmentedControl).integerValue)!)
+        if let segmentedControl = sender as? NSSegmentedControl {
+            let index = segmentedControl.integerValue
+            if let filterType = PlotViewFilterType(rawValue: index) {
+                delegate?.updateFilter(filterType)
+            }
+            updateOtherSegmentedControl(sender: segmentedControl, index: index)
+        }
     }
     
-    var hasMissingDimmers: Bool {
+    @objc var hasMissingDimmers: Bool {
         if let delegate = delegate {
             return delegate.hasMissingDimmers
         } else {

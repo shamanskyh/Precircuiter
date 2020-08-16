@@ -93,7 +93,7 @@ class PlotView: NSView {
         return self.getBoundingRectForInstruments(instrumentsToIncludeInBoundingRect)
     }
     
-    func invalidateSymbolsAndRedraw() {
+    @objc func invalidateSymbolsAndRedraw() {
         
         subviews = []
         

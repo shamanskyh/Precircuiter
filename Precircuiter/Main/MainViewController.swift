@@ -28,7 +28,7 @@ class MainViewController: NSViewController {
     
     /// an array of all lights, moving lights, and practicals
     /// bound to the array controller in IB and observed in the table view
-    dynamic var allLights: [Instrument] {
+    @objc dynamic var allLights: [Instrument] {
         get {
             if let document = self.representedObject as? InstrumentDataDocument {
                 return document.allLights
@@ -136,8 +136,6 @@ class MainViewController: NSViewController {
     // MARK: - Utilities
     func combineDuplicates(_ instruments: [Instrument], isDimmer: Bool, uniqueSplitter: Character) -> [Instrument] {
         
-        view.window?.undoManager?.disableUndoRegistration()
-        
         var copiedInstruments: [Instrument] = []
         for instrument in instruments {
             let instrumentCopy = instrument.copy() as! Instrument
@@ -161,15 +159,13 @@ class MainViewController: NSViewController {
             copiedInstruments.removeObject(instrument)
         }
         
-        view.window?.undoManager?.enableUndoRegistration()
-        
         return copiedInstruments
     }
     
     func explodeDuplicates(_ originalInstruments: inout [Instrument], compressedCopy: [Instrument], isDimmer: Bool, uniqueSplitter: Character) {
         for instrument in compressedCopy {
             // find the corresponding instruments from the originals
-            let UIDs: [String] = instrument.UID.characters.split(){$0 == uniqueSplitter}.map(String.init)
+            let UIDs: [String] = instrument.UID.split(){$0 == uniqueSplitter}.map(String.init)
             for originalInstrument in originalInstruments where UIDs.contains(originalInstrument.UID) {
                 if isDimmer {
                     originalInstrument.channel = instrument.channel
@@ -202,7 +198,7 @@ class MainViewController: NSViewController {
             light.assignedBy = .manual
             light.receptacle?.light = nil
             
-            if let count = light.dimmer?.characters.count, count > 0 {
+            if let count = light.dimmer?.count, count > 0 {
                 connect(light: light, dimmers: allDimmers)
             } else {
                 light.receptacle = nil
@@ -244,7 +240,7 @@ class MainViewController: NSViewController {
         light.assignedBy = .manual
         light.receptacle?.light = nil
         
-        if let count = light.dimmer?.characters.count, count > 0 {
+        if let count = light.dimmer?.count, count > 0 {
             connect(light: light, dimmers: allDimmers)
         } else {
             light.receptacle = nil
@@ -336,7 +332,7 @@ extension MainViewController: PlotViewDelegate {
         // select the corresponding row(s) in the table view
         var indexSet = IndexSet()
         for light in selectedLights {
-            if let index = allLights.index(of: light) {
+            if let index = allLights.firstIndex(of: light) {
                 indexSet.insert(index)
             }
         }
@@ -383,6 +379,8 @@ extension MainViewController: MainWindowControllerDelegate {
     /// These two functions do the heavy lifting and pair up instruments with dimmers.
     func assignMissingDimmers() {
         
+        undoManager?.disableUndoRegistration()
+        
         var compressedLights = self.combineDuplicates(self.allLights.filter({ $0.dimmer == nil }), isDimmer: false, uniqueSplitter: kUniqueSplitterCharacter)
         var compressedDimmers = self.combineDuplicates(self.allDimmers.filter({ $0.light == nil }), isDimmer: true, uniqueSplitter: kUniqueSplitterCharacter)
         
@@ -393,51 +391,65 @@ extension MainViewController: MainWindowControllerDelegate {
         let hungarianMatrix = HungarianMatrix(rows: compressedDimmers.count, columns: compressedDimmers.count)
         hungarianMatrix.delegate = self
         
-        DispatchQueue.global(qos: .utility).async {
+        DispatchQueue.global(qos: .utility).async { [weak self] in
+            guard let strongSelf = self else { return }
+            
             do {
                 try hungarianMatrix.assignAndPair(lights: &compressedLights, dimmers: &compressedDimmers, cutCorners: Preferences.cutCorners)
             } catch HungarianMatrixError.moreChannelsThanDimmers {
                 // Don't show an error here.
                 // This is handled at a lower level so exact numbers can be specified in the error message.
+                DispatchQueue.main.async { [weak strongSelf] in
+                    strongSelf?.undoManager?.enableUndoRegistration()
+                }
                 return
             } catch {
-                DispatchQueue.main.async {
+                DispatchQueue.main.async { [weak strongSelf] in
                     let alert = NSAlert()
                     alert.messageText = "Error Precircuiting"
                     alert.informativeText = "Precircuiter encountered an unknown error when attempting to precircuit your plot. Please verify that the data you imported is valid."
                     alert.runModal()
+                    strongSelf?.undoManager?.enableUndoRegistration()
                 }
                 return
             }
             
-            DispatchQueue.main.async {
-                self.explodeDuplicates(&self.allLights, compressedCopy: compressedLights.filter({ $0.dummyInstrument != true }), isDimmer: false, uniqueSplitter: kUniqueSplitterCharacter)
-                self.explodeDuplicates(&self.allDimmers, compressedCopy: compressedDimmers.filter({ $0.dummyInstrument != true }), isDimmer: false, uniqueSplitter: kUniqueSplitterCharacter)
+            DispatchQueue.main.async { [weak strongSelf] in
+                guard let strongStrongSelf = strongSelf else { return }
+                
+                strongStrongSelf.undoManager?.enableUndoRegistration()
+                strongStrongSelf.undoManager?.beginUndoGrouping()
+                strongStrongSelf.undoManager?.setActionName("Assign Missing Dimmers")
+                strongStrongSelf.explodeDuplicates(&strongStrongSelf.allLights, compressedCopy: compressedLights.filter({ $0.dummyInstrument != true }), isDimmer: false, uniqueSplitter: kUniqueSplitterCharacter)
+                strongStrongSelf.explodeDuplicates(&strongStrongSelf.allDimmers, compressedCopy: compressedDimmers.filter({ $0.dummyInstrument != true }), isDimmer: false, uniqueSplitter: kUniqueSplitterCharacter)
+                strongStrongSelf.undoManager?.endUndoGrouping()
                 
                 // For any light that has a dimmer filled in, try to find the corresponding power object, and link that power object to the light as well (two-way link)
-                for light in self.allLights.filter({ $0.dimmer != nil }) {
-                    connect(light: light, dimmers: self.allDimmers)
+                for light in strongStrongSelf.allLights.filter({ $0.dimmer != nil }) {
+                    connect(light: light, dimmers: strongStrongSelf.allDimmers)
                 }
                 
                 if Preferences.showConnections {
-                    if let windowController = self.view.window?.windowController as? MainWindowController {
+                    if let windowController = strongStrongSelf.view.window?.windowController as? MainWindowController {
                         windowController.viewFilter.integerValue = PlotViewFilterType.both.rawValue
+                        windowController.viewFilterTouchBar.integerValue = PlotViewFilterType.both.rawValue
                     }
-                    self.plotView.filter = PlotViewFilterType.both
-                    self.plotView.invalidateSymbolsAndRedraw()
+                    strongStrongSelf.plotView.filter = PlotViewFilterType.both
+                    strongStrongSelf.plotView.invalidateSymbolsAndRedraw()
                     
                     if Preferences.animateConnections {
-                        self.plotView.animateInConnections()
+                        strongStrongSelf.plotView.animateInConnections()
                     }
                 } else {
-                    self.plotView.invalidateSymbolsAndRedraw()
+                    strongStrongSelf.plotView.invalidateSymbolsAndRedraw()
                 }
-                self.updateToolbar()
+                strongStrongSelf.updateToolbar()
             }
         }
     }
     
     func assignAllDimmers() {
+        self.undoManager?.disableUndoRegistration()
         
         // clear out existing links
         self.allLights.forEach({ $0.dimmer = nil })
@@ -449,63 +461,70 @@ extension MainViewController: MainWindowControllerDelegate {
         let hungarianMatrix = HungarianMatrix(rows: compressedDimmers.count, columns: compressedDimmers.count)
         
         guard compressedLights.count > 0 && compressedDimmers.count > 0 else {
+            self.undoManager?.enableUndoRegistration()
             return
         }
         
         hungarianMatrix.delegate = self
-        
-        DispatchQueue.global(qos: .utility).async {
+
+        DispatchQueue.global(qos: .utility).async { [weak self] in
+            guard let strongSelf = self else { return }
             
             do {
-                self.view.window?.undoManager?.disableUndoRegistration()
                 try hungarianMatrix.assignAndPair(lights: &compressedLights, dimmers: &compressedDimmers, cutCorners: Preferences.cutCorners)
             } catch HungarianMatrixError.moreChannelsThanDimmers {
                 // Don't show an error here.
                 // This is handled at a lower level so exact numbers can be specified in the error message.
+                DispatchQueue.main.async { [weak strongSelf] in
+                    strongSelf?.undoManager?.enableUndoRegistration()
+                }
                 return
             } catch {
-                DispatchQueue.main.async {
+                DispatchQueue.main.async { [weak strongSelf] in
                     let alert = NSAlert()
                     alert.messageText = "Error Precircuiting"
                     alert.informativeText = "Precircuiter encountered an unknown error when attempting to precircuit your plot. Please verify that the data you imported is valid."
                     alert.runModal()
+                    strongSelf?.undoManager?.enableUndoRegistration()
                 }
                 return
             }
             
-            DispatchQueue.main.async {
-                self.view.window?.undoManager?.enableUndoRegistration()
-                
-                self.explodeDuplicates(&self.allLights, compressedCopy: compressedLights.filter({ $0.dummyInstrument != true }), isDimmer: false, uniqueSplitter: kUniqueSplitterCharacter)
-                self.explodeDuplicates(&self.allDimmers, compressedCopy: compressedDimmers.filter({ $0.dummyInstrument != true }), isDimmer: false, uniqueSplitter: kUniqueSplitterCharacter)
-                // register the undo
-                self.view.window?.undoManager?.setActionName("Assign All Dimmers to Lights")
+            DispatchQueue.main.async { [weak strongSelf] in
+                guard let strongStrongSelf = strongSelf else { return }
+                strongStrongSelf.undoManager?.enableUndoRegistration()
+                strongStrongSelf.undoManager?.beginUndoGrouping()
+                strongStrongSelf.undoManager?.setActionName("Assign All Dimmers")
+                strongStrongSelf.explodeDuplicates(&strongStrongSelf.allLights, compressedCopy: compressedLights.filter({ $0.dummyInstrument != true }), isDimmer: false, uniqueSplitter: kUniqueSplitterCharacter)
+                strongStrongSelf.explodeDuplicates(&strongStrongSelf.allDimmers, compressedCopy: compressedDimmers.filter({ $0.dummyInstrument != true }), isDimmer: false, uniqueSplitter: kUniqueSplitterCharacter)
+                strongStrongSelf.undoManager?.endUndoGrouping()
                 
                 // For any light that has a dimmer filled in, try to find the corresponding power object, and link that power object to the light as well (two-way link)
-                for light in self.allLights.filter({ $0.dimmer != nil }) {
-                    connect(light: light, dimmers: self.allDimmers)
+                for light in strongStrongSelf.allLights.filter({ $0.dimmer != nil }) {
+                    connect(light: light, dimmers: strongStrongSelf.allDimmers)
                 }
                 
                 if Preferences.showConnections {
-                    if let windowController = self.view.window?.windowController as? MainWindowController {
+                    if let windowController = strongStrongSelf.view.window?.windowController as? MainWindowController {
                         windowController.viewFilter.integerValue = PlotViewFilterType.both.rawValue
+                        windowController.viewFilterTouchBar.integerValue = PlotViewFilterType.both.rawValue
                     }
-                    self.plotView.filter = PlotViewFilterType.both
-                    self.plotView.invalidateSymbolsAndRedraw()
+                    strongStrongSelf.plotView.filter = PlotViewFilterType.both
+                    strongStrongSelf.plotView.invalidateSymbolsAndRedraw()
                     
                     if Preferences.animateConnections {
-                        self.plotView.animateInConnections()
+                        strongStrongSelf.plotView.animateInConnections()
                     }
                 } else {
-                    self.plotView.invalidateSymbolsAndRedraw()
+                    strongStrongSelf.plotView.invalidateSymbolsAndRedraw()
                 }
                 
-                self.updateToolbar()
+                strongStrongSelf.updateToolbar()
             }
         }
     }
     
-    func updateToolbar() {
+    @objc func updateToolbar() {
         if let windowController = self.view.window?.windowController as? MainWindowController {
             windowController.updateToolbar()
         }
@@ -528,21 +547,22 @@ extension MainViewController: MainWindowControllerDelegate {
 extension MainViewController: HungarianMatrixDelegate {
     func didUpdateProgress(_ progress: Double) {
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let strongSelf = self else { return }
             if progress >= 1.0 {
-                self.progressIndicator.isHidden = true
-                self.progressIndicator.minValue = 0.0
-                self.tableView.reloadData()
-            } else if self.progressIndicator.minValue == 0.0 {
+                strongSelf.progressIndicator.isHidden = true
+                strongSelf.progressIndicator.minValue = 0.0
+                strongSelf.tableView.reloadData()
+            } else if strongSelf.progressIndicator.minValue == 0.0 {
                 
                 NSAnimationContext.runAnimationGroup({ (context) -> Void in
                     context.duration = 2.0
-                    self.progressIndicator.minValue = max(progress, 0.1)
+                    strongSelf.progressIndicator.minValue = max(progress, 0.1)
                 }, completionHandler: nil)
                 
-                self.progressIndicator.isHidden = false
+                strongSelf.progressIndicator.isHidden = false
             } else {
-                self.progressIndicator.doubleValue = progress
+                strongSelf.progressIndicator.doubleValue = progress
             }
         }
     }

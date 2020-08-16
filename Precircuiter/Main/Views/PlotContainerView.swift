@@ -10,15 +10,15 @@ import Cocoa
 
 /// a simple outer view that acts as a container for the inner PlotView
 /// where instruments are actually drawn
-class PlotContainerView: NSView {
+class PlotContainerView: NSVisualEffectView {
 
     @IBOutlet weak var innerView: PlotView!
     @IBOutlet weak var spinner: NSProgressIndicator!
     
-    override func awakeFromNib() {
-        self.wantsLayer = true
-        self.layer?.backgroundColor = NSColor.white.cgColor
-    }
+//    override func awakeFromNib() {
+//        self.wantsLayer = true
+//        self.layer?.backgroundColor = NSColor.white.cgColor
+//    }
     
     // send clicks to the inner view
     override func mouseDown(with theEvent: NSEvent) {

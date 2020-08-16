@@ -25,13 +25,8 @@ class LightSymbolView: NSView {
         
         if selected {
             let selectedPath = NSBezierPath(ovalIn: dirtyRect.insetBy(dx: 0.5, dy: 0.5))
-            selectedPath.lineWidth = 1.0
-            
-            NSColor.white.setFill()
+            NSColor.controlAccentColor.setFill()
             selectedPath.fill()
-            
-            NSColor(red: 0.0, green: 0.5, blue: 1.0, alpha: 1.0).setStroke()
-            selectedPath.stroke()
         }
         
         NSColor.darkGray.setStroke()
@@ -63,7 +58,7 @@ class LightSymbolView: NSView {
                 textColor = NSColor.lightGray
             }
             
-            (c as NSString).draw(in: dirtyRect.offsetBy(dx: 0.0, dy: -3.5), withAttributes: [NSFontAttributeName: font, NSParagraphStyleAttributeName: pStyle, NSForegroundColorAttributeName: textColor])
+            (c as NSString).draw(in: dirtyRect.offsetBy(dx: 0.0, dy: -4.5), withAttributes: [NSAttributedString.Key.font: font, NSAttributedString.Key.paragraphStyle: pStyle, NSAttributedString.Key.foregroundColor: textColor])
         }
     }
     

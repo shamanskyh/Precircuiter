@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "InstrumentDataDocument.(read(from : Data, ofType : String) throws -&gt; ()).(closure #1):InstrumentDataDocument.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "headers">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
